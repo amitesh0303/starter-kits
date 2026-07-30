@@ -1,7 +1,14 @@
 {
   "task_id": "task-django-api-backend",
   "task_description": "Build the django-api-backend reference starter (Task 3 from the spec): a fully standalone Django + DRF REST API with allauth token auth, PostgreSQL, Stripe webhooks, OpenAPI, rate limiting, structured logging, correlation IDs, Dockerfile, and comprehensive tests including Properties 5/6/7.",
-  "status": "in_progress",
+  "status": "completed",
   "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "pass",
+    "summary": "All 62 tests pass. mypy strict mode passes (43 files). Ruff lint and format checks pass. Django system check passes. Docker builds successfully. Standalone copy passes all checks without repository root. Tests exercise real code paths: webhook signature verification, CRUD with ownership, rate limiting, state restart persistence, error shape conformance."
+  }
 }
