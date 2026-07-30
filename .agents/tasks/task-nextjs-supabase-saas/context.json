@@ -1,0 +1,22 @@
+{
+  "project_type": "Next.js App Router SaaS starter (Web SaaS family, catalog entry #1)",
+  "language": "TypeScript",
+  "build_system": "pnpm with project-local package.json and pnpm-lock.yaml; exact-pinned dependencies",
+  "test_framework": "Vitest + Testing Library + fast-check for property tests; Playwright for smoke/UI where applicable",
+  "build_command": "cd nextjs-supabase-saas && pnpm run build",
+  "test_command": "cd nextjs-supabase-saas && pnpm run test",
+  "verification_instructions": "1. pnpm install --frozen-lockfile, 2. pnpm run lint, 3. pnpm run typecheck, 4. pnpm run test, 5. pnpm run build",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "1. cd nextjs-supabase-saas, 2. pnpm install --frozen-lockfile, 3. copy .env.example to .env.local, 4. configure env vars, 5. run migrations, 6. pnpm run dev",
+  "environment_constraints": "Full internet access available. Node 22 LTS and pnpm 10.28.1 pre-installed. No Docker daemon required for default validation - use host-based validation.",
+  "contribution_requirements": "Each starter is fully standalone - no imports from root or other starters. All provider SDKs behind local interfaces with fake defaults. Real credentials never required for install/lint/test/build. Exact-pinned direct dependency versions. Must pass catalog validation.",
+  "key_patterns": "Web SaaS blueprint: app/ for routes, domain/ for entities/policies, server/ or lib/server/ for adapters/config, supabase/ for migrations, tests/ for all test types. ConfigSpec interface with typed aggregate validation. IdentityPort/Repository/BillingPort/MailPort local interfaces. WebhookVerifier consuming raw body + headers. Deny-by-default authorization at repository/action boundary. State machines for subscriptions: active/past_due/cancelled. Sanitized errors, commit-point discipline.",
+  "relevant_files": [
+    "catalog/starters.json",
+    "catalog/starters.schema.json",
+    ".kiro/specs/multi-stack-boilerplates/design.md",
+    ".kiro/specs/multi-stack-boilerplates/requirements.md",
+    ".kiro/specs/multi-stack-boilerplates/tasks.md"
+  ],
+  "directory_structure": "Root: catalog/, scripts/, tests/, .github/workflows/. New starter at nextjs-supabase-saas/ with: app/ (Next.js pages/routes), domain/ (entities, policies), lib/server/ (auth, persistence, billing, mail adapters, config), supabase/ (SQL migrations), tests/ (unit, integration, property), and project-local config files."
+}

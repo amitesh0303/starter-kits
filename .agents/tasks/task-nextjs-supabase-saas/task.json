@@ -1,0 +1,14 @@
+{
+  "task_id": "task-nextjs-supabase-saas",
+  "task_description": "Build the reference Web SaaS starter nextjs-supabase-saas implementing Next.js App Router with Supabase Auth/Postgres, Stripe subscriptions, and Resend email. Covers catalog task 2 subtasks 2.1-2.7: scaffold, domain/infrastructure, provider adapters, dashboard flow, tests, documentation, and standalone validation.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "All verification passes: pnpm install --frozen-lockfile OK, lint OK (0 warnings), typecheck OK (tsc --noEmit clean), 79 tests passing (9 test files), build OK. Property tests use fast-check with 100-200 runs exercising real domain logic. Two review cycles completed (v1 NEEDS_CHANGES fixed, v2 APPROVED). No workspace/file/link/parent-path deps. Standalone project confirmed."
+  }
+}

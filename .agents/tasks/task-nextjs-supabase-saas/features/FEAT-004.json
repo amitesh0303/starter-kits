@@ -1,0 +1,50 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "Add comprehensive tests (unit, integration, property, smoke), .env.example with typed config validation, complete README, lint/typecheck/build commands, and standalone validation. Corresponds to subtasks 2.5, 2.6, and 2.7.",
+  "status": "completed",
+  "steps": [
+    "Add vitest, @testing-library/react, @testing-library/jest-dom, fast-check, @vitejs/plugin-react as exact-pinned devDependencies. Create vitest.config.ts with React/Next.js path aliases and test environment setup.",
+    "Create tests/unit/domain/policies.test.ts testing all authorization policies: owner access granted, member access limited, non-member denied, unauthenticated denied",
+    "Create tests/unit/server/config.test.ts testing aggregate config validation: missing required vars throws with all names listed, placeholder values detected, optional absence activates fake mode",
+    "Create tests/unit/server/billing.test.ts testing: webhook signature verification (valid signature processes event, invalid signature rejects with 400 and no state change), idempotent event processing (duplicate provider_event_id acknowledged without duplicate effect), subscription state transitions (checkout.session.completed creates subscription, customer.subscription.updated changes status, customer.subscription.deleted marks cancelled)",
+    "Create tests/unit/server/mail.test.ts testing: fake mode captures emails without sending, welcome email contains expected fields, invite email contains expected fields",
+    "Create tests/integration/auth.test.ts testing: unauthenticated access to protected routes returns redirect/401, authenticated access succeeds, tenant-scoped access enforced",
+    "Create tests/integration/actions.test.ts testing: create tenant action succeeds for authenticated user, create project action enforces tenant membership, invite member action enforces owner/admin role",
+    "Create tests/property/auth-consistency.test.ts implementing Property 4 (Authentication and access consistency): for any identity state and protected resource, access is granted iff authentication valid AND policy authorizes. Use fast-check to generate random auth contexts and verify deny-by-default consistency.",
+    "Create tests/property/webhook-authenticity.test.ts implementing Property 5 (Webhook authenticity gates one state transition): for any webhook payload and signature, invalid proof produces non-success with unchanged state, valid recognized event produces transition at most once per unique provider_event_id. Use fast-check to generate random payloads/signatures.",
+    "Create tests/smoke/build.test.ts as a smoke test verifying the project builds and key entry points exist",
+    "Create .env.example with all environment variables documented: each line has the var name, a placeholder value, and a comment marking it as client-safe|server-only and required|optional. Include: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_ID, RESEND_API_KEY, NEXT_PUBLIC_APP_URL",
+    "Update lib/server/config.ts to be the typed aggregate config validator: on startup, collects ALL missing/placeholder required server-only values and refuses with one error listing them all (never prints values). Optional values absent trigger fake/disabled fallback.",
+    "Create nextjs-supabase-saas/README.md following the Web SaaS family template: purpose/differentiators, supported runtime (Node 22 LTS, pnpm 10.x), folder structure map, ordered clean-setup procedure with commands and expected outcomes, environment table (dev vs prod), schema initialization (migrations), auth/authorization explanation, Stripe console setup/webhook configuration, Resend setup, representative flow description, one-shot commands (pnpm install --frozen-lockfile, pnpm run lint, pnpm run typecheck, pnpm run test, pnpm run build), troubleshooting, deployment (Vercel with managed Supabase/Stripe), license notes",
+    "Add ESLint configuration (eslint.config.mjs with @eslint/js, typescript-eslint, eslint-plugin-react) and lint script in package.json",
+    "Add typecheck script in package.json: tsc --noEmit",
+    "Ensure all one-shot commands are non-interactive and terminate with process status",
+    "Run the full validation sequence: pnpm install --frozen-lockfile, pnpm run lint, pnpm run typecheck, pnpm run test, pnpm run build - all must pass",
+    "Verify standalone independence: no imports from parent directories, no workspace: or file: or link: dependencies, no references to root package.json or other starter folders"
+  ],
+  "acceptance_criteria": [
+    "tests/ directory contains unit, integration, property, and smoke tests",
+    "Property 4 test (auth consistency) uses fast-check with 100+ cases and verifies deny-by-default",
+    "Property 5 test (webhook authenticity) uses fast-check with 100+ cases and verifies signature gating + idempotency",
+    "Stripe webhook tests cover: valid signature + state transition, invalid signature + no state change, duplicate event + no duplicate effect",
+    "Resend fake tests verify email capture without real sending",
+    "RLS/authz tests verify tenant isolation and role enforcement",
+    ".env.example lists every env var read by source with classification comments",
+    "README.md follows the Web SaaS family template with all required sections",
+    "pnpm run lint passes (ESLint)",
+    "pnpm run typecheck passes (tsc --noEmit)",
+    "pnpm run test passes (Vitest with all tests green)",
+    "pnpm run build passes (next build)",
+    "No file:, link:, workspace:, or parent-path dependencies in package.json"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm install --frozen-lockfile",
+    "cd nextjs-supabase-saas && pnpm run lint",
+    "cd nextjs-supabase-saas && pnpm run typecheck",
+    "cd nextjs-supabase-saas && pnpm run test",
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All 78 tests pass (9 test files). Used fast-check 3.23.2 which uses fc.hexa() instead of fc.alphaNumeric() (the latter was removed in v3.x). Property tests generate 200+ cases each for auth-consistency and webhook-authenticity. The @eslint/eslintrc was pinned from ^3.3.6 to exact 3.3.6. vitest 3.2.1 and fast-check 3.23.2 added as exact-pinned devDependencies. Full validation passes: pnpm install --frozen-lockfile, lint, typecheck, test, build."
+}

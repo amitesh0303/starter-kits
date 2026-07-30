@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-006",
+  "type": "fix",
+  "description": "Address 4 review feedback items: placeholder detection substring check, invite flow fix (remove membership creation), webhook route dedup (use getProviders), non-atomic tenant+membership compensating action.",
+  "status": "completed",
+  "steps": [
+    "Fix isPlaceholderValue to use substring check for 'placeholder' (case-insensitive)",
+    "Fix invite page: remove membershipRepo.create, add comment explaining production invite-acceptance flow needed",
+    "Fix webhook route: use getProviders().billing instead of local createBillingAdapter()",
+    "Fix tenant creation: wrap in try-catch with compensating tenant delete on membership failure",
+    "Verify all existing tests still pass"
+  ],
+  "acceptance_criteria": [
+    "isPlaceholderValue('sk_test_placeholder') returns true",
+    "isPlaceholderValue('whsec_placeholder') returns true",
+    "isPlaceholderValue('re_placeholder') returns true",
+    "isPlaceholderValue('price_placeholder') returns true",
+    "Invite action sends email without creating a membership record",
+    "Webhook route uses getProviders().billing, no local createBillingAdapter()",
+    "Tenant creation has compensating delete if membership creation fails",
+    "pnpm run lint, typecheck, test, and build all pass"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm run lint",
+    "cd nextjs-supabase-saas && pnpm run typecheck",
+    "cd nextjs-supabase-saas && pnpm run test",
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All 4 review items addressed. 79 tests pass (78 original + 1 new test for .env.example placeholder detection). Lint, typecheck, and build all pass. The placeholder detection now uses case-insensitive substring check for 'placeholder', catching all .env.example default values. Invite flow no longer creates a membership record (avoids UUID type mismatch). Webhook route uses the cached getProviders().billing instead of constructing a new adapter per request. Tenant creation has a compensating delete if the membership insert fails."
+}

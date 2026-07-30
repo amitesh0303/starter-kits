@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Generate the Next.js App Router scaffold with exact-pinned dependencies, project-local pnpm manifest/lockfile, TypeScript/Tailwind config, .gitignore, and starter.json. Corresponds to subtask 2.1.",
+  "status": "completed",
+  "steps": [
+    "Create nextjs-supabase-saas/ directory at the repository root",
+    "Initialize a Next.js App Router project with TypeScript and Tailwind CSS using exact-pinned versions: next@15 (latest stable), react@19, react-dom@19, typescript@5.x, tailwindcss@4.x, @tailwindcss/postcss, postcss. Use pnpm as the package manager with packageManager field in package.json.",
+    "Create package.json with exact-pinned direct dependencies (not ranges), scripts for dev/build/start/lint/typecheck/test, and packageManager field for pnpm",
+    "Generate pnpm-lock.yaml by running pnpm install",
+    "Create tsconfig.json with strict mode, Next.js recommended paths, and App Router settings",
+    "Create next.config.ts with minimal App Router configuration",
+    "Create postcss.config.mjs for Tailwind CSS v4",
+    "Create app/globals.css with Tailwind v4 import (@import 'tailwindcss')",
+    "Create a minimal app/layout.tsx root layout with metadata",
+    "Create a minimal app/page.tsx placeholder public page",
+    "Create .gitignore covering node_modules, .next, .env*.local, out/, coverage/",
+    "Create starter.json with immutable identity projection matching catalog entry #1: id=1, folder=nextjs-supabase-saas, family=Web SaaS, useCase=General multi-tenant SaaS, framework=Next.js App Router, runtime=Node LTS, technologies=[TypeScript, Supabase Auth, Supabase Postgres, Stripe, Resend, Tailwind], auth=Supabase Auth, data=Supabase Postgres, monetization=Stripe subscriptions, integrations=[Resend]",
+    "Verify the project builds successfully with pnpm run build"
+  ],
+  "acceptance_criteria": [
+    "nextjs-supabase-saas/package.json exists with exact-pinned direct dependencies and correct scripts",
+    "nextjs-supabase-saas/pnpm-lock.yaml exists and pnpm install --frozen-lockfile succeeds",
+    "nextjs-supabase-saas/starter.json matches the catalog entry #1 identity fields",
+    "pnpm run build completes without errors in the nextjs-supabase-saas directory",
+    "TypeScript strict mode is enabled in tsconfig.json",
+    ".gitignore excludes node_modules, .next, .env*.local, build artifacts"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm install --frozen-lockfile",
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "pnpm 10.28.1 requires pnpm.onlyBuiltDependencies in package.json to allow build scripts for @tailwindcss/oxide, sharp, unrs-resolver. next@15.3.4 is marked deprecated with a security advisory but is the latest 15.x stable. All exact-pinned versions: next@15.3.4, react@19.0.0, react-dom@19.0.0, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, typescript@5.8.3, eslint@9.28.0, eslint-config-next@15.3.4, @types/node@22.15.29, @types/react@19.1.6, @types/react-dom@19.1.6. Build and frozen install both pass successfully."
+}

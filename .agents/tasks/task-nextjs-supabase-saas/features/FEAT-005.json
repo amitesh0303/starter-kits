@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-005",
+  "type": "fix",
+  "description": "Fix 6 issues from semantic code review: provider wiring (billing+mail always returning fakes), migration forward-reference, canAccessProject documentation, and updated_at trigger comment.",
+  "status": "completed",
+  "steps": [
+    "Fix providers.ts createBillingProvider() to instantiate StripeBillingAdapter when credentials are real",
+    "Fix providers.ts createMailProvider() to instantiate ResendMailAdapter when Resend API key is real",
+    "Move the tenant SELECT RLS policy that references memberships from migration 001 to migration 002",
+    "Add documentation comment to canAccessProject explaining tenant-level membership is intentionally sufficient for this starter",
+    "Add comment to migration files explaining updated_at is application-managed (no Postgres trigger) for portability",
+    "Verify all existing tests still pass"
+  ],
+  "acceptance_criteria": [
+    "When STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET are real (non-placeholder) and Supabase is configured, getProviders().billing returns StripeBillingAdapter",
+    "When RESEND_API_KEY is real (non-placeholder), getProviders().mail returns ResendMailAdapter",
+    "When credentials ARE placeholders, fake adapters are still returned (no regression)",
+    "Migration 001 no longer references public.memberships",
+    "The tenant SELECT policy using memberships is in migration 002",
+    "canAccessProject has a documentation comment explaining the design choice",
+    "updated_at has a comment explaining application-managed approach",
+    "pnpm run lint, typecheck, test, and build all pass"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm run lint",
+    "cd nextjs-supabase-saas && pnpm run typecheck",
+    "cd nextjs-supabase-saas && pnpm run test",
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": "All 78 tests still pass after fixes. The provider wiring now correctly instantiates StripeBillingAdapter and ResendMailAdapter when real credentials are present, while still returning fakes when credentials are placeholders. The webhook route's local createBillingAdapter() is now consistent with getProviders().billing behavior. Migration forward-reference resolved by moving tenant SELECT policy to 002_memberships.sql."
+}

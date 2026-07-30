@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "folder": "nextjs-supabase-saas",
+  "family": "Web SaaS",
+  "useCase": "General multi-tenant SaaS",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase Auth",
+    "Supabase Postgres",
+    "Stripe",
+    "Resend",
+    "Tailwind"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase Postgres",
+  "monetization": "Stripe subscriptions",
+  "integrations": [
+    "Resend"
+  ]
+}
