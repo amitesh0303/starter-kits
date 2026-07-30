@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "chore",
+  "description": "Validate the expo-subscription-app as a standalone copy: verify package/deep-link/EAS artifacts, run all documented one-shot commands with fakes and no repository access, confirm isolation from root/other starters. Covers subtask 4.7.",
+  "status": "completed",
+  "steps": [
+    "Copy expo-subscription-app/ to an isolated temp directory (outside the repository root)",
+    "From the isolated copy, run: pnpm install --frozen-lockfile (must succeed without repo root)",
+    "From the isolated copy, run: pnpm run lint (must pass)",
+    "From the isolated copy, run: pnpm run typecheck (must pass)",
+    "From the isolated copy, run: pnpm run test (all tests must pass with fake adapters)",
+    "From the isolated copy, run: pnpm run export (expo export --platform android must succeed)",
+    "Verify eas.json contains development, preview, production profiles",
+    "Verify app.config.ts contains android.package com.example.exposubscriptionapp and scheme exposubscription",
+    "Verify starter.json matches catalog entry id=25 exactly",
+    "Verify no imports reference parent paths (../) outside the starter folder, no file:/link:/workspace: dependencies",
+    "Verify .env.example exists with all documented variables",
+    "If all checks pass, the starter is validated as standalone"
+  ],
+  "acceptance_criteria": [
+    "Isolated copy installs without error using frozen lockfile",
+    "All lint, typecheck, test, and export commands pass in isolation",
+    "No dependency on repository root or other starters detected",
+    "EAS profiles, Android package, deep-link scheme, and starter.json are all correct",
+    "All documented one-shot commands succeed with fake/default adapters (no real credentials needed)"
+  ],
+  "verification": [
+    "Run standalone copy validation script that copies folder to /tmp, installs, and runs all checks",
+    "Verify exit code 0 for all commands"
+  ],
+  "blocked_reason": null,
+  "findings": "All standalone validation checks passed successfully in isolated copy at /projects/standalone-expo-test/: pnpm install --frozen-lockfile (1049 packages), lint (0 warnings), typecheck (0 errors), test (13 suites, 86 tests), expo export --platform android (bundled 1241 modules), eas:config (dev/preview/prod). No escaping imports, no file:/link:/workspace: deps, .env.example present with all documented vars, starter.json id=25 matches catalog, android.package and scheme confirmed in app.config.ts."
+}
