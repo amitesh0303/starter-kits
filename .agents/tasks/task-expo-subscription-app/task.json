@@ -1,0 +1,7 @@
+{
+  "task_id": "task-expo-subscription-app",
+  "task_description": "Build the expo-subscription-app reference starter (Task 4 from the spec): a fully standalone Expo React Native mobile app with Supabase Auth, RevenueCat digital purchases, Sentry error reporting, SQLite cache, SecureStore, bounded persistent queue, deep-link lifecycle, and comprehensive tests including Properties 9 and 10.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}
