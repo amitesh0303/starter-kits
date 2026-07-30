@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">{title}</h1>
+  {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+  <slot />
+</section>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>

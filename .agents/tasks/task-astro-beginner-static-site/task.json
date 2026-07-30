@@ -1,0 +1,7 @@
+{
+  "task_id": "task-astro-beginner-static-site",
+  "task_description": "Build the minimal reference starter astro-beginner-static-site for the Beginner Static family. Includes exact-pinned Astro scaffold with plain CSS, shared layout/navigation/footer, two reusable components, public assets, SEO/sitemap, beginner comments, .env.example (comment-only), four static pages (Home, About, Contact with mailto:, Projects), Playwright-based output tests (links, accessibility, viewport overflow, keyboard/focus), dependency-allowlist Property 14 test, full README with deployment docs, and standalone no-service validation.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

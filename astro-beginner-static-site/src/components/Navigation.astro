@@ -1,0 +1,107 @@
+---
+/**
+ * Beginner Note: Reusable Component
+ * ----------------------------------
+ * Components in Astro are .astro files you can import and use like HTML tags.
+ * This Navigation component renders the site header with links. Because it
+ * lives in src/components/, any page or layout can import it:
+ *
+ *   import Navigation from '../components/Navigation.astro';
+ *   <Navigation />
+ *
+ * All links use standard <a> elements so they are keyboard-accessible by
+ * default. The CSS below adds visible :focus-visible outlines so users
+ * navigating with a keyboard can always see which link is focused.
+ */
+import { SiteConfig } from '../config';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about/', label: 'About' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/contact/', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+  <nav aria-label="Main navigation">
+    <a href="/" class="site-title">{SiteConfig.siteName}</a>
+    <ul class="nav-links" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            aria-current={currentPath === link.href ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 72rem;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .site-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: #1a202c;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #4a5568;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #1a202c;
+    border-bottom-color: #1a202c;
+  }
+
+  .nav-links a[aria-current='page'] {
+    color: #1a5a9e;
+    font-weight: 600;
+    border-bottom-color: #1a5a9e;
+  }
+
+  .nav-links a:focus-visible {
+    outline: 2px solid #1a5a9e;
+    outline-offset: 2px;
+  }
+
+  .site-title:focus-visible {
+    outline: 2px solid #1a5a9e;
+    outline-offset: 2px;
+  }
+</style>

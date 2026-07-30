@@ -1,0 +1,31 @@
+---
+import { SiteConfig } from '../config';
+---
+
+<footer class="site-footer">
+  <p>&copy; {new Date().getFullYear()} {SiteConfig.author}. Built with <a href="https://astro.build">Astro</a>.</p>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #595959;
+    font-size: 0.875rem;
+  }
+
+  .site-footer a {
+    color: #1a5a9e;
+    text-decoration: underline;
+  }
+
+  .site-footer a:hover {
+    color: #113d6b;
+  }
+
+  .site-footer a:focus-visible {
+    outline: 2px solid #1a5a9e;
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | My Static Site" description="Learn more about this site and the person behind it.">
+  <article class="about-content">
+    <h1>About</h1>
+    <p>
+      This is a simple static site built with <a href="https://astro.build">Astro</a>.
+      It demonstrates how to create a fast, accessible website using reusable
+      layouts and components with plain CSS styling.
+    </p>
+
+    <h2>About Me</h2>
+    <p>
+      Replace this section with information about yourself or your team.
+      You might include your background, interests, skills, or what you are
+      working on.
+    </p>
+
+    <h2>About This Site</h2>
+    <p>
+      This starter is designed for beginners learning Astro. It includes:
+    </p>
+    <ul>
+      <li>A shared layout with navigation and footer</li>
+      <li>Reusable components (Hero, Card)</li>
+      <li>Responsive design with plain CSS</li>
+      <li>SEO basics (meta tags, sitemap, canonical URLs)</li>
+      <li>Accessible keyboard navigation with visible focus indicators</li>
+    </ul>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-content {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+</style>
