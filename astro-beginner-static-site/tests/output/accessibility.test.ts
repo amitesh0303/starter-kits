@@ -2,9 +2,9 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { existsSync } from 'node:fs';
-import { resolve, join, extname } from 'node:path';
-import { createServer, type Server } from 'node:http';
-import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import type { Server } from 'node:http';
+import { createStaticServer } from '../helpers/static-server';
 
 /**
  * Accessibility tests using axe-core via Playwright.
@@ -14,45 +14,6 @@ import { readFileSync } from 'node:fs';
 const distDir = resolve(import.meta.dirname, '../../dist');
 
 const pages = ['/', '/about/', '/projects/', '/contact/'];
-
-function getMimeType(filePath: string): string {
-  const ext = extname(filePath).toLowerCase();
-  const mimeTypes: Record<string, string> = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
-    '.xml': 'application/xml',
-    '.svg': 'image/svg+xml',
-    '.txt': 'text/plain',
-  };
-  return mimeTypes[ext] ?? 'application/octet-stream';
-}
-
-function createStaticServer(dir: string): Promise<{ server: Server; port: number }> {
-  return new Promise((resolvePromise) => {
-    const server = createServer((req, res) => {
-      let filePath = join(dir, req.url ?? '/');
-      if (filePath.endsWith('/')) filePath = join(filePath, 'index.html');
-      if (!extname(filePath)) filePath = join(filePath, 'index.html');
-
-      if (existsSync(filePath)) {
-        const content = readFileSync(filePath);
-        res.writeHead(200, { 'Content-Type': getMimeType(filePath) });
-        res.end(content);
-      } else {
-        res.writeHead(404);
-        res.end('Not Found');
-      }
-    });
-
-    server.listen(0, () => {
-      const addr = server.address();
-      const port = typeof addr === 'object' && addr ? addr.port : 0;
-      resolvePromise({ server, port });
-    });
-  });
-}
 
 describe('Accessibility: axe-core on all pages', () => {
   let browser: Browser;
