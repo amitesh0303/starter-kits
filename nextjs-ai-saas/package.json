@@ -1,0 +1,46 @@
+{
+  "name": "nextjs-ai-saas",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "sharp",
+      "unrs-resolver"
+    ]
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "6.12.12",
+    "@lemonsqueezy/lemonsqueezy.js": "4.0.0",
+    "@prisma/client": "6.9.0",
+    "ai": "4.3.16",
+    "next": "15.3.4",
+    "openai": "4.103.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.3.6",
+    "@tailwindcss/postcss": "4.1.10",
+    "@types/node": "22.15.29",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.6",
+    "eslint": "9.28.0",
+    "eslint-config-next": "15.3.4",
+    "fast-check": "3.23.2",
+    "postcss": "8.5.4",
+    "prisma": "6.9.0",
+    "tailwindcss": "4.1.10",
+    "typescript": "5.8.3",
+    "vitest": "3.2.1"
+  }
+}
