@@ -13,10 +13,12 @@ export const DEFAULT_QUEUE_CAPACITY = 50;
 
 /**
  * Valid state transitions for pending actions.
+ * Note: "syncing -> pending" is a recovery transition for orphaned actions
+ * that were in-flight when the app crashed or was killed.
  */
 const VALID_TRANSITIONS: Record<PendingActionState, PendingActionState[]> = {
   pending: ["syncing", "cancelled"],
-  syncing: ["applied", "conflict", "failed"],
+  syncing: ["applied", "conflict", "failed", "pending"], // pending = crash recovery
   applied: [], // terminal
   conflict: ["pending", "cancelled"], // can retry or cancel
   failed: ["pending", "cancelled"], // can retry or cancel

@@ -122,7 +122,7 @@ export function createSentryErrorReporter(): ErrorReporter {
       if (initialized) {
         try {
           const Sentry = require("@sentry/react-native");
-          Sentry.captureException(new Error(message), { extra: safeContext });
+          Sentry.captureMessage(message, { extra: safeContext });
         } catch {
           console.error("[Sentry] Failed to capture message:", message);
         }

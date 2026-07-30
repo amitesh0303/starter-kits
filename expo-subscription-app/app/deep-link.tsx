@@ -1,6 +1,9 @@
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
+import { createFakeTokenStore } from "@/storage/secure-store";
+
+const tokenStore = createFakeTokenStore();
 
 /**
  * Deep-link destination handler.
@@ -8,6 +11,7 @@ import React, { useEffect, useState } from "react";
  * Handles exposubscription://premium and similar deep links.
  * - Cold start: waits for auth hydration, then navigates
  * - Warm start: push/replace only the destination without resetting navigation
+ * - Auth check: redirects to sign-in if no valid session exists
  */
 export default function DeepLinkScreen(): React.JSX.Element {
   const router = useRouter();
@@ -19,6 +23,13 @@ export default function DeepLinkScreen(): React.JSX.Element {
       // Simulate auth hydration wait (cold start)
       await new Promise((r) => setTimeout(r, 50));
       setHydrating(false);
+
+      // Verify authentication before routing to protected screens
+      const token = await tokenStore.getSessionToken();
+      if (!token) {
+        router.replace("/(auth)/sign-in");
+        return;
+      }
 
       const destination = params.destination ?? "premium";
 

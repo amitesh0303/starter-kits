@@ -18,6 +18,14 @@ import {
   DEFAULT_QUEUE_CAPACITY,
 } from "../domain/queue-policy";
 
+/**
+ * Persistence callback interface for write-through to SQLite or other storage.
+ */
+export interface QueuePersistence {
+  onEnqueue(action: PendingAction): void;
+  onTransition(id: string, newState: PendingActionState): void;
+}
+
 export interface BoundedQueue {
   /** Get all actions in the queue. */
   getAll(): PendingAction[];
@@ -36,17 +44,38 @@ export interface BoundedQueue {
   activeSize(): number;
   /** The capacity of this queue. */
   capacity: number;
+  /** Recover orphaned syncing actions back to pending state. */
+  recoverOrphanedSyncing(): number;
+}
+
+export interface CreateBoundedQueueOptions {
+  capacity?: number;
+  initialActions?: PendingAction[];
+  persistence?: QueuePersistence | null;
 }
 
 /**
- * Creates an in-memory bounded queue.
- * In production, this would be backed by SQLite for persistence.
+ * Creates a bounded queue with optional write-through persistence.
+ * On restart, call recoverOrphanedSyncing() to reset stale syncing items.
  */
 export function createBoundedQueue(
-  capacity: number = DEFAULT_QUEUE_CAPACITY,
-  initialActions: PendingAction[] = []
+  capacityOrOptions: number | CreateBoundedQueueOptions = DEFAULT_QUEUE_CAPACITY,
+  initialActions: PendingAction[] = [],
+  persistence: QueuePersistence | null = null
 ): BoundedQueue {
-  const actions: PendingAction[] = [...initialActions];
+  let capacity: number;
+  let actions: PendingAction[];
+  let persistenceLayer: QueuePersistence | null;
+
+  if (typeof capacityOrOptions === "object") {
+    capacity = capacityOrOptions.capacity ?? DEFAULT_QUEUE_CAPACITY;
+    actions = [...(capacityOrOptions.initialActions ?? [])];
+    persistenceLayer = capacityOrOptions.persistence ?? null;
+  } else {
+    capacity = capacityOrOptions;
+    actions = [...initialActions];
+    persistenceLayer = persistence;
+  }
 
   return {
     capacity,
@@ -70,6 +99,16 @@ export function createBoundedQueue(
       }
 
       actions.push(action);
+
+      // Write-through to persistence layer
+      if (persistenceLayer) {
+        try {
+          persistenceLayer.onEnqueue(action);
+        } catch (error) {
+          console.warn("[BoundedQueue] Persistence write failed:", error);
+        }
+      }
+
       return { success: true };
     },
 
@@ -94,6 +133,16 @@ export function createBoundedQueue(
       if (newState === "syncing") {
         action.attempts += 1;
       }
+
+      // Write-through to persistence layer
+      if (persistenceLayer) {
+        try {
+          persistenceLayer.onTransition(id, newState);
+        } catch (error) {
+          console.warn("[BoundedQueue] Persistence transition failed:", error);
+        }
+      }
+
       return { success: true };
     },
 
@@ -110,6 +159,29 @@ export function createBoundedQueue(
         (a) =>
           a.state !== "applied" && a.state !== "cancelled"
       ).length;
+    },
+
+    recoverOrphanedSyncing(): number {
+      let recovered = 0;
+      for (const action of actions) {
+        if (action.state === "syncing") {
+          action.state = "pending";
+          action.updatedAt = new Date().toISOString();
+          recovered += 1;
+
+          if (persistenceLayer) {
+            try {
+              persistenceLayer.onTransition(action.id, "pending");
+            } catch (error) {
+              console.warn(
+                "[BoundedQueue] Persistence recovery write failed:",
+                error
+              );
+            }
+          }
+        }
+      }
+      return recovered;
     },
   };
 }

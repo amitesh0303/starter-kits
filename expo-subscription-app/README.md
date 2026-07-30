@@ -119,7 +119,7 @@ The app requests minimal permissions:
 
 ## Queue Behavior
 
-The bounded persistent queue manages offline operations:
+The bounded persistent queue manages offline operations with SQLite write-through:
 
 ### Capacity
 - Default: 50 pending actions (configurable via `QUEUE_CAPACITY`)
@@ -133,8 +133,18 @@ pending -> syncing -> applied (terminal)
                               -> cancelled (terminal)
                    -> failed -> pending (retry)
                             -> cancelled (terminal)
+                   -> pending (crash recovery)
 pending -> cancelled (terminal)
 ```
+
+### Crash Recovery
+- On startup, the sync engine recovers orphaned syncing actions back to pending
+- This prevents actions from being stuck permanently after an app crash
+
+### Persistence
+- Queue state is written through to SQLite via the `QueuePersistence` interface
+- On cold start, actions are loaded from SQLite and passed as `initialActions`
+- The in-memory queue remains the source of truth during runtime
 
 ### Idempotency
 - Each action has a stable UUID as its idempotency key

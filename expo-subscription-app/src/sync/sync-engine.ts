@@ -1,5 +1,6 @@
 /**
  * Sync engine: connectivity-aware dispatch of pending actions.
+ * On creation, recovers any orphaned syncing actions from a prior crash.
  */
 
 import { BoundedQueue } from "./queue";
@@ -11,6 +12,8 @@ export interface SyncEngine {
   isOnline(): boolean;
   /** Set online status (for testing or manual override). */
   setOnline(online: boolean): void;
+  /** Number of orphaned actions recovered on startup. */
+  recoveredOnStartup: number;
 }
 
 export type SyncHandler = (
@@ -21,6 +24,7 @@ export type SyncHandler = (
 
 /**
  * Creates a sync engine that processes queue items when online.
+ * Automatically recovers orphaned syncing actions on creation.
  */
 export function createSyncEngine(
   queue: BoundedQueue,
@@ -28,7 +32,17 @@ export function createSyncEngine(
 ): SyncEngine {
   let online = true;
 
+  // Recover any actions stuck in "syncing" state from a prior crash
+  const recoveredOnStartup = queue.recoverOrphanedSyncing();
+  if (recoveredOnStartup > 0) {
+    console.warn(
+      `[SyncEngine] Recovered ${recoveredOnStartup} orphaned syncing action(s) on startup.`
+    );
+  }
+
   return {
+    recoveredOnStartup,
+
     async processQueue(): Promise<void> {
       if (!online) {
         return;

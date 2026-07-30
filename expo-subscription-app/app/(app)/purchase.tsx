@@ -7,21 +7,26 @@ import {
   Alert,
 } from "react-native";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   createFakePurchaseAdapter,
+  PurchaseAdapter,
   PurchaseOffering,
 } from "@/adapters/purchase-adapter";
 
 type PurchaseState = "loading" | "ready" | "purchasing" | "error" | "success";
-
-const purchaseAdapter = createFakePurchaseAdapter("fake-user-001");
 
 export default function PurchaseScreen(): React.JSX.Element {
   const router = useRouter();
   const [state, setState] = useState<PurchaseState>("loading");
   const [offerings, setOfferings] = useState<PurchaseOffering[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const adapterRef = useRef<PurchaseAdapter | null>(null);
+
+  if (!adapterRef.current) {
+    adapterRef.current = createFakePurchaseAdapter("fake-user-001");
+  }
+  const purchaseAdapter = adapterRef.current;
 
   useEffect(() => {
     const load = async (): Promise<void> => {
