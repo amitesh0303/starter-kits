@@ -1,0 +1,39 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Implement domain models, Supabase SQL migrations, RLS policies, infrastructure layer with auth/persistence/billing/mail adapters, config boundary, and the full provider integration layer. Corresponds to subtasks 2.2 and 2.3.",
+  "status": "pending",
+  "steps": [
+    "Create domain/ directory with entity types: Tenant (id, name, slug, ownerId, createdAt, updatedAt), Membership (id, tenantId, userId, role: owner|admin|member, createdAt), Project (id, tenantId, name, description, createdAt, updatedAt), Subscription (id, tenantId, stripeCustomerId, stripeSubscriptionId, stripePriceId, status: active|past_due|cancelled|trialing, currentPeriodEnd, cancelAtPeriodEnd, createdAt, updatedAt)",
+    "Create domain/policies.ts with deny-by-default Authorizer implementations: canAccessTenant, canManageTenant, canAccessProject, canManageMembers - checking ownership/membership/role at repository boundary",
+    "Create supabase/migrations/ directory with numbered SQL migration files: 001_tenants.sql, 002_memberships.sql, 003_projects.sql, 004_subscriptions.sql, 005_processed_events.sql - each with table creation, indexes, RLS enable, and RLS policies for tenant isolation",
+    "Each migration must include: UUID primary keys (gen_random_uuid()), tenant_id ownership columns, created_at/updated_at timestamps with defaults, version/updated_at concurrency columns, RLS enabled, policies for authenticated user tenant access",
+    "Create lib/server/config.ts with typed ConfigSpec declarations for all env vars (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_ID, RESEND_API_KEY, NEXT_PUBLIC_APP_URL), aggregate validation at startup that refuses if required server-only values are missing/placeholder",
+    "Create lib/server/auth.ts implementing IdentityPort interface using Supabase Auth (@supabase/ssr for server-side session): getSession, getUser, requireAuth (throws if unauthenticated), with AuthContext type",
+    "Create lib/server/database.ts implementing Repository interfaces for Tenant, Membership, Project, Subscription using Supabase Postgres client with RLS-enforced queries, transaction support, and sanitized error mapping",
+    "Create lib/server/billing.ts implementing BillingPort with Stripe adapter: createCustomer, createCheckoutSession, createBillingPortalSession, getSubscription, handleWebhookEvent. Include WebhookVerifier that verifies stripe-signature header with raw body before any state transition. Implement idempotent event processing via ProcessedEvent table (provider_event_id unique). Handle subscription states: checkout.session.completed, customer.subscription.updated, customer.subscription.deleted for entitlement/renewal/cancellation",
+    "Create lib/server/mail.ts implementing MailPort with Resend adapter: sendWelcomeEmail, sendInviteEmail. Include preview/fake mode when RESEND_API_KEY is placeholder or missing (logs email content instead of sending)",
+    "Create lib/server/billing-fake.ts and lib/server/mail-fake.ts with deterministic in-memory fake implementations for testing - FakeBillingPort stores events in memory, FakeMailPort captures sent emails",
+    "Create lib/server/providers.ts that selects real vs fake adapters based on config (fake when env vars are placeholder values)",
+    "Ensure all provider errors are mapped to sanitized domain errors (no stack traces, no secret leakage in error messages)",
+    "Add @supabase/supabase-js, @supabase/ssr, stripe, resend as exact-pinned dependencies in package.json and regenerate pnpm-lock.yaml"
+  ],
+  "acceptance_criteria": [
+    "domain/ contains typed entity interfaces for Tenant, Membership, Project, Subscription with all required fields",
+    "domain/policies.ts exports deny-by-default authorization functions",
+    "supabase/migrations/ contains SQL files that create all tables with RLS policies",
+    "lib/server/config.ts aggregates all missing required env vars into one startup error",
+    "lib/server/auth.ts implements Supabase Auth session retrieval",
+    "lib/server/billing.ts implements Stripe webhook verification with raw body before state mutation, idempotent event processing, and subscription state management",
+    "lib/server/mail.ts implements Resend with fake fallback when API key is missing/placeholder",
+    "All provider adapters have fake counterparts for testing",
+    "pnpm install --frozen-lockfile succeeds with the new dependencies",
+    "pnpm run build succeeds (TypeScript compiles without errors)"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm install --frozen-lockfile",
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

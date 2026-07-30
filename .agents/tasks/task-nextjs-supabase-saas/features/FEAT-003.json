@@ -1,0 +1,41 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Build the public product entry page and protected dashboard flow: owner creates tenant/project, invites member, subscribes via Stripe Checkout, webhook grants entitlement, and triggers welcome email. Corresponds to subtask 2.4.",
+  "status": "pending",
+  "steps": [
+    "Create app/page.tsx as the public product entry/landing page with sign-in/sign-up links, product description, and pricing info",
+    "Create app/auth/login/page.tsx and app/auth/signup/page.tsx with Supabase Auth forms (email/password) using @supabase/ssr for cookie-based sessions",
+    "Create app/auth/callback/route.ts for Supabase Auth OAuth/magic-link callback handling",
+    "Create middleware.ts for Next.js middleware that protects /dashboard/* routes - redirects unauthenticated users to /auth/login",
+    "Create app/dashboard/layout.tsx as the authenticated dashboard shell with navigation (tenants, projects, billing, settings)",
+    "Create app/dashboard/page.tsx as the dashboard home showing user's tenants list",
+    "Create app/dashboard/tenants/new/page.tsx with Server Action to create a new tenant (validates name, creates tenant with current user as owner, creates owner membership)",
+    "Create app/dashboard/tenants/[tenantId]/page.tsx showing tenant details, projects list, and members list",
+    "Create app/dashboard/tenants/[tenantId]/projects/new/page.tsx with Server Action to create a project within the tenant (enforces tenant membership)",
+    "Create app/dashboard/tenants/[tenantId]/members/invite/page.tsx with Server Action to invite a member by email (enforces owner/admin role, sends invite via MailPort, creates pending membership)",
+    "Create app/dashboard/tenants/[tenantId]/billing/page.tsx showing subscription status and Stripe billing portal link; includes subscribe button that creates Stripe Checkout session",
+    "Create app/api/webhooks/stripe/route.ts as the Stripe webhook endpoint: reads raw body, passes to WebhookVerifier, on valid+new event dispatches to billing handler for subscription state updates, triggers welcome email on first subscription activation",
+    "All Server Actions must: validate input, check authentication via requireAuth, check authorization via domain policies, use transactions for multi-step mutations, return sanitized errors on failure",
+    "Use Tailwind CSS for all UI components with consistent design system",
+    "Ensure all state-changing operations have explicit commit points - failures before commit preserve pre-operation state"
+  ],
+  "acceptance_criteria": [
+    "Public landing page renders at / without authentication",
+    "Authentication flow works with Supabase Auth (login/signup/callback)",
+    "Middleware redirects unauthenticated users from /dashboard/* to /auth/login",
+    "Owner can create a tenant and project through the dashboard",
+    "Owner/admin can invite members (sends email via MailPort)",
+    "Billing page shows subscription status and allows subscribing via Stripe Checkout",
+    "Stripe webhook endpoint verifies signature before processing, rejects invalid signatures with non-success status",
+    "Webhook processes subscription events idempotently (deduplicates by provider_event_id)",
+    "Welcome email triggers on first subscription activation",
+    "All protected actions enforce deny-by-default authorization",
+    "pnpm run build succeeds"
+  ],
+  "verification": [
+    "cd nextjs-supabase-saas && pnpm run build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,7 @@
+{
+  "task_id": "task-nextjs-supabase-saas",
+  "task_description": "Build the reference Web SaaS starter nextjs-supabase-saas implementing Next.js App Router with Supabase Auth/Postgres, Stripe subscriptions, and Resend email. Covers catalog task 2 subtasks 2.1-2.7: scaffold, domain/infrastructure, provider adapters, dashboard flow, tests, documentation, and standalone validation.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null
+}
