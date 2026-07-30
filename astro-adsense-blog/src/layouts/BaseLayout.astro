@@ -59,7 +59,7 @@ const { metadata, structuredData } = Astro.props;
       const acceptBtn = document.getElementById('consent-accept');
       const rejectBtn = document.getElementById('consent-reject');
 
-      if (!consent.updatedAt || consent.updatedAt === new Date(0).toISOString()) {
+      if (!consent.updatedAt) {
         banner?.removeAttribute('hidden');
       }
 
@@ -110,12 +110,12 @@ const { metadata, structuredData } = Astro.props;
   }
 
   #consent-accept {
-    background: #4caf50;
+    background: #2e7d32;
     color: white;
   }
 
   #consent-reject {
-    background: #f44336;
+    background: #c62828;
     color: white;
   }
 </style>

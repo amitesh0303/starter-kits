@@ -12,7 +12,6 @@ import { readFileSync } from 'node:fs';
  */
 
 const distDir = resolve(import.meta.dirname, '../../dist');
-const PORT = 4174;
 
 function getMimeType(filePath: string): string {
   const ext = extname(filePath).toLowerCase();
@@ -27,7 +26,7 @@ function getMimeType(filePath: string): string {
   return mimeTypes[ext] ?? 'application/octet-stream';
 }
 
-function createStaticServer(dir: string, port: number): Promise<Server> {
+function createStaticServer(dir: string): Promise<{ server: Server; port: number }> {
   return new Promise((resolvePromise) => {
     const server = createServer((req, res) => {
       let filePath = join(dir, req.url ?? '/');
@@ -44,19 +43,26 @@ function createStaticServer(dir: string, port: number): Promise<Server> {
       }
     });
 
-    server.listen(port, () => resolvePromise(server));
+    server.listen(0, () => {
+      const addr = server.address();
+      const port = typeof addr === 'object' && addr ? addr.port : 0;
+      resolvePromise({ server, port });
+    });
   });
 }
 
 describe('Accessibility: axe-core on representative pages', () => {
   let browser: Browser;
   let server: Server;
+  let PORT: number;
 
   beforeAll(async () => {
     if (!existsSync(distDir)) {
       throw new Error('dist/ directory not found. Run `pnpm build` before output tests.');
     }
-    server = await createStaticServer(distDir, PORT);
+    const result = await createStaticServer(distDir);
+    server = result.server;
+    PORT = result.port;
     browser = await chromium.launch();
   }, 30000);
 

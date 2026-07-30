@@ -12,7 +12,6 @@ import { join, extname } from 'node:path';
  */
 
 const distDir = resolve(import.meta.dirname, '../../dist');
-const PORT = 4173;
 
 function getMimeType(filePath: string): string {
   const ext = extname(filePath).toLowerCase();
@@ -30,7 +29,7 @@ function getMimeType(filePath: string): string {
   return mimeTypes[ext] ?? 'application/octet-stream';
 }
 
-function createStaticServer(dir: string, port: number): Promise<Server> {
+function createStaticServer(dir: string): Promise<{ server: Server; port: number }> {
   return new Promise((resolvePromise) => {
     const server = createServer((req, res) => {
       let filePath = join(dir, req.url ?? '/');
@@ -47,19 +46,26 @@ function createStaticServer(dir: string, port: number): Promise<Server> {
       }
     });
 
-    server.listen(port, () => resolvePromise(server));
+    server.listen(0, () => {
+      const addr = server.address();
+      const port = typeof addr === 'object' && addr ? addr.port : 0;
+      resolvePromise({ server, port });
+    });
   });
 }
 
 describe('Property 13: Ad Component Reserved Space', () => {
   let browser: Browser;
   let server: Server;
+  let PORT: number;
 
   beforeAll(async () => {
     if (!existsSync(distDir)) {
       throw new Error('dist/ directory not found. Run `pnpm build` before output tests.');
     }
-    server = await createStaticServer(distDir, PORT);
+    const result = await createStaticServer(distDir);
+    server = result.server;
+    PORT = result.port;
     browser = await chromium.launch();
   }, 30000);
 
@@ -87,9 +93,9 @@ describe('Property 13: Ad Component Reserved Space', () => {
     await page.close();
   });
 
-  it('reserves 468x60 at tablet viewport (768px)', async () => {
+  it('reserves 468x60 at tablet viewport (600px)', async () => {
     const page = await browser.newPage();
-    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.setViewportSize({ width: 600, height: 1024 });
     await page.goto(`http://localhost:${PORT}/`);
     await page.waitForSelector('.ad-container');
 
@@ -101,8 +107,8 @@ describe('Property 13: Ad Component Reserved Space', () => {
     });
 
     expect(dimensions).not.toBeNull();
-    expect(dimensions!.width).toBe(728);
-    expect(dimensions!.height).toBe(90);
+    expect(dimensions!.width).toBe(468);
+    expect(dimensions!.height).toBe(60);
     await page.close();
   });
 

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Ad from '../../components/Ad.astro';
 import { generatePageMetadata } from '../../seo/metadata';
+import { sortArticles } from '../../lib/sort-articles';
 
 export async function getStaticPaths() {
   const categories = await getCollection('categories');
@@ -27,18 +28,14 @@ const allArticles = await getCollection('articles');
 const now = new Date();
 
 // Filter articles for this category: published, not draft, not future-dated
-const articles = allArticles
-  .filter(
+const articles = sortArticles(
+  allArticles.filter(
     (article) =>
       article.data.category === category.data.slug &&
       !article.data.draft &&
       article.data.publishedAt <= now,
-  )
-  .sort((a, b) => {
-    const dateCompare = b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
-    if (dateCompare !== 0) return dateCompare;
-    return a.id.localeCompare(b.id);
-  });
+  ),
+);
 ---
 
 <BaseLayout metadata={metadata}>
@@ -74,7 +71,7 @@ const articles = allArticles
 
 <style>
   .category-description {
-    color: #555;
+    color: #4a4a4a;
     margin-bottom: 2rem;
   }
 
@@ -99,7 +96,7 @@ const articles = allArticles
   }
 
   .article-meta {
-    color: #666;
+    color: #4a4a4a;
     font-size: 0.875rem;
   }
 </style>

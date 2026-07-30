@@ -76,7 +76,7 @@ const { slot = 'auto', class: className = '' } = Astro.props;
   }
 
   .ad-label {
-    color: #595959;
+    color: #444444;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -85,10 +85,12 @@ const { slot = 'auto', class: className = '' } = Astro.props;
 
 <script>
   import { getConsent, subscribeConsent } from '../lib/consent-store';
+  import { loadConfig } from '../lib/config';
 
   function loadAds(): void {
     const consent = getConsent();
-    if (!consent.advertising) return;
+    const config = loadConfig();
+    if (!consent.advertising || !config.isAdsenseEnabled) return;
 
     const containers = document.querySelectorAll<HTMLElement>('.ad-container');
     containers.forEach((container) => {

@@ -2,6 +2,7 @@ import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
 import { isPublishable } from '../seo/indexable-document';
+import { sortArticles } from '../lib/sort-articles';
 
 export async function GET(context: APIContext) {
   const articles = await getCollection('articles');
@@ -9,13 +10,7 @@ export async function GET(context: APIContext) {
 
   // Filter: published, not draft, not future-dated
   // Order: newest-first with slug as deterministic tie-breaker
-  const eligible = articles
-    .filter(isPublishable)
-    .sort((a, b) => {
-      const dateCompare = b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
-      if (dateCompare !== 0) return dateCompare;
-      return a.id.localeCompare(b.id);
-    });
+  const eligible = sortArticles(articles.filter(isPublishable));
 
   return rss({
     title: 'Astro AdSense Blog',

@@ -13,7 +13,7 @@ type ConsentSubscriber = (state: ConsentState) => void;
 const DEFAULT_STATE: ConsentState = {
   advertising: false,
   analytics: false,
-  updatedAt: new Date().toISOString(),
+  updatedAt: '',
 };
 
 const STORAGE_KEY = 'consent-state';

@@ -9,7 +9,6 @@ import { createServer, type Server } from 'node:http';
  */
 
 const distDir = resolve(import.meta.dirname, '../../dist');
-const PORT = 4175;
 // Budget: 200KB per page (HTML + inline CSS/JS)
 const PAGE_WEIGHT_BUDGET_BYTES = 200 * 1024;
 
@@ -26,7 +25,7 @@ function getMimeType(filePath: string): string {
   return mimeTypes[ext] ?? 'application/octet-stream';
 }
 
-function createStaticServer(dir: string, port: number): Promise<Server> {
+function createStaticServer(dir: string): Promise<{ server: Server; port: number }> {
   return new Promise((resolvePromise) => {
     const server = createServer((req, res) => {
       let filePath = join(dir, req.url ?? '/');
@@ -43,7 +42,11 @@ function createStaticServer(dir: string, port: number): Promise<Server> {
       }
     });
 
-    server.listen(port, () => resolvePromise(server));
+    server.listen(0, () => {
+      const addr = server.address();
+      const port = typeof addr === 'object' && addr ? addr.port : 0;
+      resolvePromise({ server, port });
+    });
   });
 }
 
@@ -65,12 +68,15 @@ function getHtmlFiles(dir: string): string[] {
 describe('Performance: Page Weight and CLS', () => {
   let browser: Browser;
   let server: Server;
+  let PORT: number;
 
   beforeAll(async () => {
     if (!existsSync(distDir)) {
       throw new Error('dist/ directory not found. Run `pnpm build` before output tests.');
     }
-    server = await createStaticServer(distDir, PORT);
+    const result = await createStaticServer(distDir);
+    server = result.server;
+    PORT = result.port;
     browser = await chromium.launch();
   }, 30000);
 
