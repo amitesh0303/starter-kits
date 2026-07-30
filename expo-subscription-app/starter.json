@@ -1,0 +1,21 @@
+{
+  "id": 25,
+  "folder": "expo-subscription-app",
+  "family": "Expo Mobile",
+  "useCase": "Premium mobile SaaS",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "React Native",
+    "Supabase",
+    "RevenueCat",
+    "Sentry"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase + SQLite",
+  "monetization": "RevenueCat",
+  "integrations": [
+    "Sentry"
+  ]
+}
