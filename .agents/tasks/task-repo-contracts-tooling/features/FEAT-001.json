@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "chore",
   "description": "Create the root project infrastructure: package.json with pnpm catalog:validate command, catalog/starters.json with all 52 entries, catalog/starters.schema.json, root README.md skeleton with all 52 rows marked pending, LICENSE (MIT), and the starter.json convention documentation. This covers tasks 1.1, 1.2, 1.3, and 1.4.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Step 1: Create package.json at root with name 'starter-kits', private: true, packageManager field for pnpm 10.28.1, scripts: { 'catalog:validate': 'node scripts/validate-catalog.mjs', 'test': 'vitest run' }. Add devDependencies for vitest and fast-check (for FEAT-002 tests).",
     "Step 2: Create catalog/starters.schema.json - a JSON Schema that defines the structure of each starter entry. Fields: id (integer 1-52), folder (string, pattern kebab-case), family (enum: Web SaaS, API/Backend, Expo Mobile, Content/AdSense, Beginner Static), useCase (string), framework (string), runtime (string), technologies (array of strings), choices (string or null - finalized alternatives), auth (string or 'None'), data (string or 'None'), monetization (string or 'None'), integrations (array of strings), readsEnvironment (boolean), manifest (string - e.g. package.json or pyproject.toml), lockfile (string - e.g. pnpm-lock.yaml or uv.lock), readme (string - always README.md), familyRequirement (string - reference to which requirement section applies), status (enum: pending, in progress, complete). The schema should be 'closed' (additionalProperties: false).",
@@ -29,5 +29,5 @@
     "Run: node -e \"JSON.parse(require('fs').readFileSync('catalog/starters.schema.json','utf8')); console.log('Schema is valid JSON');\""
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All acceptance criteria met. vitest run exits with code 1 when no test files exist (expected, tests added in FEAT-002). pnpm install warns about esbuild build scripts being ignored - run pnpm approve-builds if needed. Added .gitignore to exclude node_modules/."
 }
