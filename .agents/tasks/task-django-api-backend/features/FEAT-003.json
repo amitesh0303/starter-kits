@@ -1,0 +1,47 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add comprehensive tests (DRF contract, auth, rate limiting, health, state preservation, restart persistence, webhook verification) plus Properties 5/6/7, mypy passing, and complete documentation (subtasks 3.5, 3.6, 3.7)",
+  "status": "pending",
+  "steps": [
+    "Create conftest.py with pytest-django fixtures: test client, authenticated user fixture, API client with token auth, test database (SQLite for speed), factory_boy factories for User, APIResource, Subscription, ProcessedEvent",
+    "Write test_health.py: verify /health returns 200 with expected shape, no auth required",
+    "Write test_auth.py: test token auth login/register, test unauthenticated access returns 401, test accessing other user's resource returns 403",
+    "Write test_resources.py: test full CRUD lifecycle for APIResource - create with valid data, retrieve own resource, update own resource, delete own resource, list only own resources, validation failure returns 400 with stable error shape",
+    "Write test_rate_limit.py (Property 7): test that exceeding configurable rate limit returns 429, verify rate limit can be configured via environment/settings, use Hypothesis to generate request counts and verify bound",
+    "Write test_webhook.py (Property 5): test valid Stripe signature processes event and transitions subscription state exactly once, test invalid signature returns 400 and preserves pre-request state (no ProcessedEvent created, no Subscription change), test duplicate event_id is idempotent (no second state change)",
+    "Write test_validation.py (Property 6): test request validation rejects invalid data before domain processing, verify error response uses stable sanitized shape without secrets/stack traces, verify pre-request state is preserved on validation failure",
+    "Write test_state_restart.py: create a resource via API, simulate process restart (close and reopen test DB connection or use a fresh client), verify the committed resource is still retrievable - use an ephemeral SQLite DB not in-process memory",
+    "Write test_errors.py: verify all error responses conform to { code, message, correlationId, details? } shape, verify no secrets leak in error responses",
+    "Write test_openapi.py: verify OpenAPI schema is generated, contains all documented endpoints, auth requirements documented",
+    "Create pytest.ini or configure in pyproject.toml: DJANGO_SETTINGS_MODULE, test database configuration using SQLite for ephemeral persistence tests",
+    "Ensure all tests pass with `uv run pytest`",
+    "Ensure `uv run mypy .` passes with no errors (add type: ignore comments only where absolutely necessary for third-party stubs)",
+    "Ensure `uv run ruff check .` and `uv run ruff format --check .` pass",
+    "Ensure `uv run python manage.py check` passes",
+    "Verify Dockerfile still builds: `docker build -t django-api-backend:test .`",
+    "Final standalone validation: copy django-api-backend to /tmp/isolated-django, run `cd /tmp/isolated-django && uv sync && uv run python manage.py check && uv run pytest && uv run ruff check . && uv run mypy .` - all must pass without any reference to repository root"
+  ],
+  "acceptance_criteria": [
+    "All pytest tests pass including health, auth, CRUD, rate limit, webhook, validation, state restart, errors, and OpenAPI tests",
+    "`uv run mypy .` passes with no errors",
+    "`uv run ruff check .` and `uv run ruff format --check .` pass",
+    "`uv run python manage.py check` passes",
+    "Docker image builds successfully",
+    "Property 5 (webhook authenticity): valid signature -> state transition; invalid signature -> no state change",
+    "Property 6 (validation/sanitization): invalid input -> stable error without secrets, state preserved",
+    "Property 7 (rate limit): configurable bound is enforced, returns 429",
+    "Standalone copy in /tmp passes all checks without repository root access",
+    "README.md documents endpoints, auth, schema init, rate limits, observability, startup, deployment"
+  ],
+  "verification": [
+    "cd /projects/sandbox/starter-kits/django-api-backend && uv sync && uv run pytest -v",
+    "cd /projects/sandbox/starter-kits/django-api-backend && uv run mypy .",
+    "cd /projects/sandbox/starter-kits/django-api-backend && uv run ruff check . && uv run ruff format --check .",
+    "cd /projects/sandbox/starter-kits/django-api-backend && uv run python manage.py check",
+    "cd /projects/sandbox/starter-kits/django-api-backend && docker build -t django-api-backend:test .",
+    "cp -r /projects/sandbox/starter-kits/django-api-backend /tmp/isolated-django && cd /tmp/isolated-django && uv sync && uv run python manage.py check && uv run pytest"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

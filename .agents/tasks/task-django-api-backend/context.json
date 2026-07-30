@@ -1,0 +1,22 @@
+{
+  "project_type": "Python Django REST Framework API starter within a multi-starter monorepo",
+  "language": "Python",
+  "build_system": "uv for package management, Django manage.py for project commands",
+  "test_framework": "pytest with pytest-django and Hypothesis for property-based testing",
+  "build_command": "cd django-api-backend && uv sync && uv run python manage.py check && uv run ruff check . && uv run ruff format --check . && uv run mypy . && uv run pytest",
+  "test_command": "cd django-api-backend && uv run pytest",
+  "verification_instructions": "1. cd django-api-backend; 2. uv sync; 3. uv run ruff check .; 4. uv run ruff format --check .; 5. uv run mypy .; 6. uv run python manage.py check; 7. uv run pytest; 8. docker build -t django-api-backend:test .",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "1. cd django-api-backend; 2. uv sync (installs all deps from uv.lock); 3. cp .env.example .env (adjust as needed); 4. uv run python manage.py migrate; 5. uv run python manage.py runserver",
+  "environment_constraints": "uv 0.11.32 available, Python 3.12 available via uv, Docker available. Internet access for pip/uv installs.",
+  "contribution_requirements": "Each starter must be fully standalone - no imports from root or other starters. Must have starter.json matching catalog entry. Must include pyproject.toml, uv.lock, .env.example, README.md, Dockerfile, tests.",
+  "key_patterns": "Starters use a project-local starter.json with immutable identity fields matching catalog/starters.json. Provider adapters behind local interfaces with fake/test defaults. Stable error shapes. Correlation IDs in logs/errors. Rate limiting. OpenAPI for all endpoints. Container + local startup. Ephemeral DB for restart tests.",
+  "relevant_files": [
+    "catalog/starters.json (entry id=16 for django-api-backend)",
+    "nextjs-supabase-saas/starter.json (pattern reference for starter.json format)",
+    ".kiro/specs/multi-stack-boilerplates/design.md (API/Backend blueprint)",
+    ".kiro/specs/multi-stack-boilerplates/tasks.md (subtasks 3.1-3.7)",
+    ".kiro/specs/multi-stack-boilerplates/requirements.md (Requirement 4: API/Backend readiness)"
+  ],
+  "directory_structure": "Repository root contains catalog/, scripts/, tests/, .github/workflows/, and starter folders. Each starter is a self-contained project. django-api-backend/ will follow: src/<modules>/ with transport/application/domain/infrastructure layers, migrations/, openapi/, tests/, Dockerfile, .env.example, starter.json, README.md, pyproject.toml, uv.lock"
+}

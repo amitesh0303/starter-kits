@@ -1,0 +1,20 @@
+{
+  "id": 16,
+  "folder": "django-api-backend",
+  "family": "API/Backend",
+  "useCase": "General REST backend",
+  "framework": "Django + DRF",
+  "runtime": "Python",
+  "technologies": [
+    "django-allauth",
+    "PostgreSQL",
+    "Stripe",
+    "OpenAPI"
+  ],
+  "auth": "allauth/token auth",
+  "data": "PostgreSQL",
+  "monetization": "Stripe",
+  "integrations": [
+    "OpenAPI"
+  ]
+}
