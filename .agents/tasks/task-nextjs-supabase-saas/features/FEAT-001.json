@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Generate the Next.js App Router scaffold with exact-pinned dependencies, project-local pnpm manifest/lockfile, TypeScript/Tailwind config, .gitignore, and starter.json. Corresponds to subtask 2.1.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create nextjs-supabase-saas/ directory at the repository root",
     "Initialize a Next.js App Router project with TypeScript and Tailwind CSS using exact-pinned versions: next@15 (latest stable), react@19, react-dom@19, typescript@5.x, tailwindcss@4.x, @tailwindcss/postcss, postcss. Use pnpm as the package manager with packageManager field in package.json.",
@@ -31,5 +31,5 @@
     "cd nextjs-supabase-saas && pnpm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "pnpm 10.28.1 requires pnpm.onlyBuiltDependencies in package.json to allow build scripts for @tailwindcss/oxide, sharp, unrs-resolver. next@15.3.4 is marked deprecated with a security advisory but is the latest 15.x stable. All exact-pinned versions: next@15.3.4, react@19.0.0, react-dom@19.0.0, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, typescript@5.8.3, eslint@9.28.0, eslint-config-next@15.3.4, @types/node@22.15.29, @types/react@19.1.6, @types/react-dom@19.1.6. Build and frozen install both pass successfully."
 }
