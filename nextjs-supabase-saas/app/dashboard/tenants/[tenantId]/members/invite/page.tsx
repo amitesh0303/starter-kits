@@ -1,7 +1,9 @@
 /**
  * Invite member page.
  * Server Action validates input, requires auth, checks admin/owner role,
- * creates pending membership and sends invite email.
+ * and sends invite email. Does NOT create a membership record directly -
+ * in production, you would store a pending invitation and create the membership
+ * only when the invitee accepts (at which point their auth.uid() is known).
  */
 
 import { redirect } from "next/navigation";
@@ -48,9 +50,9 @@ async function inviteMemberAction(formData: FormData) {
 
   const serviceClient = createServiceClient();
   const tenantRepo = new SupabaseTenantRepository(serviceClient);
-  const membershipRepo = new SupabaseMembershipRepository(serviceClient);
 
   // Check authorization - must be owner or admin to invite
+  const membershipRepo = new SupabaseMembershipRepository(serviceClient);
   const memberships = await membershipRepo.findByTenantId(tenantId);
   if (!canManageMembers({ userId: user.id }, memberships)) {
     throw new AuthorizationError();
@@ -63,14 +65,13 @@ async function inviteMemberAction(formData: FormData) {
   }
 
   try {
-    // For now, create a membership with a placeholder userId (the email).
-    // In a real app, you would look up the user by email or create an invite record.
-    // The invited user would then accept and their real userId gets set.
-    await membershipRepo.create({
-      tenantId,
-      userId: email, // Placeholder until user accepts invite
-      role: role as "member" | "admin",
-    });
+    // NOTE: In production, you would create a pending invitation record (e.g., in an
+    // `invites` table with columns: id, tenant_id, email, role, token, expires_at).
+    // The invited user would click the link, sign up or log in, and hit an
+    // acceptance endpoint that verifies the token and creates the real membership
+    // with their auth.uid(). We intentionally do NOT create a membership here
+    // because user_id is a UUID column checked against auth.uid() in RLS policies,
+    // and we do not have the invitee's UUID until they accept.
 
     // Send invite email via MailPort
     const { mail } = getProviders();

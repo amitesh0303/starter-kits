@@ -115,5 +115,12 @@ describe("Config Validation", () => {
     it("does not flag real values as placeholder", () => {
       expect(isPlaceholderValue("sk_test_real_key_123")).toBe(false);
     });
+
+    it("detects .env.example values containing 'placeholder' substring", () => {
+      expect(isPlaceholderValue("sk_test_placeholder")).toBe(true);
+      expect(isPlaceholderValue("whsec_placeholder")).toBe(true);
+      expect(isPlaceholderValue("re_placeholder")).toBe(true);
+      expect(isPlaceholderValue("price_placeholder")).toBe(true);
+    });
   });
 });

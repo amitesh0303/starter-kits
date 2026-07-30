@@ -10,36 +10,10 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import {
   createServiceClient,
-  SupabaseSubscriptionRepository,
-  SupabaseProcessedEventRepository,
   SupabaseTenantRepository,
 } from "@/lib/server/database";
-import { StripeBillingAdapter } from "@/lib/server/billing";
-import { FakeBillingAdapter } from "@/lib/server/billing-fake";
 import { WebhookVerificationError, DomainError } from "@/lib/server/errors";
-import { isPlaceholderValue } from "@/lib/server/config";
 import { getProviders } from "@/lib/server/providers";
-
-function createBillingAdapter() {
-  const stripeKey = process.env.STRIPE_SECRET_KEY;
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-
-  // Use fake adapter when credentials are placeholder values
-  if (isPlaceholderValue(stripeKey) || isPlaceholderValue(webhookSecret)) {
-    return new FakeBillingAdapter();
-  }
-
-  const serviceClient = createServiceClient();
-  const subscriptionRepo = new SupabaseSubscriptionRepository(serviceClient);
-  const processedEventRepo = new SupabaseProcessedEventRepository(serviceClient);
-
-  return new StripeBillingAdapter(
-    subscriptionRepo,
-    processedEventRepo,
-    stripeKey!,
-    webhookSecret!
-  );
-}
 
 export async function POST(request: Request) {
   // Read raw body as text (not parsed JSON) for signature verification
@@ -53,7 +27,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const billing = createBillingAdapter();
+  // Use the centralized provider system (selects real vs fake based on credentials)
+  const { billing } = getProviders();
 
   // VERIFY SIGNATURE BEFORE ANY STATE MUTATION
   let event;

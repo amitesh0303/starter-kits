@@ -61,12 +61,26 @@ async function createTenantAction(formData: FormData) {
       ownerId: user.id,
     });
 
-    // Create owner membership (commit point - both must succeed)
-    await membershipRepo.create({
-      tenantId: tenant.id,
-      userId: user.id,
-      role: "owner",
-    });
+    // Create owner membership (both must succeed for consistent state).
+    // If membership creation fails, perform compensating delete of the tenant
+    // to avoid orphaned rows invisible via RLS.
+    try {
+      await membershipRepo.create({
+        tenantId: tenant.id,
+        userId: user.id,
+        role: "owner",
+      });
+    } catch (membershipError) {
+      // Compensating action: delete the tenant to prevent an orphaned record
+      // that the owner cannot see (RLS SELECT requires a membership row).
+      try {
+        await tenantRepo.delete(tenant.id);
+      } catch {
+        // Best-effort cleanup; the orphaned tenant may require service-role intervention
+        console.error("Failed to clean up orphaned tenant after membership creation failure");
+      }
+      throw membershipError;
+    }
 
     redirect(`/dashboard/tenants/${tenant.id}`);
   } catch (error) {

@@ -78,7 +78,6 @@ const CONFIG_DECLARATIONS: ConfigVarDeclaration[] = [
 
 const PLACEHOLDER_VALUES = [
   "your-value-here",
-  "placeholder",
   "CHANGE_ME",
   "xxx",
   "",
@@ -86,8 +85,11 @@ const PLACEHOLDER_VALUES = [
 
 function isPlaceholder(value: string | undefined): boolean {
   if (!value) return true;
+  const lower = value.toLowerCase();
+  // Substring check catches .env.example values like sk_test_placeholder, whsec_placeholder, etc.
+  if (lower.includes("placeholder")) return true;
   return PLACEHOLDER_VALUES.some(
-    (p) => value === p || value.toLowerCase() === p.toLowerCase()
+    (p) => value === p || lower === p.toLowerCase()
   );
 }
 
