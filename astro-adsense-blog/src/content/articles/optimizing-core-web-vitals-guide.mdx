@@ -1,0 +1,38 @@
+---
+title: "Optimizing Core Web Vitals for Your Site"
+description: "A comprehensive guide to improving Largest Contentful Paint, Cumulative Layout Shift, and Interaction to Next Paint metrics."
+author: "john-smith"
+category: "performance"
+publishedAt: 2024-12-01
+updatedAt: 2024-12-10
+tags: ["performance", "core-web-vitals", "seo"]
+---
+
+# Optimizing Core Web Vitals for Your Site
+
+Core Web Vitals are a set of metrics that measure real-world user experience on your website.
+
+## Understanding the Metrics
+
+### Largest Contentful Paint (LCP)
+
+LCP measures how quickly the largest visible element loads. Aim for under 2.5 seconds.
+
+### Cumulative Layout Shift (CLS)
+
+CLS measures visual stability. Reserve space for dynamic content like ads and images to prevent layout shifts.
+
+### Interaction to Next Paint (INP)
+
+INP measures responsiveness to user interactions. Keep event handlers fast and avoid long tasks.
+
+## Practical Tips
+
+1. **Preload critical resources** - Use `rel="preload"` for above-the-fold assets
+2. **Reserve ad space** - Always set explicit dimensions for ad containers
+3. **Optimize images** - Use modern formats like WebP and AVIF with explicit dimensions
+4. **Minimize JavaScript** - Defer non-critical scripts and avoid render-blocking resources
+
+## Measuring Progress
+
+Use tools like Lighthouse, PageSpeed Insights, and Chrome DevTools to track your improvements over time.
