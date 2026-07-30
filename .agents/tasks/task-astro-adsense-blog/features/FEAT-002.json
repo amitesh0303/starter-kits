@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Implement Author, Article, and Category content collections with MDX, IndexableDocument/SEO/schema/sitemap/robots/RSS projections, consent-aware Ad component, shared consent store, centralized analytics initializer, Article JSON-LD, and the full publish flow. This covers tasks 5.2, 5.3, and 5.4.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create src/content/config.ts defining three Astro content collections with Zod schemas: authors (name, bio, avatar, slug), articles (title with min/max bounds, description with min/max bounds, author reference, category reference, publishedAt date, updatedAt optional, draft boolean, slug, image optional, tags array), categories (name, description, slug)",
     "Create sample MDX content: at least 2 authors in src/content/authors/, at least 3 articles in src/content/articles/ (with one draft), at least 2 categories in src/content/categories/",
@@ -45,5 +45,5 @@
     "cd astro-adsense-blog && pnpm astro build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Astro 5.x content collections use Content Layer API with glob loader in src/content.config.ts. The @astrojs/rss@4.0.13 was added as a dependency. astro check passes with 0 errors/warnings (1 hint about is:inline on JSON-LD script which is expected). Build generates all expected static pages including filtered sitemap. Draft article gets noindex robots and is excluded from sitemap and RSS. The Ad component uses named slots (top-ad, bottom-ad) in BaseLayout."
 }
