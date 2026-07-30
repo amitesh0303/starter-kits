@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Generate exact-pinned Astro static/Node LTS/TypeScript scaffold with MDX support, commit project-local pnpm manifest/lockfile, ignores, and matching starter.json. This covers task 5.1.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create astro-adsense-blog/ directory at repository root",
     "Initialize an Astro project with TypeScript strict mode, using `create astro` or equivalent scaffold at an exact pinned version. Use Astro 5.x stable (latest exact pin).",
@@ -29,5 +29,5 @@
     "cd astro-adsense-blog && pnpm astro build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Used astro@5.18.2, @astrojs/mdx@4.3.14, @astrojs/sitemap@3.7.3, typescript@5.8.3, @astrojs/check@0.9.10. Added site: 'https://example.com' in astro.config.mjs to allow sitemap generation without warning. pnpm shows deprecated subdep warning (tsconfck@3.1.6) and ignored build scripts warning for esbuild/sharp - both are harmless. Build and frozen-lockfile install both pass."
 }
