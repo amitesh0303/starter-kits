@@ -28,6 +28,7 @@
     "stripe": "17.7.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.6",
     "@tailwindcss/postcss": "4.1.10",
     "@types/node": "22.15.29",
     "@types/react": "19.1.6",
