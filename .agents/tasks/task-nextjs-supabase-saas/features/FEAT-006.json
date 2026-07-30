@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "fix",
   "description": "Address 4 review feedback items: placeholder detection substring check, invite flow fix (remove membership creation), webhook route dedup (use getProviders), non-atomic tenant+membership compensating action.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Fix isPlaceholderValue to use substring check for 'placeholder' (case-insensitive)",
     "Fix invite page: remove membershipRepo.create, add comment explaining production invite-acceptance flow needed",
@@ -27,5 +27,5 @@
     "cd nextjs-supabase-saas && pnpm run build"
   ],
   "blocked_reason": null,
-  "findings": null
+  "findings": "All 4 review items addressed. 79 tests pass (78 original + 1 new test for .env.example placeholder detection). Lint, typecheck, and build all pass. The placeholder detection now uses case-insensitive substring check for 'placeholder', catching all .env.example default values. Invite flow no longer creates a membership record (avoids UUID type mismatch). Webhook route uses the cached getProviders().billing instead of constructing a new adapter per request. Tenant creation has a compensating delete if the membership insert fails."
 }
