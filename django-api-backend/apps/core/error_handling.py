@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from django_ratelimit.exceptions import Ratelimited
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import exception_handler as drf_exception_handler
@@ -75,6 +76,14 @@ def _extract_validation_details(detail: Any) -> list[dict[str, Any]]:
 
 def custom_exception_handler(exc: Exception, context: dict[str, Any]) -> Response | None:
     """Custom DRF exception handler producing stable error shape."""
+    # Handle rate limiting (Ratelimited exception)
+    if isinstance(exc, Ratelimited):
+        return _build_error_response(
+            code="rate_limit_exceeded",
+            message="Rate limit exceeded. Please try again later.",
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+        )
+
     response = drf_exception_handler(exc, context)
 
     if response is None:
