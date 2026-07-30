@@ -1,0 +1,28 @@
+{
+  "project_type": "Multi-stack starter-kit repository with root-level metadata tooling (Node.js) and 52 independent starter project folders",
+  "language": "JavaScript/TypeScript (root tooling), multi-language starters",
+  "build_system": "pnpm for root metadata validation only; starters are fully independent",
+  "test_framework": "Vitest with fast-check for property tests (root validator tests)",
+  "build_command": "pnpm install && pnpm catalog:validate",
+  "test_command": "pnpm test",
+  "verification_instructions": "1. Run pnpm install --frozen-lockfile to verify lockfile integrity. 2. Run pnpm catalog:validate to verify catalog/starters.json is valid. 3. Run pnpm test to run validator property tests.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "Node v22+ and pnpm 10+ are pre-installed. Run pnpm install at root to set up validator dependencies (stdlib-only, so minimal).",
+  "environment_constraints": "Network access available (COMMON_DEPENDENCIES). No Docker daemon needed for root tooling. Validator uses only node:path and node:fs/promises - no external runtime deps.",
+  "contribution_requirements": "From design.md: Root scripts inspect metadata/files only and never provide source, configuration defaults, test helpers, CSS, schema, or build plugins to a starter. Validator is read-only, Windows-compatible, uses no shell syntax. Status promotion requires all checks to pass.",
+  "key_patterns": "Validator uses CatalogDiagnostic interface with starter, category, field, expected, observed, correctiveAction, requirement fields. catalog/starters.json has exactly 52 objects with id/folder/family/useCase/framework/runtime/technologies/choices/auth/data/monetization/integrations/readsEnvironment/manifest/lockfile/readme/familyRequirement/status fields. Status is one of: pending, in progress, complete. Root README has validator markers delimiting family sections.",
+  "relevant_files": [
+    ".kiro/specs/multi-stack-boilerplates/requirements.md",
+    ".kiro/specs/multi-stack-boilerplates/design.md",
+    ".kiro/specs/multi-stack-boilerplates/tasks.md",
+    "catalog/starters.json",
+    "catalog/starters.schema.json",
+    "scripts/validate-catalog.mjs",
+    "package.json",
+    "pnpm-lock.yaml",
+    "README.md",
+    "LICENSE",
+    ".github/workflows/"
+  ],
+  "directory_structure": "Repository root: README.md, LICENSE, package.json, pnpm-lock.yaml, catalog/ (starters.json + schema), scripts/ (validate-catalog.mjs), .github/workflows/ (CI), .kiro/ (specs), and 52 starter folders (not yet created)"
+}
