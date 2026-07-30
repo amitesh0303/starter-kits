@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Add comprehensive tests (unit, integration, property, smoke), .env.example with typed config validation, complete README, lint/typecheck/build commands, and standalone validation. Corresponds to subtasks 2.5, 2.6, and 2.7.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Add vitest, @testing-library/react, @testing-library/jest-dom, fast-check, @vitejs/plugin-react as exact-pinned devDependencies. Create vitest.config.ts with React/Next.js path aliases and test environment setup.",
     "Create tests/unit/domain/policies.test.ts testing all authorization policies: owner access granted, member access limited, non-member denied, unauthenticated denied",
