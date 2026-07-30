@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Generate exact-pinned uv/Django/DRF Python scaffold with pyproject.toml, uv.lock, runtime pin, local ignores, and matching starter.json (subtask 3.1)",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create the directory /projects/sandbox/starter-kits/django-api-backend/",
     "Initialize with uv: run `uv init` in the django-api-backend directory, then configure pyproject.toml with exact-pinned Django 5.1.x, djangorestframework, django-allauth, drf-spectacular, stripe, psycopg[binary], django-cors-headers, django-ratelimit, structlog, gunicorn, and dev dependencies (pytest, pytest-django, hypothesis, ruff, mypy, django-stubs, djangorestframework-stubs, factory-boy, httpx)",
@@ -26,5 +26,5 @@
     "cd /projects/sandbox/starter-kits/django-api-backend && uv sync && uv run python manage.py check"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All dependencies resolved successfully. Django 5.1.7, DRF 3.15.2, allauth 65.4.1 installed. Used ACCOUNT_LOGIN_METHODS instead of deprecated ACCOUNT_AUTHENTICATION_METHOD. uv sync and manage.py check both pass cleanly. Python 3.12.13 used via pyenv."
 }
