@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Generate the complete astro-beginner-static-site starter with exact-pinned Astro scaffold, plain CSS, project-local pnpm manifest/lockfile, starter.json, .gitignore, shared layout/navigation/footer, two reusable components, public assets, SiteConfig, SEO/sitemap config, beginner comments, .env.example (comment-only), four static pages (Home, About, Contact with mailto:, Projects), tests (link/route, viewport overflow, keyboard/focus, accessibility, dependency-allowlist, Property 14), full README documentation, and one-shot validation commands.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create astro-beginner-static-site/ directory as a direct child of repository root",
     "Create package.json with name 'astro-beginner-static-site', type 'module', exact-pinned astro dependency (5.18.2), @astrojs/sitemap (3.7.3), plain CSS (NO Tailwind), packageManager field 'pnpm@10.28.1'. Runtime deps limited to: astro, @astrojs/sitemap. Dev deps: @astrojs/check, @eslint/js, @playwright/test, @axe-core/playwright, cheerio, eslint, eslint-plugin-astro, fast-check, globals, typescript, typescript-eslint, vitest. Scripts: dev, build, check, lint, test (unit), test:output (output), test:all, validate (lint && check && build && test:all)",
@@ -58,5 +58,5 @@
     "cd astro-beginner-static-site && pnpm test:output"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Fixed color-contrast accessibility violations by using #595959 instead of #718096 for muted text. Fixed link-in-text-block violations by ensuring all links in text blocks use text-decoration:underline. Fixed fast-check property test by using Object.hasOwn() instead of 'in' operator to avoid prototype chain false positives. Playwright browsers need manual install (npx playwright install chromium) before output tests. All 25 tests pass. Build produces 4 HTML pages + sitemap-index.xml."
 }
