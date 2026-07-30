@@ -7,8 +7,15 @@
 import { isPlaceholderValue } from "./config";
 import { FakeBillingAdapter } from "./billing-fake";
 import { FakeMailAdapter } from "./mail-fake";
+import { StripeBillingAdapter } from "./billing";
 import type { BillingPort } from "./billing";
+import { ResendMailAdapter } from "./mail";
 import type { MailPort } from "./mail";
+import {
+  createServiceClient,
+  SupabaseSubscriptionRepository,
+  SupabaseProcessedEventRepository,
+} from "./database";
 
 export interface Providers {
   billing: BillingPort;
@@ -46,9 +53,7 @@ function createBillingProvider(): BillingPort {
     return new FakeBillingAdapter();
   }
 
-  // Dynamic import to avoid loading Stripe SDK when using fakes
-  // For the real adapter, we need the repositories which require DB connection
-  // In a real setup, this would be injected. For now, return fake if DB is not configured.
+  // Real Stripe adapter requires a database connection for repositories
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -56,10 +61,17 @@ function createBillingProvider(): BillingPort {
     return new FakeBillingAdapter();
   }
 
-  // Real adapter requires runtime setup with DB repositories
-  // This is handled by the route handlers that have access to the DB client
-  // Return fake as fallback here - actual billing setup happens in route handlers
-  return new FakeBillingAdapter();
+  // All credentials are real: instantiate the real StripeBillingAdapter
+  const serviceClient = createServiceClient();
+  const subscriptionRepo = new SupabaseSubscriptionRepository(serviceClient);
+  const processedEventRepo = new SupabaseProcessedEventRepository(serviceClient);
+
+  return new StripeBillingAdapter(
+    subscriptionRepo,
+    processedEventRepo,
+    stripeKey!,
+    webhookSecret!
+  );
 }
 
 function createMailProvider(): MailPort {
@@ -69,8 +81,6 @@ function createMailProvider(): MailPort {
     return new FakeMailAdapter();
   }
 
-  // Dynamic import would go here for real Resend adapter
-  // For now, if the key looks real, we still need the Resend module loaded
-  // Return fake as safe default - actual mail setup happens where needed
-  return new FakeMailAdapter();
+  // Real Resend API key present: instantiate the real ResendMailAdapter
+  return new ResendMailAdapter(resendKey!);
 }

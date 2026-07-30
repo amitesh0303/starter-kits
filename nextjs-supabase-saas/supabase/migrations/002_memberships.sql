@@ -1,4 +1,6 @@
 -- Create memberships table
+-- NOTE: updated_at is not included here as memberships are immutable once created
+-- (role changes are modeled as delete + re-create in the application layer).
 CREATE TABLE IF NOT EXISTS public.memberships (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   tenant_id UUID NOT NULL REFERENCES public.tenants(id) ON DELETE CASCADE,
@@ -81,5 +83,20 @@ CREATE POLICY "Owners can delete memberships"
       WHERE m.tenant_id = memberships.tenant_id
         AND m.user_id = auth.uid()
         AND m.role = 'owner'
+    )
+  );
+
+-- ─── Tenant SELECT policy (deferred from 001_tenants.sql) ───────────────────────
+-- This policy references public.memberships, so it must be created AFTER the
+-- memberships table exists. Placed here to avoid a forward-reference in migration 001.
+CREATE POLICY "Users can view tenants they are members of"
+  ON public.tenants
+  FOR SELECT
+  TO authenticated
+  USING (
+    EXISTS (
+      SELECT 1 FROM public.memberships
+      WHERE memberships.tenant_id = tenants.id
+        AND memberships.user_id = auth.uid()
     )
   );

@@ -1,4 +1,6 @@
 -- Create tenants table
+-- NOTE: updated_at is application-managed (set in TypeScript repository layer on each update).
+-- This avoids a Postgres trigger dependency, improving portability across hosting providers.
 CREATE TABLE IF NOT EXISTS public.tenants (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
@@ -14,18 +16,9 @@ CREATE INDEX idx_tenants_owner_id ON public.tenants (owner_id);
 -- Enable Row Level Security
 ALTER TABLE public.tenants ENABLE ROW LEVEL SECURITY;
 
--- RLS Policies: Only members can view their tenants
-CREATE POLICY "Users can view tenants they are members of"
-  ON public.tenants
-  FOR SELECT
-  TO authenticated
-  USING (
-    EXISTS (
-      SELECT 1 FROM public.memberships
-      WHERE memberships.tenant_id = tenants.id
-        AND memberships.user_id = auth.uid()
-    )
-  );
+-- NOTE: The tenant SELECT policy (membership-based) is created in 002_memberships.sql
+-- because it references public.memberships which does not exist until that migration runs.
+-- This avoids a forward-reference that would fail if migrations are applied individually.
 
 -- Only the owner can update the tenant
 CREATE POLICY "Owners can update their tenants"

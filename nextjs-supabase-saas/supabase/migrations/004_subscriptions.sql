@@ -1,4 +1,6 @@
 -- Create subscriptions table
+-- NOTE: updated_at is application-managed (set in TypeScript repository layer on each update).
+-- This avoids a Postgres trigger dependency, improving portability across hosting providers.
 CREATE TABLE IF NOT EXISTS public.subscriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   tenant_id UUID NOT NULL REFERENCES public.tenants(id) ON DELETE CASCADE,
