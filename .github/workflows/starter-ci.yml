@@ -1,0 +1,170 @@
+name: Starter CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      starters: ${{ steps.changed.outputs.starters }}
+      has_changes: ${{ steps.changed.outputs.has_changes }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed starters
+        id: changed
+        run: |
+          # Get list of starter folders from catalog
+          STARTER_FOLDERS=$(node -e "
+            const catalog = JSON.parse(require('fs').readFileSync('catalog/starters.json', 'utf8'));
+            const folders = catalog.map(e => e.folder);
+            console.log(JSON.stringify(folders));
+          ")
+
+          # Determine which starters have changes
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..HEAD)
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1..HEAD 2>/dev/null || echo "")
+          fi
+
+          CHANGED_STARTERS=$(node -e "
+            const folders = $STARTER_FOLDERS;
+            const changedFiles = process.argv.slice(1).join('\n');
+            const changed = folders.filter(f => changedFiles.includes(f + '/'));
+            if (changed.length > 0) {
+              console.log(JSON.stringify(changed));
+            } else {
+              console.log('[]');
+            }
+          " $CHANGED_FILES)
+
+          echo "starters=$CHANGED_STARTERS" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED_STARTERS" = "[]" ]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  starter-test:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        starter: ${{ fromJson(needs.detect-changes.outputs.starters) }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+
+    env:
+      # Provider-fake defaults: no real credentials needed for CI
+      DATABASE_URL: "postgresql://fake:fake@localhost:5432/fake"
+      REDIS_URL: "redis://localhost:6379"
+      API_KEY: "fake-api-key-for-ci"
+      SECRET_KEY: "fake-secret-key-for-ci"
+      STRIPE_SECRET_KEY: "sk_test_fake"
+      STRIPE_WEBHOOK_SECRET: "whsec_fake"
+      AUTH_SECRET: "fake-auth-secret"
+      NEXTAUTH_SECRET: "fake-nextauth-secret"
+      NEXTAUTH_URL: "http://localhost:3000"
+      OPENAI_API_KEY: "sk-fake-openai-key"
+      CLERK_SECRET_KEY: "sk_test_fake_clerk"
+      SUPABASE_URL: "https://fake.supabase.co"
+      SUPABASE_ANON_KEY: "fake-anon-key"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Copy starter to isolated directory
+        shell: bash
+        run: |
+          mkdir -p /tmp/starter-test
+          cp -r "${{ matrix.starter }}/." /tmp/starter-test/
+
+      - name: Install dependencies (frozen lockfile)
+        working-directory: /tmp/starter-test
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm install --frozen-lockfile
+          elif [ -f "package-lock.json" ]; then
+            npm ci
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          elif [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          elif [ -f "pyproject.toml" ]; then
+            pip install -e .
+          fi
+        shell: bash
+
+      - name: Run build (if configured)
+        working-directory: /tmp/starter-test
+        shell: bash
+        run: |
+          if [ -f "package.json" ]; then
+            BUILD_CMD=$(node -e "const p=JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log(p.scripts?.build || '')")
+            if [ -n "$BUILD_CMD" ]; then
+              npx --no -- npm run build
+            fi
+          fi
+
+      - name: Run tests (if configured)
+        working-directory: /tmp/starter-test
+        shell: bash
+        run: |
+          if [ -f "package.json" ]; then
+            TEST_CMD=$(node -e "const p=JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log(p.scripts?.test || '')")
+            if [ -n "$TEST_CMD" ]; then
+              npx --no -- npm test
+            fi
+          fi
+
+      - name: Cleanup
+        if: always()
+        shell: bash
+        run: rm -rf /tmp/starter-test
+
+  final-completion:
+    needs: [starter-test]
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run final completion check
+        run: node scripts/validate-catalog.mjs --final-completion

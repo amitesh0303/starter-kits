@@ -1,0 +1,36 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Implement the Windows-compatible, read-only Node catalog validator (scripts/validate-catalog.mjs) that uses only node:path and node:fs/promises. This covers task 1.5. The validator implements the CatalogDiagnostic interface and checks: schema validity, exact set/count matching, folder existence, metadata consistency, README row/link/status matching, starter.json projection, family mapping, required files (manifest, lockfile, readme, .env.example where readsEnvironment), independence (no file:/link:/workspace: deps or parent-path imports), and package identifier uniqueness for Expo starters.",
+  "status": "completed",
+  "steps": [
+    "Step 1: Create scripts/validate-catalog.mjs using only node:path, node:fs/promises, and node:url for URL-safe path normalization. No shell syntax, no external dependencies. The script must work identically on PowerShell, cmd.exe, Linux, and macOS.",
+    "Step 2: Implement catalog loading and JSON schema validation - load catalog/starters.json, validate each entry against catalog/starters.schema.json (implement basic schema checking inline since we cannot use ajv without external deps - check required fields, types, enum values).",
+    "Step 3: Implement set equality check - compare the set of folder names in catalog with expected 52-name normative set. Report missing, extra, or duplicate entries.",
+    "Step 4: Implement family count validation - verify exactly 15 Web SaaS, 9 API/Backend, 12 Expo Mobile, 14 Content/AdSense, 2 Beginner Static.",
+    "Step 5: Implement folder existence check - for each catalog entry, check if the root-level folder exists (when starters are implemented). Report missing folders. Also detect unexpected root-level directories that look like starters but are not in the catalog.",
+    "Step 6: Implement starter.json comparison - for each existing starter folder, load its starter.json and compare immutable identity fields (id, folder, family, useCase, framework, runtime) against catalog entry. Report mismatches.",
+    "Step 7: Implement README parsing - parse root README.md to verify: exactly one row per starter in the correct family section (between validator markers), correct status value matching catalog, visible field values matching catalog, and resolvable folder/README/setup links.",
+    "Step 8: Implement required file checks - for each existing starter folder, verify presence of: manifest file (as declared in catalog), lockfile (as declared), README.md, and .env.example (if readsEnvironment is true).",
+    "Step 9: Implement independence check - scan manifest files in existing starter folders for file:, link:, workspace: dependencies or parent-path references (../) that would indicate cross-starter or root dependencies.",
+    "Step 10: Implement Expo package identifier uniqueness - for Expo Mobile starters, extract Android package identifiers and verify they are all distinct.",
+    "Step 11: Implement diagnostic output - collect all CatalogDiagnostic objects { starter?, category, field?, expected, observed, correctiveAction, requirement? } and output them as structured JSON to stdout. If any diagnostics exist, exit with nonzero code. If none, print success message stating all 52 entries were checked.",
+    "Step 12: Add a --final-completion flag that additionally requires all statuses to be 'complete' and zero applicable-criterion failures.",
+    "Step 13: Verify the validator runs successfully against the current state (all pending, no starter folders yet) - it should pass basic catalog checks but note missing folders as informational or skip folder checks when folders don't exist yet (design decision: at minimum the catalog metadata, schema, README, and set equality checks should pass)."
+  ],
+  "acceptance_criteria": [
+    "scripts/validate-catalog.mjs exists and runs with node without any npm dependencies",
+    "Running 'node scripts/validate-catalog.mjs' from repo root validates catalog structure and README",
+    "Validator reports diagnostics in the CatalogDiagnostic format",
+    "Validator exits with code 0 when catalog is valid (pending starters without folders is acceptable in non-final mode)",
+    "Validator exits with nonzero code when --final-completion is used and starters are not complete",
+    "No shell-specific syntax used (no backticks for commands, no pipe operators, no &&)",
+    "Uses only node:path, node:fs/promises, and node:url imports"
+  ],
+  "verification": [
+    "Run: node scripts/validate-catalog.mjs and confirm it exits with code 0 (catalog metadata is valid, README matches)",
+    "Run: node scripts/validate-catalog.mjs --final-completion and confirm it exits with nonzero code (starters are pending, not complete)"
+  ],
+  "blocked_reason": null,
+  "findings": "Validator runs successfully: exits 0 in normal mode (all pending starters, no folders), exits 1 with --final-completion. Uses only node:path, node:fs/promises, and node:url. Implements all checks: schema validation, unique IDs/folders, family counts, README row parsing and field matching, folder existence, starter.json immutable field comparison, required file checks, independence scanning, and Expo package identifier uniqueness. vitest run still exits 1 (no test files) - tests will be added in FEAT-003."
+}

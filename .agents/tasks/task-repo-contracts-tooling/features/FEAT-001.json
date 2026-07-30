@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Create the root project infrastructure: package.json with pnpm catalog:validate command, catalog/starters.json with all 52 entries, catalog/starters.schema.json, root README.md skeleton with all 52 rows marked pending, LICENSE (MIT), and the starter.json convention documentation. This covers tasks 1.1, 1.2, 1.3, and 1.4.",
+  "status": "completed",
+  "steps": [
+    "Step 1: Create package.json at root with name 'starter-kits', private: true, packageManager field for pnpm 10.28.1, scripts: { 'catalog:validate': 'node scripts/validate-catalog.mjs', 'test': 'vitest run' }. Add devDependencies for vitest and fast-check (for FEAT-002 tests).",
+    "Step 2: Create catalog/starters.schema.json - a JSON Schema that defines the structure of each starter entry. Fields: id (integer 1-52), folder (string, pattern kebab-case), family (enum: Web SaaS, API/Backend, Expo Mobile, Content/AdSense, Beginner Static), useCase (string), framework (string), runtime (string), technologies (array of strings), choices (string or null - finalized alternatives), auth (string or 'None'), data (string or 'None'), monetization (string or 'None'), integrations (array of strings), readsEnvironment (boolean), manifest (string - e.g. package.json or pyproject.toml), lockfile (string - e.g. pnpm-lock.yaml or uv.lock), readme (string - always README.md), familyRequirement (string - reference to which requirement section applies), status (enum: pending, in progress, complete). The schema should be 'closed' (additionalProperties: false).",
+    "Step 3: Create catalog/starters.json with exactly 52 objects matching every entry from the Normative Catalog in requirements.md. All entries start with status 'pending'. Use the exact folder names from the spec. Web SaaS entries (1-15): nextjs-supabase-saas, nextjs-ai-saas, nextjs-b2b-saas, nextjs-booking-saas, nextjs-lms-saas, nextjs-support-desk, nextjs-automation-saas, nextjs-file-saas, react-admin-saas, react-collaboration-saas, sveltekit-ai-saas, nuxt-community-saas, django-analytics-saas, remix-commerce-saas, astro-membership-site. API/Backend entries (16-24): django-api-backend, fastapi-ai-backend, fastapi-data-platform, fastify-commerce-api, fastify-realtime-api, nestjs-b2b-api, go-webhook-service, dotnet-enterprise-api, spring-enterprise-api. Expo Mobile entries (25-36): expo-subscription-app, expo-admob-utility, expo-ai-companion, expo-social-community, expo-marketplace-app, expo-booking-app, expo-habit-fitness-app, expo-content-reader, expo-local-first-app, expo-delivery-tracker, expo-event-app, expo-ecommerce-app. Content/AdSense entries (37-50): astro-adsense-blog, astro-affiliate-site, nextjs-directory-site, nextjs-programmatic-seo, nextjs-tools-site, nextjs-job-board, nuxt-magazine-site, nuxt-local-directory, eleventy-static-site, hugo-content-site, astro-recipe-site, astro-comparison-site, nextjs-coupon-site, nextjs-real-estate-directory. Beginner Static entries (51-52): astro-beginner-static-site, nextjs-beginner-static-site. Each entry must include ALL fields from the schema with accurate data from the design.md matrix (framework, runtime, technologies, choices, auth, data, monetization, integrations, etc.).",
+    "Step 4: Create README.md at root following the design spec. It must have: title, introduction explaining the 52-starter repository, a comparison guide section explaining family requirements and independence, validator markers (HTML comments like <!-- FAMILY:Web SaaS START --> and <!-- FAMILY:Web SaaS END -->) delimiting each family section, a table in each section with columns: Status, Folder, Use Case, Framework, Auth, Data, Monetization, Integrations - with folder linking to the folder and README. All 52 rows present with status showing a pending badge/marker. Include sections on: intentional framework reuse explanation, independence statement, how to use the validator.",
+    "Step 5: Create LICENSE file with MIT license text, copyright holder as the repository owner.",
+    "Step 6: Create a docs section or note in README about the starter.json convention: each starter contains a project-local starter.json with immutable identity projection (id, folder, family, useCase, framework, runtime), selected alternatives (choices), local paths (manifest, lockfile, readme), environment reads (readsEnvironment), integrations, and familyRequirement. This is not a separate file but documented within the README or as a brief CONTRIBUTING-style note.",
+    "Step 7: Run pnpm install to generate pnpm-lock.yaml.",
+    "Step 8: Validate that catalog/starters.json has exactly 52 entries, correct family counts (15+9+12+14+2=52), and all fields populated."
+  ],
+  "acceptance_criteria": [
+    "catalog/starters.json exists with exactly 52 entries",
+    "catalog/starters.schema.json exists and is a valid JSON Schema",
+    "All 52 entries in starters.json have status 'pending'",
+    "Family counts are correct: 15 Web SaaS, 9 API/Backend, 12 Expo Mobile, 14 Content/AdSense, 2 Beginner Static",
+    "README.md has all 52 rows in correct family sections with validator markers",
+    "LICENSE file exists with MIT license",
+    "package.json has catalog:validate and test scripts",
+    "pnpm-lock.yaml exists after install"
+  ],
+  "verification": [
+    "Run: node -e \"const d=JSON.parse(require('fs').readFileSync('catalog/starters.json','utf8')); console.log('Count:', d.length); const fam={}; d.forEach(s=>{fam[s.family]=(fam[s.family]||0)+1}); console.log(fam);\" and confirm 52 entries with correct family counts",
+    "Run: pnpm install --frozen-lockfile to confirm lockfile is valid",
+    "Run: node -e \"JSON.parse(require('fs').readFileSync('catalog/starters.schema.json','utf8')); console.log('Schema is valid JSON');\""
+  ],
+  "blocked_reason": null,
+  "findings": "All acceptance criteria met. vitest run exits with code 1 when no test files exist (expected, tests added in FEAT-002). pnpm install warns about esbuild build scripts being ignored - run pnpm approve-builds if needed. Added .gitignore to exclude node_modules/."
+}

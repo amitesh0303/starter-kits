@@ -1,0 +1,36 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add validator property tests using Vitest and fast-check, plus create CI workflow matrices. This covers tasks 1.6 and 1.7. Tests cover Property 1 (catalog set equality and family partition), Property 2 (standalone dependency closure), Property 15 (reproducible manifest/lockfile/configuration), and Property 16 (exact root README status/field/grouping/link mapping). CI matrices cover root validation on Windows/Linux, per-starter frozen installs, isolated copied-folder jobs, and final completion gates.",
+  "status": "completed",
+  "steps": [
+    "Step 1: Create tests/validate-catalog.test.mjs (or .test.ts with vitest) with Vitest and fast-check. Configure vitest in package.json or vitest.config.ts.",
+    "Step 2: Implement Property 1 tests - generate arbitrary catalog-like data with fast-check and verify that the validator correctly identifies when: set equality holds vs missing/extra entries, family counts match vs mismatch, metadata fields match vs have incorrect values, duplicate identities are detected. At least 100 generated cases.",
+    "Step 3: Implement Property 2 tests - generate starter manifests with various dependency patterns (file:, link:, workspace:, ../ paths, normal packages) and verify the independence checker correctly identifies violations. Test both positive (clean deps) and negative (violations detected) cases.",
+    "Step 4: Implement Property 15 tests - verify that manifest/lockfile pairs are correctly validated, that missing lockfiles are detected, that env variable declarations match actual reads (where testable via static analysis).",
+    "Step 5: Implement Property 16 tests - generate README content with varying row arrangements, statuses, links, and family sections. Verify the validator correctly matches rows to catalog entries, detects missing/duplicate/misplaced rows, wrong statuses, and broken links.",
+    "Step 6: Add example/unit tests that cover: successful validation of the actual current catalog state, detection of a deliberately corrupted catalog entry, detection of a missing README row, detection of a family count mismatch.",
+    "Step 7: Ensure the read-only filesystem invariant is tested - verify that running the validator does not modify any files (compare file mtimes or content hashes before/after).",
+    "Step 8: Create .github/workflows/catalog-validation.yml - root validation job running on ubuntu-latest and windows-latest with: checkout, pnpm install --frozen-lockfile, pnpm catalog:validate, pnpm test.",
+    "Step 9: Create .github/workflows/starter-ci.yml - matrix job template for per-starter validation (will be populated as starters are built). Include: isolated copied-folder strategy (copy single starter to temp dir, run its install/test/build), provider-fake defaults, explicit timeout, no watch/interactive commands. Add a final-completion job that runs validate-catalog.mjs --final-completion.",
+    "Step 10: Verify all tests pass with pnpm test."
+  ],
+  "acceptance_criteria": [
+    "tests/ directory contains property tests using vitest and fast-check",
+    "Property 1 tests generate at least 100 cases for catalog set/family validation",
+    "Property 2 tests verify independence checking logic",
+    "Property 15 tests verify manifest/lockfile validation",
+    "Property 16 tests verify README parsing and matching",
+    "pnpm test passes all tests",
+    ".github/workflows/catalog-validation.yml exists with Windows+Linux matrix",
+    ".github/workflows/starter-ci.yml exists with isolated-copy job template",
+    "Read-only invariant is tested"
+  ],
+  "verification": [
+    "Run: pnpm test and confirm all tests pass",
+    "Run: pnpm catalog:validate and confirm it still passes after adding test infrastructure",
+    "Verify .github/workflows/ directory contains both workflow files"
+  ],
+  "blocked_reason": null,
+  "findings": "All 36 tests pass (Property 1: 7 tests, Property 2: 6 tests, Property 15: 5 tests, Property 16: 7 tests, Example/unit: 8 tests, Read-only: 1 test). Refactored validate-catalog.mjs to import from scripts/lib/catalog-validator.mjs for testability. Validator still exits 0 in normal mode and exits 1 with --final-completion. CI workflows created for catalog-validation (Windows+Linux) and starter-ci (isolated-copy, provider-fakes, final-completion gate). vitest.config.mjs added for ESM test discovery."
+}

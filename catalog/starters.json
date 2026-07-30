@@ -1,0 +1,1492 @@
+[
+  {
+    "id": 1,
+    "folder": "nextjs-supabase-saas",
+    "family": "Web SaaS",
+    "useCase": "General multi-tenant SaaS",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase Auth",
+      "Supabase Postgres",
+      "Stripe",
+      "Resend",
+      "Tailwind"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "Supabase Postgres",
+    "monetization": "Stripe subscriptions",
+    "integrations": [
+      "Resend"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "folder": "nextjs-ai-saas",
+    "family": "Web SaaS",
+    "useCase": "AI chat and content generation",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Neon",
+      "Prisma",
+      "OpenAI-compatible API",
+      "Lemon Squeezy"
+    ],
+    "choices": null,
+    "auth": "Clerk",
+    "data": "Neon Postgres + Prisma",
+    "monetization": "Lemon Squeezy",
+    "integrations": [
+      "OpenAI-compatible API"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 3,
+    "folder": "nextjs-b2b-saas",
+    "family": "Web SaaS",
+    "useCase": "Organizations, teams, and RBAC",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Auth0",
+      "PostgreSQL",
+      "Drizzle",
+      "Paddle",
+      "Postmark"
+    ],
+    "choices": null,
+    "auth": "Auth0",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "Paddle",
+    "integrations": [
+      "Postmark"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 4,
+    "folder": "nextjs-booking-saas",
+    "family": "Web SaaS",
+    "useCase": "Appointments and reservations",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Auth.js",
+      "Prisma",
+      "PostgreSQL",
+      "Stripe",
+      "Google Calendar",
+      "Resend"
+    ],
+    "choices": null,
+    "auth": "Auth.js",
+    "data": "PostgreSQL + Prisma",
+    "monetization": "Stripe payments",
+    "integrations": [
+      "Google Calendar",
+      "Resend"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 5,
+    "folder": "nextjs-lms-saas",
+    "family": "Web SaaS",
+    "useCase": "Courses, memberships, and video",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Neon",
+      "Prisma",
+      "Mux",
+      "Stripe",
+      "UploadThing"
+    ],
+    "choices": null,
+    "auth": "Clerk",
+    "data": "Neon + Prisma",
+    "monetization": "Stripe memberships",
+    "integrations": [
+      "Mux",
+      "UploadThing"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 6,
+    "folder": "nextjs-support-desk",
+    "family": "Web SaaS",
+    "useCase": "Support and ticketing",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Auth.js",
+      "PostgreSQL",
+      "Prisma",
+      "Resend",
+      "S3/R2"
+    ],
+    "choices": null,
+    "auth": "Auth.js",
+    "data": "PostgreSQL + Prisma",
+    "monetization": "None",
+    "integrations": [
+      "Resend",
+      "S3/R2"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 7,
+    "folder": "nextjs-automation-saas",
+    "family": "Web SaaS",
+    "useCase": "Workflows and scheduled jobs",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Neon",
+      "Drizzle",
+      "Inngest",
+      "Stripe"
+    ],
+    "choices": "Inngest",
+    "auth": "Clerk",
+    "data": "Neon + Drizzle",
+    "monetization": "Stripe",
+    "integrations": [
+      "Inngest"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 8,
+    "folder": "nextjs-file-saas",
+    "family": "Web SaaS",
+    "useCase": "File conversion, storage, media processing",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Neon",
+      "Drizzle",
+      "Cloudflare R2",
+      "Inngest",
+      "Stripe"
+    ],
+    "choices": "R2 + Inngest",
+    "auth": "Clerk",
+    "data": "Neon + Drizzle",
+    "monetization": "Stripe",
+    "integrations": [
+      "Cloudflare R2",
+      "Inngest"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 9,
+    "folder": "react-admin-saas",
+    "family": "Web SaaS",
+    "useCase": "CRM, ERP, internal admin",
+    "framework": "React + Vite",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Auth0",
+      "TanStack Query",
+      "Supabase Postgres",
+      "Stripe",
+      "shadcn/ui"
+    ],
+    "choices": "Supabase Postgres",
+    "auth": "Auth0",
+    "data": "Supabase Postgres",
+    "monetization": "Stripe",
+    "integrations": [
+      "TanStack Query",
+      "shadcn/ui"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 10,
+    "folder": "react-collaboration-saas",
+    "family": "Web SaaS",
+    "useCase": "Collaborative documents and boards",
+    "framework": "React + Vite",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Convex",
+      "Liveblocks",
+      "Stripe"
+    ],
+    "choices": null,
+    "auth": "Clerk",
+    "data": "Convex",
+    "monetization": "Stripe",
+    "integrations": [
+      "Liveblocks"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 11,
+    "folder": "sveltekit-ai-saas",
+    "family": "Web SaaS",
+    "useCase": "Usage-metered AI and data tooling",
+    "framework": "SvelteKit",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "Stripe Billing Meters",
+      "AI provider",
+      "Tailwind"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "Supabase Postgres",
+    "monetization": "Stripe Billing Meters",
+    "integrations": [
+      "AI provider"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 12,
+    "folder": "nuxt-community-saas",
+    "family": "Web SaaS",
+    "useCase": "Membership community and forum",
+    "framework": "Nuxt",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Better Auth",
+      "PostgreSQL",
+      "Drizzle",
+      "Paddle",
+      "Tailwind"
+    ],
+    "choices": null,
+    "auth": "Better Auth",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "Paddle",
+    "integrations": [],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 13,
+    "folder": "django-analytics-saas",
+    "family": "Web SaaS",
+    "useCase": "Analytics and reporting",
+    "framework": "Django",
+    "runtime": "Python",
+    "technologies": [
+      "django-allauth",
+      "PostgreSQL",
+      "Celery",
+      "Redis",
+      "Stripe",
+      "Django Admin"
+    ],
+    "choices": null,
+    "auth": "django-allauth",
+    "data": "PostgreSQL",
+    "monetization": "Stripe",
+    "integrations": [
+      "Celery",
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "pyproject.toml",
+    "lockfile": "uv.lock",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 14,
+    "folder": "remix-commerce-saas",
+    "family": "Web SaaS",
+    "useCase": "Merchant storefront and D2C commerce",
+    "framework": "Remix",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Shopify API",
+      "Auth.js",
+      "Stripe"
+    ],
+    "choices": "Shopify API + Auth.js",
+    "auth": "Auth.js",
+    "data": "Shopify API",
+    "monetization": "Stripe",
+    "integrations": [
+      "Shopify API"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 15,
+    "folder": "astro-membership-site",
+    "family": "Web SaaS",
+    "useCase": "Paid newsletter and premium content",
+    "framework": "Astro SSR",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Turso/Postgres",
+      "Stripe",
+      "Resend"
+    ],
+    "choices": "Turso",
+    "auth": "Clerk",
+    "data": "Turso/LibSQL",
+    "monetization": "Stripe",
+    "integrations": [
+      "Resend"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 3",
+    "status": "pending"
+  },
+  {
+    "id": 16,
+    "folder": "django-api-backend",
+    "family": "API/Backend",
+    "useCase": "General REST backend",
+    "framework": "Django + DRF",
+    "runtime": "Python",
+    "technologies": [
+      "django-allauth",
+      "PostgreSQL",
+      "Stripe",
+      "OpenAPI"
+    ],
+    "choices": null,
+    "auth": "allauth/token auth",
+    "data": "PostgreSQL",
+    "monetization": "Stripe",
+    "integrations": [
+      "OpenAPI"
+    ],
+    "readsEnvironment": true,
+    "manifest": "pyproject.toml",
+    "lockfile": "uv.lock",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 17,
+    "folder": "fastapi-ai-backend",
+    "family": "API/Backend",
+    "useCase": "AI inference and document processing",
+    "framework": "FastAPI",
+    "runtime": "Python",
+    "technologies": [
+      "OAuth2/JWT",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Stripe"
+    ],
+    "choices": null,
+    "auth": "OAuth2/JWT",
+    "data": "PostgreSQL + SQLAlchemy",
+    "monetization": "Stripe",
+    "integrations": [
+      "Redis",
+      "Celery",
+      "OpenAI-compatible API"
+    ],
+    "readsEnvironment": true,
+    "manifest": "pyproject.toml",
+    "lockfile": "uv.lock",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 18,
+    "folder": "fastapi-data-platform",
+    "family": "API/Backend",
+    "useCase": "Ingestion, ETL, analytics",
+    "framework": "FastAPI",
+    "runtime": "Python",
+    "technologies": [
+      "JWT",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "DuckDB",
+      "S3-compatible storage",
+      "Celery",
+      "Redis"
+    ],
+    "choices": null,
+    "auth": "signed service JWT",
+    "data": "PostgreSQL + SQLAlchemy + DuckDB",
+    "monetization": "None",
+    "integrations": [
+      "S3-compatible storage",
+      "Celery",
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "pyproject.toml",
+    "lockfile": "uv.lock",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 19,
+    "folder": "fastify-commerce-api",
+    "family": "API/Backend",
+    "useCase": "Products, carts, orders",
+    "framework": "Fastify",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "JWT",
+      "Prisma",
+      "PostgreSQL",
+      "Redis",
+      "Stripe Checkout"
+    ],
+    "choices": null,
+    "auth": "JWT",
+    "data": "PostgreSQL + Prisma",
+    "monetization": "Stripe Checkout",
+    "integrations": [
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 20,
+    "folder": "fastify-realtime-api",
+    "family": "API/Backend",
+    "useCase": "Notifications, presence, realtime",
+    "framework": "Fastify",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "WebSockets",
+      "Redis",
+      "PostgreSQL",
+      "JWT",
+      "Drizzle"
+    ],
+    "choices": null,
+    "auth": "JWT",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "None",
+    "integrations": [
+      "WebSockets",
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 21,
+    "folder": "nestjs-b2b-api",
+    "family": "API/Backend",
+    "useCase": "Multi-tenant enterprise backend",
+    "framework": "NestJS",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Passport JWT",
+      "Prisma",
+      "PostgreSQL",
+      "Stripe",
+      "BullMQ",
+      "Redis"
+    ],
+    "choices": null,
+    "auth": "Passport JWT",
+    "data": "PostgreSQL + Prisma",
+    "monetization": "Stripe",
+    "integrations": [
+      "BullMQ",
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 22,
+    "folder": "go-webhook-service",
+    "family": "API/Backend",
+    "useCase": "High-throughput API and webhook processing",
+    "framework": "Go + Chi",
+    "runtime": "Go",
+    "technologies": [
+      "PostgreSQL",
+      "Redis",
+      "JWT",
+      "OpenAPI"
+    ],
+    "choices": "Chi",
+    "auth": "JWT",
+    "data": "PostgreSQL + pgx",
+    "monetization": "None",
+    "integrations": [
+      "Redis",
+      "OpenAPI"
+    ],
+    "readsEnvironment": true,
+    "manifest": "go.mod",
+    "lockfile": "go.sum",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 23,
+    "folder": "dotnet-enterprise-api",
+    "family": "API/Backend",
+    "useCase": "Enterprise CRM and line-of-business",
+    "framework": "ASP.NET Core",
+    "runtime": ".NET",
+    "technologies": [
+      "ASP.NET Identity/JWT",
+      "EF Core",
+      "PostgreSQL",
+      "Stripe"
+    ],
+    "choices": "PostgreSQL",
+    "auth": "ASP.NET Identity/JWT",
+    "data": "PostgreSQL + EF Core",
+    "monetization": "Stripe",
+    "integrations": [],
+    "readsEnvironment": true,
+    "manifest": "*.csproj",
+    "lockfile": "packages.lock.json",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 24,
+    "folder": "spring-enterprise-api",
+    "family": "API/Backend",
+    "useCase": "Enterprise subscriptions",
+    "framework": "Spring Boot",
+    "runtime": "Java",
+    "technologies": [
+      "Spring Security JWT",
+      "JPA",
+      "PostgreSQL",
+      "Redis",
+      "Stripe"
+    ],
+    "choices": "Redis",
+    "auth": "Spring Security JWT",
+    "data": "PostgreSQL + JPA",
+    "monetization": "Stripe",
+    "integrations": [
+      "Redis"
+    ],
+    "readsEnvironment": true,
+    "manifest": "pom.xml",
+    "lockfile": "maven-wrapper",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 4",
+    "status": "pending"
+  },
+  {
+    "id": 25,
+    "folder": "expo-subscription-app",
+    "family": "Expo Mobile",
+    "useCase": "Premium mobile SaaS",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "React Native",
+      "Supabase",
+      "RevenueCat",
+      "Sentry"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "Supabase + SQLite",
+    "monetization": "RevenueCat",
+    "integrations": [
+      "Sentry"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 26,
+    "folder": "expo-admob-utility",
+    "family": "Expo Mobile",
+    "useCase": "Calculator, scanner, converter",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Firebase Analytics",
+      "AdMob",
+      "SQLite",
+      "RevenueCat"
+    ],
+    "choices": null,
+    "auth": "anonymous/local",
+    "data": "SQLite",
+    "monetization": "AdMob + optional RevenueCat",
+    "integrations": [
+      "Firebase Analytics"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 27,
+    "folder": "expo-ai-companion",
+    "family": "Expo Mobile",
+    "useCase": "AI assistant or tutor",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "AI API",
+      "RevenueCat"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "Supabase + SQLite",
+    "monetization": "RevenueCat",
+    "integrations": [
+      "AI API"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 28,
+    "folder": "expo-social-community",
+    "family": "Expo Mobile",
+    "useCase": "Feed, profiles, comments, chat",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "Convex",
+      "Stream Chat",
+      "push notifications"
+    ],
+    "choices": null,
+    "auth": "Clerk",
+    "data": "Convex + SQLite",
+    "monetization": "None",
+    "integrations": [
+      "Stream Chat",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 29,
+    "folder": "expo-marketplace-app",
+    "family": "Expo Mobile",
+    "useCase": "Local services and physical goods",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "Algolia",
+      "Stripe Connect",
+      "Google Maps"
+    ],
+    "choices": "Google Maps",
+    "auth": "Supabase Auth",
+    "data": "Supabase + SQLite",
+    "monetization": "Stripe Connect",
+    "integrations": [
+      "Algolia",
+      "Google Maps"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 30,
+    "folder": "expo-booking-app",
+    "family": "Expo Mobile",
+    "useCase": "Appointments and rentals",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "Calendar",
+      "Maps",
+      "notifications",
+      "Stripe"
+    ],
+    "choices": "Supabase + expo-calendar + Google Maps",
+    "auth": "Supabase Auth",
+    "data": "Supabase + SQLite",
+    "monetization": "Stripe",
+    "integrations": [
+      "Calendar",
+      "Google Maps",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 31,
+    "folder": "expo-habit-fitness-app",
+    "family": "Expo Mobile",
+    "useCase": "Habits, workouts, wellness",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Firebase",
+      "Android Health Connect",
+      "RevenueCat",
+      "notifications"
+    ],
+    "choices": null,
+    "auth": "Firebase Auth",
+    "data": "Firebase Firestore + SQLite",
+    "monetization": "RevenueCat",
+    "integrations": [
+      "Android Health Connect",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 32,
+    "folder": "expo-content-reader",
+    "family": "Expo Mobile",
+    "useCase": "News, articles, recipes, education",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Sanity",
+      "SQLite",
+      "AdMob",
+      "Firebase Messaging"
+    ],
+    "choices": "Sanity",
+    "auth": "optional local",
+    "data": "Sanity + SQLite",
+    "monetization": "AdMob",
+    "integrations": [
+      "Firebase Messaging"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 33,
+    "folder": "expo-local-first-app",
+    "family": "Expo Mobile",
+    "useCase": "Notes, inventory, field work",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "SQLite",
+      "Supabase",
+      "background sync"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "SQLite + Supabase",
+    "monetization": "None",
+    "integrations": [
+      "Expo background task"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 34,
+    "folder": "expo-delivery-tracker",
+    "family": "Expo Mobile",
+    "useCase": "Delivery, fleet, field service",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Google Maps",
+      "background location",
+      "Firebase",
+      "push notifications"
+    ],
+    "choices": "Google Maps",
+    "auth": "Firebase Auth",
+    "data": "Firebase Firestore + SQLite",
+    "monetization": "None",
+    "integrations": [
+      "Google Maps",
+      "background location",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 35,
+    "folder": "expo-event-app",
+    "family": "Expo Mobile",
+    "useCase": "Tickets and attendee networking",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "QR scanning",
+      "notifications",
+      "Stripe"
+    ],
+    "choices": null,
+    "auth": "Supabase Auth",
+    "data": "Supabase + SQLite",
+    "monetization": "Stripe",
+    "integrations": [
+      "QR scanning",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 36,
+    "folder": "expo-ecommerce-app",
+    "family": "Expo Mobile",
+    "useCase": "Physical-goods storefront",
+    "framework": "Expo Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Shopify Storefront API",
+      "push notifications"
+    ],
+    "choices": "Shopify predictive search",
+    "auth": "Shopify customer token",
+    "data": "Shopify Storefront API + SQLite",
+    "monetization": "Shopify native checkout",
+    "integrations": [
+      "Shopify Storefront API",
+      "push notifications"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 5",
+    "status": "pending"
+  },
+  {
+    "id": 37,
+    "folder": "astro-adsense-blog",
+    "family": "Content/AdSense",
+    "useCase": "Niche blog",
+    "framework": "Astro",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "MDX",
+      "content collections",
+      "AdSense",
+      "analytics",
+      "RSS"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "MDX content collections",
+    "monetization": "AdSense",
+    "integrations": [
+      "analytics",
+      "RSS"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 38,
+    "folder": "astro-affiliate-site",
+    "family": "Content/AdSense",
+    "useCase": "Reviews and comparisons",
+    "framework": "Astro",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "MDX",
+      "schema.org",
+      "affiliate links",
+      "AdSense"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "MDX",
+    "monetization": "affiliate links + AdSense",
+    "integrations": [
+      "analytics"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 39,
+    "folder": "nextjs-directory-site",
+    "family": "Content/AdSense",
+    "useCase": "Business, tools, places directory",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase Postgres",
+      "Drizzle",
+      "Meilisearch",
+      "AdSense"
+    ],
+    "choices": "Meilisearch",
+    "auth": "None",
+    "data": "Supabase Postgres + Drizzle",
+    "monetization": "AdSense",
+    "integrations": [
+      "Meilisearch"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 40,
+    "folder": "nextjs-programmatic-seo",
+    "family": "Content/AdSense",
+    "useCase": "Data-generated landing pages",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "PostgreSQL",
+      "Drizzle",
+      "Inngest",
+      "AdSense"
+    ],
+    "choices": "Drizzle + Inngest",
+    "auth": "None",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "AdSense",
+    "integrations": [
+      "Inngest"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 41,
+    "folder": "nextjs-tools-site",
+    "family": "Content/AdSense",
+    "useCase": "Calculators, generators, free tools",
+    "framework": "Next.js",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "static typed data",
+      "AdSense",
+      "analytics"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "static typed data",
+    "monetization": "AdSense",
+    "integrations": [
+      "analytics"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 42,
+    "folder": "nextjs-job-board",
+    "family": "Content/AdSense",
+    "useCase": "Jobs and recruitment directory",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Clerk",
+      "PostgreSQL",
+      "Drizzle",
+      "Stripe",
+      "AdSense"
+    ],
+    "choices": "Clerk",
+    "auth": "Clerk",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "Stripe paid listings + AdSense",
+    "integrations": [
+      "Stripe"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 43,
+    "folder": "nuxt-magazine-site",
+    "family": "Content/AdSense",
+    "useCase": "News and multi-author magazine",
+    "framework": "Nuxt",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Nuxt Content",
+      "AdSense",
+      "image optimization",
+      "newsletter"
+    ],
+    "choices": "Nuxt Content",
+    "auth": "None",
+    "data": "Nuxt Content Markdown",
+    "monetization": "AdSense",
+    "integrations": [
+      "image optimization",
+      "Resend newsletter"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 44,
+    "folder": "nuxt-local-directory",
+    "family": "Content/AdSense",
+    "useCase": "Local business and city directory",
+    "framework": "Nuxt",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Supabase",
+      "MapLibre/OpenStreetMap",
+      "Meilisearch",
+      "AdSense"
+    ],
+    "choices": "MapLibre/OpenStreetMap + Meilisearch",
+    "auth": "None",
+    "data": "Supabase Postgres",
+    "monetization": "AdSense + sponsored listings",
+    "integrations": [
+      "MapLibre/OpenStreetMap",
+      "Meilisearch"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 45,
+    "folder": "eleventy-static-site",
+    "family": "Content/AdSense",
+    "useCase": "Minimal niche or documentation site",
+    "framework": "Eleventy",
+    "runtime": "Node LTS",
+    "technologies": [
+      "Markdown",
+      "AdSense",
+      "RSS",
+      "sitemap"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "Markdown/data files",
+    "monetization": "AdSense",
+    "integrations": [
+      "RSS",
+      "sitemap"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 46,
+    "folder": "hugo-content-site",
+    "family": "Content/AdSense",
+    "useCase": "Large static blog or documentation",
+    "framework": "Hugo",
+    "runtime": "Go + Node",
+    "technologies": [
+      "Markdown",
+      "AdSense",
+      "Pagefind",
+      "affiliate links"
+    ],
+    "choices": "Pagefind",
+    "auth": "None",
+    "data": "Markdown",
+    "monetization": "AdSense + affiliate links",
+    "integrations": [
+      "Pagefind"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 47,
+    "folder": "astro-recipe-site",
+    "family": "Content/AdSense",
+    "useCase": "Recipes and tutorials",
+    "framework": "Astro",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "Astro content collections",
+      "Recipe/HowTo schema",
+      "AdSense"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "Astro content collections",
+    "monetization": "AdSense",
+    "integrations": [
+      "RSS",
+      "sitemap"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 48,
+    "folder": "astro-comparison-site",
+    "family": "Content/AdSense",
+    "useCase": "Comparison tables and best-of content",
+    "framework": "Astro",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "structured data",
+      "affiliate links",
+      "AdSense"
+    ],
+    "choices": null,
+    "auth": "None",
+    "data": "content collections",
+    "monetization": "affiliate links + AdSense",
+    "integrations": [
+      "analytics"
+    ],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 49,
+    "folder": "nextjs-coupon-site",
+    "family": "Content/AdSense",
+    "useCase": "Deals and coupons",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "PostgreSQL",
+      "Drizzle",
+      "Meilisearch",
+      "Inngest",
+      "AdSense"
+    ],
+    "choices": "Meilisearch + Inngest",
+    "auth": "None",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "affiliate tracking + AdSense",
+    "integrations": [
+      "Meilisearch",
+      "Inngest"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 50,
+    "folder": "nextjs-real-estate-directory",
+    "family": "Content/AdSense",
+    "useCase": "Property and rental listings",
+    "framework": "Next.js App Router",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "PostgreSQL",
+      "Drizzle",
+      "MapLibre/OpenStreetMap",
+      "Cloudflare R2",
+      "AdSense"
+    ],
+    "choices": "MapLibre/OpenStreetMap + Cloudflare R2",
+    "auth": "None",
+    "data": "PostgreSQL + Drizzle",
+    "monetization": "AdSense + promoted listings",
+    "integrations": [
+      "MapLibre/OpenStreetMap",
+      "Cloudflare R2"
+    ],
+    "readsEnvironment": true,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 6",
+    "status": "pending"
+  },
+  {
+    "id": 51,
+    "folder": "astro-beginner-static-site",
+    "family": "Beginner Static",
+    "useCase": "Very simple beginner static site",
+    "framework": "Astro",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "plain CSS",
+      "reusable layouts/components",
+      "SEO",
+      "sitemap"
+    ],
+    "choices": "plain CSS",
+    "auth": "None",
+    "data": "local TS/Markdown",
+    "monetization": "None",
+    "integrations": [],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 7",
+    "status": "pending"
+  },
+  {
+    "id": 52,
+    "folder": "nextjs-beginner-static-site",
+    "family": "Beginner Static",
+    "useCase": "Very simple beginner static portfolio",
+    "framework": "Next.js",
+    "runtime": "Node LTS",
+    "technologies": [
+      "TypeScript",
+      "CSS Modules",
+      "reusable components",
+      "SEO",
+      "sitemap"
+    ],
+    "choices": "CSS Modules",
+    "auth": "None",
+    "data": "local TS",
+    "monetization": "None",
+    "integrations": [],
+    "readsEnvironment": false,
+    "manifest": "package.json",
+    "lockfile": "pnpm-lock.yaml",
+    "readme": "README.md",
+    "familyRequirement": "Requirement 7",
+    "status": "pending"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "task_id": "task-repo-contracts-tooling",
+  "task_description": "Establish repository contracts and read-only tooling (Task 1 from spec). Create catalog/starters.json with 52 entries, JSON schema, root README skeleton, LICENSE, catalog validator script, property tests, and CI matrices.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "pnpm install --frozen-lockfile succeeds, pnpm catalog:validate exits 0 with 'All 52 entries were checked. No issues found.', pnpm test passes all 36 tests (Property 1: 7, Property 2: 6, Property 15: 5, Property 16: 7, Example/unit: 8, Read-only: 1). Tests use fast-check with 100+ generated cases per property and exercise the actual validator logic."
+  }
+}

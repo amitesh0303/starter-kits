@@ -1,0 +1,13 @@
+{
+  "name": "starter-kits",
+  "private": true,
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "catalog:validate": "node scripts/validate-catalog.mjs",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "fast-check": "^3.23.2",
+    "vitest": "^3.1.3"
+  }
+}
