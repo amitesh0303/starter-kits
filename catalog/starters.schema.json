@@ -1,0 +1,103 @@
+{
+  "title": "Starter Kits Catalog",
+  "description": "Schema for the starter-kits catalog entries",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/StarterEntry"
+  },
+  "minItems": 52,
+  "maxItems": 52,
+  "$defs": {
+    "StarterEntry": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 52
+        },
+        "folder": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$"
+        },
+        "family": {
+          "type": "string",
+          "enum": ["Web SaaS", "API/Backend", "Expo Mobile", "Content/AdSense", "Beginner Static"]
+        },
+        "useCase": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string"
+        },
+        "runtime": {
+          "type": "string"
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "choices": {
+          "type": ["string", "null"]
+        },
+        "auth": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "monetization": {
+          "type": "string"
+        },
+        "integrations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "readsEnvironment": {
+          "type": "boolean"
+        },
+        "manifest": {
+          "type": "string"
+        },
+        "lockfile": {
+          "type": "string"
+        },
+        "readme": {
+          "type": "string"
+        },
+        "familyRequirement": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in progress", "complete"]
+        }
+      },
+      "required": [
+        "id",
+        "folder",
+        "family",
+        "useCase",
+        "framework",
+        "runtime",
+        "technologies",
+        "choices",
+        "auth",
+        "data",
+        "monetization",
+        "integrations",
+        "readsEnvironment",
+        "manifest",
+        "lockfile",
+        "readme",
+        "familyRequirement",
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
