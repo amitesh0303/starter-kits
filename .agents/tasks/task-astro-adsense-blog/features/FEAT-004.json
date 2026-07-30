@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-004",
+  "type": "chore",
+  "description": "Validate the copied folder and generated output without root access or live providers. Update catalog status to 'in progress'. This covers task 5.7.",
+  "status": "pending",
+  "steps": [
+    "Copy astro-adsense-blog/ to an isolated temporary directory (e.g., /tmp/astro-adsense-blog-standalone/)",
+    "From the copied directory, run: pnpm install --frozen-lockfile (verify no root/other-starter dependency)",
+    "Run: pnpm lint (ESLint passes)",
+    "Run: pnpm check (astro check passes)",
+    "Run: pnpm build (astro build succeeds, generates dist/ with all expected pages)",
+    "Run: pnpm test (all unit and property tests pass)",
+    "Verify no imports reference parent directories or other starters (grep for '../' imports that escape the project)",
+    "Verify starter.json matches catalog entry #37 exactly",
+    "Verify .env.example contains only client-safe optional values",
+    "Update catalog/starters.json entry #37 status from 'pending' to 'in progress'",
+    "Update the Root README.md row for astro-adsense-blog to show 'in progress' status"
+  ],
+  "acceptance_criteria": [
+    "Standalone copy completes all validation commands without errors",
+    "No file references escape the project directory",
+    "starter.json matches catalog entry exactly",
+    "catalog/starters.json entry #37 has status 'in progress'",
+    "Root README.md reflects 'in progress' for astro-adsense-blog"
+  ],
+  "verification": [
+    "Copy astro-adsense-blog to /tmp/standalone-test && cd /tmp/standalone-test && pnpm install --frozen-lockfile && pnpm lint && pnpm check && pnpm build && pnpm test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

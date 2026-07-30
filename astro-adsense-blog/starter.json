@@ -1,0 +1,23 @@
+{
+  "id": 37,
+  "folder": "astro-adsense-blog",
+  "family": "Content/AdSense",
+  "useCase": "Niche blog",
+  "framework": "Astro",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "MDX",
+    "content collections",
+    "AdSense",
+    "analytics",
+    "RSS"
+  ],
+  "auth": "None",
+  "data": "MDX content collections",
+  "monetization": "AdSense",
+  "integrations": [
+    "analytics",
+    "RSS"
+  ]
+}

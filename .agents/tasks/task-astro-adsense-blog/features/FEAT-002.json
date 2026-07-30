@@ -1,0 +1,49 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Implement Author, Article, and Category content collections with MDX, IndexableDocument/SEO/schema/sitemap/robots/RSS projections, consent-aware Ad component, shared consent store, centralized analytics initializer, Article JSON-LD, and the full publish flow. This covers tasks 5.2, 5.3, and 5.4.",
+  "status": "pending",
+  "steps": [
+    "Create src/content/config.ts defining three Astro content collections with Zod schemas: authors (name, bio, avatar, slug), articles (title with min/max bounds, description with min/max bounds, author reference, category reference, publishedAt date, updatedAt optional, draft boolean, slug, image optional, tags array), categories (name, description, slug)",
+    "Create sample MDX content: at least 2 authors in src/content/authors/, at least 3 articles in src/content/articles/ (with one draft), at least 2 categories in src/content/categories/",
+    "Create src/seo/indexable-document.ts: a shared IndexableDocument interface/type with title, description, canonicalUrl, publishedAt, updatedAt, robots, structuredData fields. Create a projection function that maps Article collection entries to IndexableDocument",
+    "Create src/seo/metadata.ts: generate bounded unique page titles (30-60 chars) and meta descriptions (50-160 chars) per page with canonical URLs",
+    "Create src/seo/robots.ts: robots.txt generation respecting draft/non-indexable pages",
+    "Create src/seo/structured-data.ts: Article JSON-LD generator with required fields (headline, datePublished, dateModified, author, publisher, description, mainEntityOfPage)",
+    "Create src/seo/rss.ts or configure @astrojs/rss: RSS feed generation that excludes drafts, future-dated entries, non-indexable entries; orders newest-to-oldest with slug as deterministic tie-breaker",
+    "Configure Astro sitemap integration to exclude draft and non-indexable pages via filter",
+    "Create src/components/Ad.astro: responsive Ad_Component that reserves documented width/height dimensions (mobile: 320x100, tablet: 468x60, desktop: 728x90) before any provider call. Must preserve dimensions when blocked/delayed/unavailable/consent-withheld",
+    "Create src/lib/consent-store.ts: shared consent state for advertising AND analytics in one store (ConsentState with advertising: boolean, analytics: boolean, updatedAt: string). Export getter/setter/subscriber pattern usable from both Ad component and analytics",
+    "Create src/analytics/index.ts: centralized analytics initializer that consumes the shared consent state. Only initializes when consent.analytics === true",
+    "Create src/pages/index.astro: blog index listing published articles (not drafts, not future-dated) in newest-first order",
+    "Create src/pages/articles/[slug].astro: article detail page rendering MDX content with Article JSON-LD structured data, Ad components, SEO metadata",
+    "Create src/pages/categories/[slug].astro: category listing page showing articles in that category",
+    "Create src/pages/rss.xml.ts: RSS feed endpoint using @astrojs/rss with eligibility filtering and deterministic ordering",
+    "Create src/pages/robots.txt.ts: robots.txt endpoint",
+    "Create src/layouts/BaseLayout.astro: shared layout with head metadata, consent banner placeholder, analytics script loading gated on consent, Ad component slots",
+    "Ensure consent store integration: when consent disallows, Ad component renders placeholder with reserved dimensions and analytics does NOT initialize",
+    "Verify deterministic ordering: articles ordered by publishedAt desc, with slug alphabetical as tie-breaker for same timestamp"
+  ],
+  "acceptance_criteria": [
+    "Content collections define Author, Article, Category with proper Zod validation including title length bounds (30-60) and description bounds (50-160)",
+    "Sample content includes at least 2 authors, 3 articles (1 draft), 2 categories",
+    "IndexableDocument projection correctly maps articles to SEO metadata",
+    "RSS feed excludes drafts and future-dated entries, orders newest-first with slug tie-breaker",
+    "Sitemap excludes draft/non-indexable pages",
+    "robots.txt is generated and excludes draft pages",
+    "Ad component reserves exact dimensions: mobile 320x100, tablet 468x60, desktop 728x90",
+    "Ad component preserves dimensions in all states (blocked/delayed/unavailable/consent-withheld)",
+    "Shared consent store gates both advertising and analytics with single state",
+    "Analytics initializer only runs when consent.analytics is true",
+    "Article detail pages include valid Article JSON-LD structured data",
+    "Blog index shows only published non-future articles in newest-first order",
+    "pnpm astro build succeeds and generates all expected static pages"
+  ],
+  "verification": [
+    "cd astro-adsense-blog && pnpm install --frozen-lockfile",
+    "cd astro-adsense-blog && pnpm astro check",
+    "cd astro-adsense-blog && pnpm astro build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

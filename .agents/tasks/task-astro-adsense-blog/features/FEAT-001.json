@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Generate exact-pinned Astro static/Node LTS/TypeScript scaffold with MDX support, commit project-local pnpm manifest/lockfile, ignores, and matching starter.json. This covers task 5.1.",
+  "status": "in_progress",
+  "steps": [
+    "Create astro-adsense-blog/ directory at repository root",
+    "Initialize an Astro project with TypeScript strict mode, using `create astro` or equivalent scaffold at an exact pinned version. Use Astro 5.x stable (latest exact pin).",
+    "Add MDX integration (@astrojs/mdx) and sitemap integration (@astrojs/sitemap) as exact-pinned dependencies",
+    "Configure pnpm as package manager with packageManager field pinned to 10.28.1",
+    "Add astro.config.mjs with static output mode, MDX and sitemap integrations enabled",
+    "Add tsconfig.json extending astro/tsconfigs/strict",
+    "Create .gitignore excluding node_modules, dist, .astro, .env, .env.*, !.env.example",
+    "Create starter.json matching catalog entry #37 exactly: id=37, folder='astro-adsense-blog', family='Content/AdSense', useCase='Niche blog', framework='Astro', runtime='Node LTS', technologies=['TypeScript','MDX','content collections','AdSense','analytics','RSS'], auth='None', data='MDX content collections', monetization='AdSense', integrations=['analytics','RSS']",
+    "Run pnpm install to generate pnpm-lock.yaml",
+    "Verify the project builds with `pnpm astro build` (empty build is fine at this stage)"
+  ],
+  "acceptance_criteria": [
+    "astro-adsense-blog/package.json exists with exact-pinned Astro and integration dependencies",
+    "astro-adsense-blog/pnpm-lock.yaml exists and is committed",
+    "astro-adsense-blog/starter.json matches catalog entry #37 fields exactly",
+    "astro-adsense-blog/.gitignore excludes node_modules, dist, .astro, env files (except .env.example)",
+    "astro-adsense-blog/tsconfig.json extends astro strict config",
+    "pnpm install --frozen-lockfile succeeds from the astro-adsense-blog directory",
+    "pnpm astro build succeeds (even if producing empty output)"
+  ],
+  "verification": [
+    "cd astro-adsense-blog && pnpm install --frozen-lockfile",
+    "cd astro-adsense-blog && pnpm astro build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

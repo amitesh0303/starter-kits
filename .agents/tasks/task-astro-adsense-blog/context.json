@@ -1,0 +1,22 @@
+{
+  "project_type": "Astro static blog with MDX content collections, AdSense, analytics, and RSS",
+  "language": "TypeScript",
+  "build_system": "pnpm with Astro CLI",
+  "test_framework": "Vitest + fast-check for property tests, Playwright for built-output checks",
+  "build_command": "cd astro-adsense-blog && pnpm build",
+  "test_command": "cd astro-adsense-blog && pnpm test",
+  "verification_instructions": "1. pnpm install --frozen-lockfile, 2. pnpm lint, 3. pnpm astro check, 4. pnpm build, 5. pnpm test (unit+property), 6. pnpm test:output (built-output SEO/feed/ad/a11y/perf)",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "cd astro-adsense-blog && pnpm install --frozen-lockfile",
+  "environment_constraints": "Full internet access available. Node v22.23.1, pnpm 10.28.1 pre-installed.",
+  "contribution_requirements": "Each starter is standalone - no imports from root or other starters. Must have project-local manifest/lockfile. starter.json with exact catalog identity. All validation commands must be non-interactive one-shot.",
+  "key_patterns": "Existing starters use starter.json for identity projection. Root catalog at catalog/starters.json. Validation profile AST = pnpm; Vitest + fast-check + Playwright; ESLint, astro check, astro build. Content/AdSense blueprint: src/content for typed records, src/pages for static routes, src/seo for metadata/sitemap/RSS, src/components/Ad.* for consent-aware ad component, src/analytics for consent-consuming initializer, tests/ for all checks, scripts/validate-site.* for built-output validation.",
+  "relevant_files": [
+    "catalog/starters.json (entry #37)",
+    "expo-subscription-app/starter.json (pattern reference)",
+    "expo-subscription-app/package.json (pattern reference for pnpm setup)",
+    ".kiro/specs/multi-stack-boilerplates/requirements.md (Requirement 6)",
+    ".kiro/specs/multi-stack-boilerplates/design.md (Content/AdSense blueprint)"
+  ],
+  "directory_structure": "astro-adsense-blog/ will be created at repository root. Key subdirs: src/content/ (MDX collections), src/pages/ (static routes), src/seo/ (metadata/canonical/robots/sitemap/RSS), src/components/ (Ad component, layout), src/analytics/ (consent-consuming initializer), tests/ (all test suites), scripts/ (validate-site output checks)"
+}
