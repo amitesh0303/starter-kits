@@ -1,0 +1,10 @@
+{
+  "/api/invite/route": "/api/invite",
+  "/api/webhooks/paddle/route": "/api/webhooks/paddle",
+  "/_not-found/page": "/_not-found",
+  "/auth/logout/page": "/auth/logout",
+  "/auth/login/page": "/auth/login",
+  "/auth/callback/page": "/auth/callback",
+  "/dashboard/page": "/dashboard",
+  "/page": "/"
+}

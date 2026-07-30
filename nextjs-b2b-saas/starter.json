@@ -1,0 +1,22 @@
+{
+  "id": 3,
+  "folder": "nextjs-b2b-saas",
+  "family": "Web SaaS",
+  "useCase": "Organizations, teams, and RBAC",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Auth0",
+    "PostgreSQL",
+    "Drizzle",
+    "Paddle",
+    "Postmark"
+  ],
+  "auth": "Auth0",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "Paddle",
+  "integrations": [
+    "Postmark"
+  ]
+}

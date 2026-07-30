@@ -1,0 +1,11 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build nextjs-b2b-saas starter - Organizations, teams, and RBAC with Next.js, Auth0, PostgreSQL/Drizzle, Paddle, and Postmark.",
+  "status": "in_progress",
+  "steps": [],
+  "acceptance_criteria": [],
+  "verification": [],
+  "blocked_reason": null,
+  "findings": ""
+}

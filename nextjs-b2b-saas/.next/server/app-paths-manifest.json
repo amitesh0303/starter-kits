@@ -1,0 +1,10 @@
+{
+  "/api/invite/route": "app/api/invite/route.js",
+  "/api/webhooks/paddle/route": "app/api/webhooks/paddle/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/auth/logout/page": "app/auth/logout/page.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/auth/callback/page": "app/auth/callback/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js"
+}
