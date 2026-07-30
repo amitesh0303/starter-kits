@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Generate exact-pinned uv/Django/DRF Python scaffold with pyproject.toml, uv.lock, runtime pin, local ignores, and matching starter.json (subtask 3.1)",
+  "status": "completed",
+  "steps": [
+    "Create the directory /projects/sandbox/starter-kits/django-api-backend/",
+    "Initialize with uv: run `uv init` in the django-api-backend directory, then configure pyproject.toml with exact-pinned Django 5.1.x, djangorestframework, django-allauth, drf-spectacular, stripe, psycopg[binary], django-cors-headers, django-ratelimit, structlog, gunicorn, and dev dependencies (pytest, pytest-django, hypothesis, ruff, mypy, django-stubs, djangorestframework-stubs, factory-boy, httpx)",
+    "Pin Python version to 3.12 in pyproject.toml requires-python and .python-version file",
+    "Run `uv lock` to generate uv.lock",
+    "Create .gitignore for Python (*.pyc, __pycache__, .venv, *.egg-info, .mypy_cache, .pytest_cache, .ruff_cache, db.sqlite3, .env, dist/, build/)",
+    "Create django-api-backend/starter.json matching catalog entry id=16: { id: 16, folder: 'django-api-backend', family: 'API/Backend', useCase: 'General REST backend', framework: 'Django + DRF', runtime: 'Python', technologies: ['django-allauth','PostgreSQL','Stripe','OpenAPI'], auth: 'allauth/token auth', data: 'PostgreSQL', monetization: 'Stripe', integrations: ['OpenAPI'] }",
+    "Create the basic Django project structure using django-admin startproject: a config/ package (settings.py, urls.py, wsgi.py, asgi.py) and the app modules directory structure",
+    "Verify `uv sync` and `uv run python manage.py check` succeed"
+  ],
+  "acceptance_criteria": [
+    "django-api-backend/pyproject.toml exists with exact-pinned Django, DRF, allauth, drf-spectacular, stripe, and all dev dependencies",
+    "django-api-backend/uv.lock exists and is valid",
+    "django-api-backend/.python-version contains 3.12",
+    "django-api-backend/starter.json matches catalog entry for id=16",
+    "django-api-backend/.gitignore excludes standard Python artifacts",
+    "`uv sync` succeeds in the django-api-backend directory",
+    "`uv run python manage.py check` passes"
+  ],
+  "verification": [
+    "cd /projects/sandbox/starter-kits/django-api-backend && uv sync && uv run python manage.py check"
+  ],
+  "blocked_reason": null,
+  "findings": "All dependencies resolved successfully. Django 5.1.7, DRF 3.15.2, allauth 65.4.1 installed. Used ACCOUNT_LOGIN_METHODS instead of deprecated ACCOUNT_AUTHENTICATION_METHOD. uv sync and manage.py check both pass cleanly. Python 3.12.13 used via pyenv."
+}
