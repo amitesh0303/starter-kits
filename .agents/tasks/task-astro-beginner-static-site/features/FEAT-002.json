@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "chore",
   "description": "Validate the standalone astro-beginner-static-site copy with no env values or external services, run all validation commands, update catalog status in root README from 'pending' to 'in progress', and confirm the no-service gate passes.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Copy astro-beginner-static-site/ to an isolated temp path (e.g., /tmp/standalone-test/astro-beginner-static-site)",
     "Run pnpm install --frozen-lockfile in the isolated copy - must succeed without any root repository access",
@@ -27,5 +27,5 @@
     "Check root README.md shows updated status for astro-beginner-static-site"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Standalone validation passed completely. All 25 tests (5 unit + 20 output) pass in isolated copy at /projects/standalone-test/astro-beginner-static-site without any root repository access. pnpm install --frozen-lockfile, lint, check, build, test, and test:output all succeed. No .env values required. Build produces 4 HTML pages + sitemap-index.xml + sitemap-0.xml. Root README.md updated from pending to in progress."
 }
