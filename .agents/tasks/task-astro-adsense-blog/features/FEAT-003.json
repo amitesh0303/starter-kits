@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Add required built-output SEO/schema/feed/link/ad/consent/CLS/performance/accessibility tests plus Properties 11, 12, and 13. Add .env.example, config fallback, comprehensive README, and one-shot validation commands. This covers tasks 5.5 and 5.6.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Add dev dependencies: vitest, fast-check, playwright, @playwright/test, axe-core or @axe-core/playwright, cheerio or similar HTML parser for built-output inspection",
     "Create tests/unit/content-schema.test.ts: validate Article/Author/Category schema constraints with fast-check property tests for title length bounds, description bounds, metadata uniqueness",
@@ -44,5 +44,5 @@
     "cd astro-adsense-blog && pnpm test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Ad component needed box-sizing: border-box to make width/height exact (border adds 2px without it). Ad label color #999 on #f0f0f0 background fails WCAG AA contrast; fixed to #595959. axe-core/playwright requires browser.newContext() not browser.newPage() directly. fast-check uniqueArray needed to avoid duplicate IDs in property tests. eslint-plugin-astro 1.3.1 uses legacy config format but works with flat config via its recommended export."
 }
