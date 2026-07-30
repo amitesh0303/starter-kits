@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "chore",
   "description": "Validate the copied folder and generated output without root access or live providers. Update catalog status to 'in progress'. This covers task 5.7.",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Copy astro-adsense-blog/ to an isolated temporary directory (e.g., /tmp/astro-adsense-blog-standalone/)",
     "From the copied directory, run: pnpm install --frozen-lockfile (verify no root/other-starter dependency)",
@@ -27,5 +27,5 @@
     "Copy astro-adsense-blog to /tmp/standalone-test && cd /tmp/standalone-test && pnpm install --frozen-lockfile && pnpm lint && pnpm check && pnpm build && pnpm test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Standalone validation passed on first attempt. All 6 validation steps (install, lint, check, build, test, test:output) succeeded in the isolated copy at /projects/sandbox/_standalone_test/. No imports escape the project boundary - the ../../ imports in src/pages/articles/ and tests/unit/ resolve within the project. starter.json fields match catalog entry #37 exactly. .env.example contains only client-safe optional placeholder values. Status promoted to 'in progress' in both catalog/starters.json and root README.md."
 }
