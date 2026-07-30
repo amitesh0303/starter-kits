@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "fix",
   "description": "Fix three issues from v2 review: (1) isolated fake token stores break auth flow, (2) no concrete QueuePersistence-to-SQLite bridge, (3) crash recovery and persistence write-through untested.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Export a shared fake token store singleton from src/storage/secure-store.ts and use it consistently in sign-in.tsx, (app)/_layout.tsx, and deep-link.tsx",
     "Add a createSQLiteQueuePersistence(repo) factory in src/storage/ that maps QueuePersistence callbacks to SQLiteRepository methods",
@@ -23,5 +23,5 @@
     "cd expo-subscription-app && pnpm run export"
   ],
   "blocked_reason": null,
-  "findings": null
+  "findings": "All 3 review issues resolved. Shared fakeTokenStore singleton eliminates the isolated-store auth loop. createSQLiteQueuePersistence bridges the interface to concrete SQLiteRepository methods. 17 new tests cover persistence callbacks (onEnqueue/onTransition), crash recovery (recoverOrphanedSyncing), error resilience, and the SQLite persistence bridge. Total test count: 108 across 14 suites. Lint, typecheck, test, and export all pass."
 }
