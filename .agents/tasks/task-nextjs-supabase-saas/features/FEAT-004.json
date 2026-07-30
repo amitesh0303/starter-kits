@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Add comprehensive tests (unit, integration, property, smoke), .env.example with typed config validation, complete README, lint/typecheck/build commands, and standalone validation. Corresponds to subtasks 2.5, 2.6, and 2.7.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Add vitest, @testing-library/react, @testing-library/jest-dom, fast-check, @vitejs/plugin-react as exact-pinned devDependencies. Create vitest.config.ts with React/Next.js path aliases and test environment setup.",
     "Create tests/unit/domain/policies.test.ts testing all authorization policies: owner access granted, member access limited, non-member denied, unauthenticated denied",
@@ -46,5 +46,5 @@
     "cd nextjs-supabase-saas && pnpm run build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 78 tests pass (9 test files). Used fast-check 3.23.2 which uses fc.hexa() instead of fc.alphaNumeric() (the latter was removed in v3.x). Property tests generate 200+ cases each for auth-consistency and webhook-authenticity. The @eslint/eslintrc was pinned from ^3.3.6 to exact 3.3.6. vitest 3.2.1 and fast-check 3.23.2 added as exact-pinned devDependencies. Full validation passes: pnpm install --frozen-lockfile, lint, typecheck, test, build."
 }
