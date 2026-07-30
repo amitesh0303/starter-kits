@@ -1,9 +1,9 @@
 import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { createFakeTokenStore } from "@/storage/secure-store";
+import { fakeTokenStore } from "@/storage/secure-store";
 
-const tokenStore = createFakeTokenStore();
+const tokenStore = fakeTokenStore;
 
 /**
  * Deep-link destination handler.

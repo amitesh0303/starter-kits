@@ -9,11 +9,11 @@ import {
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { createFakeAuthAdapter } from "@/adapters/auth-adapter";
-import { createFakeTokenStore } from "@/storage/secure-store";
+import { fakeTokenStore } from "@/storage/secure-store";
 
 type ScreenState = "idle" | "loading" | "error";
 
-const tokenStore = createFakeTokenStore();
+const tokenStore = fakeTokenStore;
 const authAdapter = createFakeAuthAdapter(tokenStore);
 
 export default function SignIn(): React.JSX.Element {

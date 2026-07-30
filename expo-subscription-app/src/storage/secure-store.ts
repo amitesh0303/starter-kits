@@ -66,3 +66,10 @@ export function createFakeTokenStore(): TokenStore {
     },
   };
 }
+
+/**
+ * Shared fake token store singleton for fake mode.
+ * All screens (sign-in, auth guard, deep-link handler) must import this same
+ * instance so that tokens set during sign-in are visible to the auth guard.
+ */
+export const fakeTokenStore: TokenStore = createFakeTokenStore();

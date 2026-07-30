@@ -1,9 +1,9 @@
 import { Stack, Redirect } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
-import { createFakeTokenStore } from "@/storage/secure-store";
+import { fakeTokenStore } from "@/storage/secure-store";
 
-const tokenStore = createFakeTokenStore();
+const tokenStore = fakeTokenStore;
 
 /**
  * App group layout with auth guard.
