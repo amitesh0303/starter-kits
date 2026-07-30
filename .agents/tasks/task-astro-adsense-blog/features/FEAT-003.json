@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Add required built-output SEO/schema/feed/link/ad/consent/CLS/performance/accessibility tests plus Properties 11, 12, and 13. Add .env.example, config fallback, comprehensive README, and one-shot validation commands. This covers tasks 5.5 and 5.6.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Add dev dependencies: vitest, fast-check, playwright, @playwright/test, axe-core or @axe-core/playwright, cheerio or similar HTML parser for built-output inspection",
     "Create tests/unit/content-schema.test.ts: validate Article/Author/Category schema constraints with fast-check property tests for title length bounds, description bounds, metadata uniqueness",
