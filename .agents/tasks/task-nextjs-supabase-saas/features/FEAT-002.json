@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Implement domain models, Supabase SQL migrations, RLS policies, infrastructure layer with auth/persistence/billing/mail adapters, config boundary, and the full provider integration layer. Corresponds to subtasks 2.2 and 2.3.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create domain/ directory with entity types: Tenant (id, name, slug, ownerId, createdAt, updatedAt), Membership (id, tenantId, userId, role: owner|admin|member, createdAt), Project (id, tenantId, name, description, createdAt, updatedAt), Subscription (id, tenantId, stripeCustomerId, stripeSubscriptionId, stripePriceId, status: active|past_due|cancelled|trialing, currentPeriodEnd, cancelAtPeriodEnd, createdAt, updatedAt)",
     "Create domain/policies.ts with deny-by-default Authorizer implementations: canAccessTenant, canManageTenant, canAccessProject, canManageMembers - checking ownership/membership/role at repository boundary",
