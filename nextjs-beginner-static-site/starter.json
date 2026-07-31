@@ -1,0 +1,26 @@
+{
+  "id": 52,
+  "folder": "nextjs-beginner-static-site",
+  "family": "Beginner Static",
+  "useCase": "Very simple beginner static portfolio",
+  "framework": "Next.js",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "CSS Modules",
+    "reusable components",
+    "SEO",
+    "sitemap"
+  ],
+  "choices": "CSS Modules",
+  "auth": "None",
+  "data": "local TS",
+  "monetization": "None",
+  "integrations": [],
+  "readsEnvironment": false,
+  "manifest": "package.json",
+  "lockfile": "pnpm-lock.yaml",
+  "readme": "README.md",
+  "familyRequirement": "Requirement 7",
+  "status": "pending"
+}

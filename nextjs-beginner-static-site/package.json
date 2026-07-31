@@ -1,0 +1,33 @@
+{
+  "name": "nextjs-beginner-static-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run tests/unit/",
+    "test:output": "vitest run tests/output/",
+    "test:all": "vitest run"
+  },
+  "dependencies": {
+    "next": "15.3.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.29",
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.6",
+    "cheerio": "1.0.0",
+    "eslint": "9.28.0",
+    "eslint-config-next": "15.3.4",
+    "fast-check": "4.1.1",
+    "typescript": "5.8.3",
+    "vitest": "3.2.1"
+  }
+}

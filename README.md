@@ -146,7 +146,7 @@ This file is used by the catalog validator to verify consistency between the roo
 
 | Status | Folder | Use Case | Framework | Auth | Data | Monetization | Integrations |
 |--------|--------|----------|-----------|------|------|--------------|---------------|
-| 🚧 in progress | [`astro-beginner-static-site`](./astro-beginner-static-site) | Very simple beginner static site | Astro | None | local TS/Markdown | None | None |
+| ⏳ pending | [`astro-beginner-static-site`](./astro-beginner-static-site) | Very simple beginner static site | Astro | None | local TS/Markdown | None | None |
 | ⏳ pending | [`nextjs-beginner-static-site`](./nextjs-beginner-static-site) | Very simple beginner static portfolio | Next.js | None | local TS | None | None |
 
 <!-- FAMILY:Beginner Static END -->

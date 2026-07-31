@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Create remaining Beginner Static starter (ID 52): nextjs-beginner-static-site. Follow astro-beginner-static-site as reference. Then run final catalog validation to confirm all 52 starters are present and consistent.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create nextjs-beginner-static-site (ID 52): Next.js + TypeScript + CSS Modules + reusable components + SEO + sitemap. Structure: app/ (page.tsx, about/, projects/, contact/), components/ (Card, Footer, Hero, Navigation), styles/, public/, tests/. No auth, no database, no monetization, no env vars needed. Simple static export.",
     "Ensure starter.json has all required fields matching catalog entry: id=52, folder='nextjs-beginner-static-site', family='Beginner Static', readsEnvironment=false.",

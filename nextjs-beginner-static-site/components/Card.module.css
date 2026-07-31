@@ -1,0 +1,26 @@
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.08);
+}
+
+.title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 1.125rem;
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
