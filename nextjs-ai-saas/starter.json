@@ -1,0 +1,22 @@
+{
+  "id": 2,
+  "folder": "nextjs-ai-saas",
+  "family": "Web SaaS",
+  "useCase": "AI chat and content generation",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Neon",
+    "Prisma",
+    "OpenAI-compatible API",
+    "Lemon Squeezy"
+  ],
+  "auth": "Clerk",
+  "data": "Neon Postgres + Prisma",
+  "monetization": "Lemon Squeezy",
+  "integrations": [
+    "OpenAI-compatible API"
+  ]
+}
