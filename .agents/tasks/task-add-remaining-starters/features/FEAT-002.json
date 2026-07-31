@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Create remaining API/Backend starters (IDs 17-24): fastapi-ai-backend, fastapi-data-platform, fastify-commerce-api, fastify-realtime-api, nestjs-b2b-api, go-webhook-service, dotnet-enterprise-api, spring-enterprise-api. Follow django-api-backend as Python reference pattern.",
+  "status": "pending",
+  "steps": [
+    "Create fastapi-ai-backend (ID 17): FastAPI + OAuth2/JWT + PostgreSQL/SQLAlchemy + Redis + Celery + OpenAI-compatible API + Stripe. Structure: app/ (api/, core/, models/, services/, tasks/), tests/, pyproject.toml, uv.lock, Dockerfile. Fake adapters for AI, Redis, and Celery.",
+    "Create fastapi-data-platform (ID 18): FastAPI + signed service JWT + PostgreSQL/SQLAlchemy + DuckDB + S3-compatible + Celery + Redis. Structure: app/ (api/, core/, models/, services/, tasks/, storage/), tests/. Fake adapters for S3 and task queue.",
+    "Create fastify-commerce-api (ID 19): Fastify + JWT + PostgreSQL/Prisma + Redis + Stripe Checkout. Structure: src/ (routes/, plugins/, domain/, lib/), prisma/, tests/. Use vitest for tests. Fake adapters for Redis (redis-fake.ts) and Stripe.",
+    "Create fastify-realtime-api (ID 20): Fastify + JWT + PostgreSQL/Drizzle + WebSockets + Redis. Structure: src/ (routes/, plugins/, domain/, lib/, ws/), tests/. Fake adapters for Redis and WebSocket connections.",
+    "Create nestjs-b2b-api (ID 21): NestJS + Passport JWT + PostgreSQL/Prisma + Stripe + BullMQ + Redis. Structure: src/ (modules/ with auth, tenants, billing, queue), prisma/, test/. Use Jest (NestJS default). Fake adapters for queue and billing.",
+    "Create go-webhook-service (ID 22): Go + Chi + JWT + PostgreSQL/pgx + Redis + OpenAPI. Structure: cmd/server/, internal/ (handler/, middleware/, domain/, repository/, queue/), pkg/, tests/. Use go.mod + go.sum. Fake adapters as interfaces with in-memory implementations.",
+    "Create dotnet-enterprise-api (ID 23): ASP.NET Core + ASP.NET Identity/JWT + PostgreSQL/EF Core + Stripe. Structure: src/ (Controllers/, Models/, Services/, Data/), Tests/, *.csproj, packages.lock.json. Fake adapters as interface implementations.",
+    "Create spring-enterprise-api (ID 24): Spring Boot + Spring Security JWT + PostgreSQL/JPA + Redis + Stripe. Structure: src/main/java/ (controller/, service/, model/, repository/, config/), src/test/java/, pom.xml, maven-wrapper. Fake adapters as Spring profiles.",
+    "Each starter MUST have: starter.json, manifest with pinned deps, lockfile, README.md, .env.example, Dockerfile (for API starters), tests passing with fake adapters."
+  ],
+  "acceptance_criteria": [
+    "All 8 API/Backend starter folders exist with correct structure",
+    "Each has a valid starter.json matching catalog/starters.json entry",
+    "Each has appropriate lockfile (pnpm-lock.yaml, uv.lock, go.sum, packages.lock.json, maven-wrapper)",
+    "Each has tests that run with fake adapters (no real database/Redis needed)",
+    "pnpm catalog:validate passes for these starters"
+  ],
+  "verification": [
+    "For Python starters: run uv sync && pytest in each",
+    "For Node starters: run pnpm install && pnpm test in each",
+    "For Go starter: run go build ./... && go test ./...",
+    "Run pnpm catalog:validate at root"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

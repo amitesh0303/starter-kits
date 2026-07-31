@@ -1,0 +1,26 @@
+{
+  "project_type": "Monorepo of 52 standalone starter project templates organized into 5 families",
+  "language": "TypeScript (primary), Python, Go, Java, C#",
+  "build_system": "pnpm at root level; each starter is independent with its own build system",
+  "test_framework": "vitest (TS/JS starters), jest (Expo starters), pytest (Python starters), go test (Go), JUnit (Java), xUnit (.NET)",
+  "build_command": "Per-starter: pnpm install && pnpm build (JS/TS), uv sync (Python), go build ./... (Go)",
+  "test_command": "Per-starter: pnpm test (JS/TS), pytest (Python), go test ./... (Go); Root: pnpm catalog:validate",
+  "verification_instructions": "Run pnpm catalog:validate at root to verify all 52 folders exist with correct metadata. Each starter should have: starter.json, package manifest, lockfile, README.md, and .env.example (if readsEnvironment is true).",
+  "snapshot_or_generated_files": "pnpm-lock.yaml (per JS/TS starter), uv.lock (Python starters), go.sum (Go starters)",
+  "setup_instructions": "pnpm install at root for validator scripts",
+  "environment_constraints": "OPEN_INTERNET - full access. Node.js 22, pnpm available, Python 3.11, uv available, Go 1.25.1, Java 25, Maven 3.9.10, .NET available, Ruby 3.4.4, Rust 1.92.0",
+  "contribution_requirements": "Each starter must be fully self-contained (no cross-starter imports), have a lockfile, pass tests with placeholder env values, have fake provider adapters, and match catalog/starters.json metadata",
+  "key_patterns": "Web SaaS (Next.js): domain/ (entities.ts, policies.ts), lib/server/ (config.ts, errors.ts, providers.ts, billing.ts, billing-fake.ts), app/ routes, tests/ (unit/, integration/, property/, smoke/). Content/Astro: src/ (components, pages, content, lib, seo), tests/ (unit/, output/). Expo: src/ (domain/, adapters/, storage/, sync/), app/ (Expo Router), __tests__/. Python/Django: apps/ (models, views, serializers), config/ (settings), tests/. Each starter has starter.json matching catalog entry fields.",
+  "relevant_files": [
+    "catalog/starters.json",
+    "scripts/validate-catalog.mjs",
+    "README.md",
+    "nextjs-supabase-saas/ (Web SaaS reference)",
+    "nextjs-ai-saas/ (Web SaaS reference with Clerk/Prisma)",
+    "django-api-backend/ (Python API reference)",
+    "expo-subscription-app/ (Expo Mobile reference)",
+    "astro-adsense-blog/ (Content/AdSense reference)",
+    "astro-beginner-static-site/ (Beginner Static reference)"
+  ],
+  "directory_structure": "Root contains: catalog/ (starters.json, schema), scripts/ (validate-catalog.mjs), tests/, and one folder per starter. Each starter is fully self-contained."
+}

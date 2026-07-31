@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Create remaining Beginner Static starter (ID 52): nextjs-beginner-static-site. Follow astro-beginner-static-site as reference. Then run final catalog validation to confirm all 52 starters are present and consistent.",
+  "status": "pending",
+  "steps": [
+    "Create nextjs-beginner-static-site (ID 52): Next.js + TypeScript + CSS Modules + reusable components + SEO + sitemap. Structure: app/ (page.tsx, about/, projects/, contact/), components/ (Card, Footer, Hero, Navigation), styles/, public/, tests/. No auth, no database, no monetization, no env vars needed. Simple static export.",
+    "Ensure starter.json has all required fields matching catalog entry: id=52, folder='nextjs-beginner-static-site', family='Beginner Static', readsEnvironment=false.",
+    "Create package.json with next@15, react@19, typescript, vitest. Scripts: dev, build, start, lint, typecheck, test.",
+    "Create tests: tests/output/ (accessibility, links, overflow), tests/unit/ (dependency-allowlist). Follow astro-beginner-static-site test patterns.",
+    "Generate pnpm-lock.yaml via pnpm install.",
+    "Run pnpm catalog:validate at root to confirm all 52 starters pass validation.",
+    "Fix any remaining catalog validation issues across all starters."
+  ],
+  "acceptance_criteria": [
+    "nextjs-beginner-static-site folder exists with correct structure",
+    "Has valid starter.json matching catalog/starters.json entry",
+    "Has pnpm-lock.yaml",
+    "Has tests that pass with vitest",
+    "pnpm catalog:validate passes with 0 issues for ALL 52 starters",
+    "All starters have matching starter.json, lockfile, README.md, and .env.example where required"
+  ],
+  "verification": [
+    "Run pnpm catalog:validate at root - must report 0 issues",
+    "Run pnpm install && pnpm test in nextjs-beginner-static-site",
+    "Verify all 52 folders exist with ls at root"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

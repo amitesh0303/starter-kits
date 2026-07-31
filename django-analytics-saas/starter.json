@@ -1,0 +1,23 @@
+{
+  "id": 13,
+  "folder": "django-analytics-saas",
+  "family": "Web SaaS",
+  "useCase": "Analytics and reporting",
+  "framework": "Django",
+  "runtime": "Python",
+  "technologies": [
+    "django-allauth",
+    "PostgreSQL",
+    "Celery",
+    "Redis",
+    "Stripe",
+    "Django Admin"
+  ],
+  "auth": "django-allauth",
+  "data": "PostgreSQL",
+  "monetization": "Stripe",
+  "integrations": [
+    "Celery",
+    "Redis"
+  ]
+}

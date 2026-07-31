@@ -1,0 +1,21 @@
+{
+  "id": 10,
+  "folder": "react-collaboration-saas",
+  "family": "Web SaaS",
+  "useCase": "Collaborative documents and boards",
+  "framework": "React + Vite",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Convex",
+    "Liveblocks",
+    "Stripe"
+  ],
+  "auth": "Clerk",
+  "data": "Convex",
+  "monetization": "Stripe",
+  "integrations": [
+    "Liveblocks"
+  ]
+}
