@@ -1,0 +1,24 @@
+{
+  "id": 21,
+  "folder": "nestjs-b2b-api",
+  "family": "API/Backend",
+  "useCase": "Multi-tenant enterprise backend",
+  "framework": "NestJS",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Passport JWT",
+    "Prisma",
+    "PostgreSQL",
+    "Stripe",
+    "BullMQ",
+    "Redis"
+  ],
+  "auth": "Passport JWT",
+  "data": "PostgreSQL + Prisma",
+  "monetization": "Stripe",
+  "integrations": [
+    "BullMQ",
+    "Redis"
+  ]
+}

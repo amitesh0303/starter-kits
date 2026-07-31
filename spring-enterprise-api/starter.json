@@ -1,0 +1,21 @@
+{
+  "id": 24,
+  "folder": "spring-enterprise-api",
+  "family": "API/Backend",
+  "useCase": "Enterprise subscriptions",
+  "framework": "Spring Boot",
+  "runtime": "Java",
+  "technologies": [
+    "Spring Security JWT",
+    "JPA",
+    "PostgreSQL",
+    "Redis",
+    "Stripe"
+  ],
+  "auth": "Spring Security JWT",
+  "data": "PostgreSQL + JPA",
+  "monetization": "Stripe",
+  "integrations": [
+    "Redis"
+  ]
+}

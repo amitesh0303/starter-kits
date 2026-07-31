@@ -1,0 +1,18 @@
+{
+  "id": 23,
+  "folder": "dotnet-enterprise-api",
+  "family": "API/Backend",
+  "useCase": "Enterprise CRM and line-of-business",
+  "framework": "ASP.NET Core",
+  "runtime": ".NET",
+  "technologies": [
+    "ASP.NET Identity/JWT",
+    "EF Core",
+    "PostgreSQL",
+    "Stripe"
+  ],
+  "auth": "ASP.NET Identity/JWT",
+  "data": "PostgreSQL + EF Core",
+  "monetization": "Stripe",
+  "integrations": []
+}

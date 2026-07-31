@@ -1,0 +1,25 @@
+{
+  "id": 18,
+  "folder": "fastapi-data-platform",
+  "family": "API/Backend",
+  "useCase": "Ingestion, ETL, analytics",
+  "framework": "FastAPI",
+  "runtime": "Python",
+  "technologies": [
+    "JWT",
+    "PostgreSQL",
+    "SQLAlchemy",
+    "DuckDB",
+    "S3-compatible storage",
+    "Celery",
+    "Redis"
+  ],
+  "auth": "signed service JWT",
+  "data": "PostgreSQL + SQLAlchemy + DuckDB",
+  "monetization": "None",
+  "integrations": [
+    "S3-compatible storage",
+    "Celery",
+    "Redis"
+  ]
+}

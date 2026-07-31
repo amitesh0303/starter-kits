@@ -1,0 +1,36 @@
+{
+  "name": "fastify-commerce-api",
+  "version": "0.1.0",
+  "description": "Fastify commerce API with JWT, PostgreSQL/Prisma, Redis, and Stripe Checkout",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fastify": "5.2.1",
+    "fastify-plugin": "5.0.1",
+    "@fastify/jwt": "9.0.2",
+    "@fastify/cors": "11.0.1",
+    "@prisma/client": "6.2.1",
+    "ioredis": "5.4.2",
+    "stripe": "17.5.0",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.5",
+    "eslint": "9.17.0",
+    "@eslint/js": "9.17.0",
+    "typescript-eslint": "8.20.0",
+    "typescript": "5.7.3",
+    "tsx": "4.19.2",
+    "vitest": "2.1.8",
+    "prisma": "6.2.1"
+  }
+}

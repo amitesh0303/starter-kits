@@ -1,0 +1,22 @@
+{
+  "id": 19,
+  "folder": "fastify-commerce-api",
+  "family": "API/Backend",
+  "useCase": "Products, carts, orders",
+  "framework": "Fastify",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "JWT",
+    "Prisma",
+    "PostgreSQL",
+    "Redis",
+    "Stripe Checkout"
+  ],
+  "auth": "JWT",
+  "data": "PostgreSQL + Prisma",
+  "monetization": "Stripe Checkout",
+  "integrations": [
+    "Redis"
+  ]
+}
