@@ -1,0 +1,7 @@
+{
+  "task_id": "task-web-saas-batch-2",
+  "task_description": "Build 5 Web SaaS starters (tasks 9-13): nextjs-booking-saas, nextjs-lms-saas, nextjs-support-desk, nextjs-automation-saas, nextjs-file-saas on branch feat/web-saas-batch-2",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005"],
+  "blocked_reason": null
+}
