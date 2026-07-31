@@ -1,0 +1,23 @@
+{
+  "id": 7,
+  "folder": "nextjs-automation-saas",
+  "family": "Web SaaS",
+  "useCase": "Workflows and scheduled jobs",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Neon",
+    "Drizzle",
+    "Inngest",
+    "Stripe"
+  ],
+  "choices": "Inngest",
+  "auth": "Clerk",
+  "data": "Neon + Drizzle",
+  "monetization": "Stripe",
+  "integrations": [
+    "Inngest"
+  ]
+}

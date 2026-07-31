@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Build nextjs-automation-saas starter - Workflows and scheduled jobs with Clerk, Neon/Drizzle, Inngest, and Stripe",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create nextjs-automation-saas/ directory with .gitignore",
     "Create package.json with exact-pinned deps: next@15.3.4, react@19.0.0, react-dom@19.0.0, @clerk/nextjs, drizzle-orm, stripe, inngest, pg. DevDeps: typescript@5.8.3, vitest@3.2.1, fast-check@3.23.2, eslint@9.28.0, eslint-config-next@15.3.4, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, drizzle-kit, @types/pg, @types/node, @types/react, @types/react-dom",
@@ -59,5 +59,5 @@
     "cd nextjs-automation-saas && pnpm build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Completed nextjs-automation-saas starter (Workflow/Trigger/Run/StepAttempt/Subscription domain, Clerk + Neon/Drizzle + Inngest + Stripe). Implemented deny-by-default policies with plan gating (canCreateWorkflow/canTriggerRun bounded by subscription maxRunsPerMonth), Stripe billing adapter+fake with HMAC webhook verification, and a shared bounded-retry state machine (executeStepWithBoundedRetry) used by both the real Inngest step function and the FakeJobAdapter so retry/terminal-failure semantics are provably identical. 73 tests pass across 9 files: unit (policies, billing, jobs), integration (workflow lifecycle, auth), smoke (module imports), and property tests for Property 4 (auth consistency, 7 tests/300+ runs), Property 5 (webhook authenticity, 4 tests), and Property 8 (job retry termination, 3 tests/200+ runs verifying attempts never exceed maxAttempts and runs always reach a terminal completed/failed state). pnpm install --frozen-lockfile, lint, typecheck, test, and build all pass with 0 errors/warnings."
 }
