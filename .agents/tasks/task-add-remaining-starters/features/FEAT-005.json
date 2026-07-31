@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Create remaining Beginner Static starter (ID 52): nextjs-beginner-static-site. Follow astro-beginner-static-site as reference. Then run final catalog validation to confirm all 52 starters are present and consistent.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create nextjs-beginner-static-site (ID 52): Next.js + TypeScript + CSS Modules + reusable components + SEO + sitemap. Structure: app/ (page.tsx, about/, projects/, contact/), components/ (Card, Footer, Hero, Navigation), styles/, public/, tests/. No auth, no database, no monetization, no env vars needed. Simple static export.",
     "Ensure starter.json has all required fields matching catalog entry: id=52, folder='nextjs-beginner-static-site', family='Beginner Static', readsEnvironment=false.",
@@ -26,5 +26,5 @@
     "Verify all 52 folders exist with ls at root"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Fixed 2 pre-existing validation issues: (1) README had 'in progress' status for astro-beginner-static-site but catalog had 'pending' - updated README to match. (2) dotnet-enterprise-api had manifest '*.csproj' which fails literal file existence check - updated to 'DotnetEnterpriseApi.sln'. Next.js static export requires 'export const dynamic = force-static' on sitemap.ts for static mode. All 11 tests pass (5 unit + 6 output). Catalog validation passes with 0 issues for all 52 starters."
 }
