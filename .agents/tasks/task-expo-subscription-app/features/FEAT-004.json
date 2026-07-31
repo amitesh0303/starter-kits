@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-004",
+  "type": "fix",
+  "description": "Fix three issues from v2 review: (1) isolated fake token stores break auth flow, (2) no concrete QueuePersistence-to-SQLite bridge, (3) crash recovery and persistence write-through untested.",
+  "status": "completed",
+  "steps": [
+    "Export a shared fake token store singleton from src/storage/secure-store.ts and use it consistently in sign-in.tsx, (app)/_layout.tsx, and deep-link.tsx",
+    "Add a createSQLiteQueuePersistence(repo) factory in src/storage/ that maps QueuePersistence callbacks to SQLiteRepository methods",
+    "Add tests for persistence callbacks firing on enqueue/transition and for recoverOrphanedSyncing transitioning orphaned syncing items back to pending"
+  ],
+  "acceptance_criteria": [
+    "All auth-touching files share the same fake token store instance so sign-in tokens are visible to the auth guard and deep-link handler",
+    "A concrete createSQLiteQueuePersistence factory exists that bridges QueuePersistence to SQLiteRepository",
+    "Tests verify persistence callbacks fire on enqueue and transition",
+    "Tests verify recoverOrphanedSyncing resets orphaned syncing items to pending and fires persistence callbacks",
+    "All existing tests continue to pass",
+    "Lint, typecheck, test, and export all succeed"
+  ],
+  "verification": [
+    "cd expo-subscription-app && pnpm run lint",
+    "cd expo-subscription-app && pnpm run typecheck",
+    "cd expo-subscription-app && pnpm run test",
+    "cd expo-subscription-app && pnpm run export"
+  ],
+  "blocked_reason": null,
+  "findings": "All 3 review issues resolved. Shared fakeTokenStore singleton eliminates the isolated-store auth loop. createSQLiteQueuePersistence bridges the interface to concrete SQLiteRepository methods. 17 new tests cover persistence callbacks (onEnqueue/onTransition), crash recovery (recoverOrphanedSyncing), error resilience, and the SQLite persistence bridge. Total test count: 108 across 14 suites. Lint, typecheck, test, and export all pass."
+}

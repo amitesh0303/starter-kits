@@ -1,0 +1,22 @@
+{
+  "project_type": "Expo React Native mobile app starter within a multi-starter monorepo",
+  "language": "TypeScript",
+  "build_system": "pnpm for package management, Expo CLI for builds/exports, EAS for profiles",
+  "test_framework": "Jest with React Native Testing Library and fast-check for property-based testing",
+  "build_command": "cd expo-subscription-app && pnpm install --frozen-lockfile && pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run export",
+  "test_command": "cd expo-subscription-app && pnpm run test",
+  "verification_instructions": "1. cd expo-subscription-app; 2. pnpm install --frozen-lockfile; 3. pnpm run lint (ESLint); 4. pnpm run typecheck (tsc --noEmit); 5. pnpm run test (Jest); 6. pnpm run export (expo export --platform android); 7. pnpm run eas:config (EAS config validation smoke)",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "1. cd expo-subscription-app; 2. pnpm install; 3. cp .env.example .env.local (adjust as needed); 4. npx expo start",
+  "environment_constraints": "Node 22.x available, pnpm 10.28.1 available. Internet access for npm installs. No physical Android device or emulator - validation via expo export and config checks.",
+  "contribution_requirements": "Each starter must be fully standalone - no imports from root or other starters. Must have starter.json matching catalog entry. Must include package.json, pnpm-lock.yaml, .env.example, README.md, starter.json, app.config.ts, eas.json. Unique Android package placeholder com.example.exposubscriptionapp.",
+  "key_patterns": "Starters use project-local starter.json with immutable identity fields matching catalog/starters.json. Provider adapters behind local interfaces with fake/test defaults. Expo Router for file-based navigation. SecureStore for sensitive values. SQLite for local cache/queue. Bounded persistent queue with stable action IDs. Deep-link lifecycle handling. RevenueCat for digital purchases. Sentry for error reporting with redaction. EAS profiles for dev/preview/prod.",
+  "relevant_files": [
+    "catalog/starters.json (entry id=25 for expo-subscription-app)",
+    "nextjs-supabase-saas/starter.json (pattern reference for starter.json format)",
+    ".kiro/specs/multi-stack-boilerplates/design.md (Expo Android-first blueprint)",
+    ".kiro/specs/multi-stack-boilerplates/tasks.md (subtasks 4.1-4.7)",
+    ".kiro/specs/multi-stack-boilerplates/requirements.md (Requirement 5: Expo Mobile readiness)"
+  ],
+  "directory_structure": "Repository root contains catalog/, scripts/, tests/, .github/workflows/, and starter folders. expo-subscription-app/ will follow: app/ (Expo Router groups/deep-link destinations), src/domain/ (pure use-case/eligibility rules), src/adapters/ (auth, API, permission, push, purchase, maps/device adapters), src/storage/ (SecureStore and SQLite repositories), src/sync/ (persisted bounded queue, stable action IDs, conflict policy), __tests__/ (routes, lifecycle deep links, states, permissions, queue, purchase), app.config.ts, eas.json, .env.example, starter.json, README.md + pnpm manifest/lockfile"
+}

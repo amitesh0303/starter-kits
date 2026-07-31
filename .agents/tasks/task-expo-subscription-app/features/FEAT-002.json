@@ -1,0 +1,45 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Implement all core domain logic, storage, adapters, UI flows, and tests for the expo-subscription-app. This covers subtasks 4.2 through 4.6: domain models (Profile, Feature, Entitlement, PendingAction), storage layer (Supabase, SQLite cache, SecureStore), bounded persistent queue with stable action IDs, Supabase Auth adapter, RevenueCat purchase/restore adapter, Sentry error reporting adapter (all with fake defaults), UI flows (sign-in, purchase/restore, premium feature unlock, deep-link destinations, offline retry), loading/empty/offline/error/retry states, redacted Sentry boundary, comprehensive tests including Property 9 and Property 10, .env.example, config validation, and full README documentation.",
+  "status": "completed",
+  "steps": [
+    "DOMAIN LAYER (src/domain/): Create entities.ts with Profile, Feature, Entitlement, PendingAction types. Create eligibility.ts with pure digital-goods eligibility rules (Property 10: only RevenueCat for digital purchases, no Stripe for digital). Create policies.ts with entitlement-unlock logic and feature-access rules. Create queue-policy.ts with capacity bounds, idempotency key validation, and state machine (pending|syncing|applied|conflict|failed|cancelled)",
+    "STORAGE LAYER (src/storage/): Create secure-store.ts wrapping expo-secure-store for session tokens. Create sqlite-repository.ts for local SQLite cache of profiles/features/entitlements and persistent queue table. Create supabase-client.ts for remote Supabase data access. Include migration/schema setup for SQLite tables",
+    "SYNC LAYER (src/sync/): Create queue.ts implementing bounded persistent queue with configurable capacity (default 50), stable UUID action IDs, states pending|syncing|applied|conflict|failed|cancelled, capacity overflow rejection preserving existing actions, idempotent sync (one domain effect per action ID). Create sync-engine.ts for connectivity-aware sync dispatch",
+    "ADAPTERS (src/adapters/): Create auth-adapter.ts (Supabase Auth sign-in/sign-up/sign-out/session with fake default). Create purchase-adapter.ts (RevenueCat purchase/restore/entitlement check with fake default). Create error-reporter.ts (Sentry capture with PII redaction and fake default). Create config.ts aggregating all env vars with startup validation. Each adapter exports interface + real + fake implementations, selected by env/config",
+    "APP ROUTES (app/): Create app/_layout.tsx with Sentry error boundary wrapping, config hydration, and auth state provider. Create app/(auth)/sign-in.tsx for sign-in flow. Create app/(auth)/_layout.tsx. Create app/(app)/_layout.tsx with auth guard. Create app/(app)/index.tsx (dashboard with features/entitlements). Create app/(app)/premium.tsx (premium feature screen, locked/unlocked states). Create app/(app)/purchase.tsx (purchase/restore flow). Create app/(app)/settings.tsx (profile, sign-out). Create app/deep-link.tsx or equivalent for cold/warm deep-link destination handling (e.g., exposubscription://premium). Implement loading/empty/offline/error/retry states across screens. Deep-link handling: cold start waits for auth hydration, warm push/replace only destination branch without resetting navigation",
+    "ERROR BOUNDARY: Create src/adapters/sentry-boundary.tsx as React error boundary that captures to Sentry with redacted user data (no tokens, no secrets, no PII beyond user ID)",
+    "TESTS (__tests__/): Create __tests__/domain/eligibility.test.ts (digital-goods eligibility rules). Create __tests__/domain/queue-policy.test.ts (capacity, idempotency, state transitions). Create __tests__/sync/queue.test.ts (bounded queue operations, overflow, restart persistence). Create __tests__/adapters/auth.test.ts (sign-in/sign-out state). Create __tests__/adapters/purchase.test.ts (purchase/restore with fake RevenueCat). Create __tests__/adapters/error-reporter.test.ts (Sentry capture with redaction). Create __tests__/routes/navigation.test.tsx (route state, auth guard). Create __tests__/routes/deep-link.test.ts (cold/warm deep-link handling). Create __tests__/routes/states.test.tsx (loading/empty/offline/error/retry). Create __tests__/properties/queue-capacity.test.ts (Property 9: fast-check property test for capacity bounds and idempotency, 100+ cases). Create __tests__/properties/monetization-eligibility.test.ts (Property 10: fast-check property test for digital-goods routing rules, 100+ cases). Create __tests__/smoke/entry.test.ts (app entry point smoke test)",
+    "DOCUMENTATION: Create .env.example listing all env vars (EXPO_PUBLIC_SUPABASE_URL, EXPO_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY as server-only if backend exists, EXPO_PUBLIC_REVENUECAT_API_KEY, EXPO_PUBLIC_SENTRY_DSN, QUEUE_CAPACITY) each classified as client-safe/server-only, required/optional. Create README.md documenting: purpose, Android prerequisites, local execution, deep-link verification (adb shell am start -a android.intent.action.VIEW -d exposubscription://premium), EAS profile usage, permissions, package/signing placeholders, production build steps, environment vars, queue persistence/capacity/cancellation/retry/conflict/duplicate-prevention, Supabase/RevenueCat/Sentry setup, deployment via EAS, troubleshooting",
+    "CONFIG VALIDATION: In src/adapters/config.ts implement aggregate startup validation that checks all required env vars are present and not placeholder values, refuses startup listing missing names without printing values. Optional vars (EXPO_PUBLIC_SENTRY_DSN) fall back to fake/disabled mode"
+  ],
+  "acceptance_criteria": [
+    "All domain types (Profile, Feature, Entitlement, PendingAction) are defined with proper TypeScript interfaces",
+    "SQLite schema creates tables for cache and queue with proper columns (id, kind, payload, state, attempts, timestamps)",
+    "Bounded queue enforces configurable capacity, rejects overflow while preserving existing items, uses stable UUID IDs, produces at most one domain effect per ID",
+    "Auth adapter provides sign-in/sign-out with SecureStore token storage and fake default",
+    "Purchase adapter wraps RevenueCat with fake default that simulates purchase/restore/entitlement",
+    "Sentry adapter captures errors with PII redaction (no tokens/secrets) and fake default",
+    "App routes implement auth flow, premium unlock, purchase, deep-link destination",
+    "Deep links: cold start waits for hydration then navigates; warm push/replace only destination without resetting navigation",
+    "Loading/empty/offline/error/retry states are rendered in UI flows",
+    "Property 9 test passes with 100+ generated cases verifying queue capacity and idempotency",
+    "Property 10 test passes with 100+ generated cases verifying digital-goods eligibility routing",
+    "All Jest tests pass: pnpm run test",
+    "ESLint passes: pnpm run lint",
+    "TypeScript passes: pnpm run typecheck",
+    "Expo export succeeds: pnpm run export",
+    ".env.example lists all vars with classifications",
+    "README.md covers all required documentation sections"
+  ],
+  "verification": [
+    "cd expo-subscription-app && pnpm install --frozen-lockfile",
+    "cd expo-subscription-app && pnpm run lint",
+    "cd expo-subscription-app && pnpm run typecheck",
+    "cd expo-subscription-app && pnpm run test",
+    "cd expo-subscription-app && pnpm run export"
+  ],
+  "blocked_reason": null,
+  "findings": "All 86 tests pass (13 suites). Property 9 runs 150+ cases for queue capacity/idempotency. Property 10 runs 150+ cases for digital-goods eligibility. TypeScript strict mode clean. ESLint clean (no errors or warnings). Expo export produces Android bundle successfully. EAS config validates. All adapters work with fake defaults (no credentials required). The jest.setup.js mocks expo-router, expo-status-bar, expo-linking, and expo-constants for proper test isolation."
+}

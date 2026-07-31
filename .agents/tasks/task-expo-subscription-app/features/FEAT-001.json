@@ -1,0 +1,36 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Generate exact-pinned Expo Router/React Native/Node LTS/TypeScript scaffold with project-local pnpm manifest/lockfile, unique Android package placeholder (com.example.exposubscriptionapp), EAS profiles (development/preview/production), .gitignore, app.config.ts, and matching starter.json. Covers subtasks 4.1 from tasks.md.",
+  "status": "completed",
+  "steps": [
+    "Create expo-subscription-app/ directory at repository root",
+    "Create package.json with exact-pinned dependencies: expo (SDK 53.x latest stable), expo-router, react-native, react, react-dom, TypeScript, and all required Expo modules (expo-secure-store, expo-sqlite, expo-linking, expo-constants, expo-status-bar, expo-splash-screen). Include @sentry/react-native, react-native-purchases (RevenueCat), @supabase/supabase-js. Dev deps: jest, @testing-library/react-native, fast-check, eslint, @types/*, typescript, expo-dev-client. Use pnpm@10.28.1 as packageManager. Scripts: dev, lint, typecheck, test, export, eas:config, start",
+    "Run pnpm install to generate pnpm-lock.yaml",
+    "Create app.config.ts with dynamic config: name 'Expo Subscription App', slug 'expo-subscription-app', scheme 'exposubscription' for deep links, android.package 'com.example.exposubscriptionapp', android.adaptiveIcon config, ios.bundleIdentifier 'com.example.exposubscriptionapp', plugins for expo-router/expo-secure-store/expo-sqlite/sentry",
+    "Create eas.json with development (developmentClient: true, distribution: internal), preview (distribution: internal), and production (autoSubmit: false) profiles",
+    "Create .gitignore excluding node_modules, .expo, dist, android, ios, *.local, .env.local, .env.*.local",
+    "Create starter.json matching catalog entry id=25: folder expo-subscription-app, family Expo Mobile, useCase Premium mobile SaaS, framework Expo Router, runtime Node LTS, technologies [TypeScript, React Native, Supabase, RevenueCat, Sentry], auth Supabase Auth, data Supabase + SQLite, monetization RevenueCat, integrations [Sentry]",
+    "Create minimal app/ directory structure with app/_layout.tsx root layout using Expo Router Stack, app/(auth)/_layout.tsx, app/(app)/_layout.tsx for authenticated group, and placeholder index routes",
+    "Create tsconfig.json with strict mode, Expo/React Native path aliases, and appropriate module resolution",
+    "Create jest.config.js configured for React Native with transformIgnorePatterns for expo/react-native modules, moduleNameMapper for asset mocks",
+    "Create eslint.config.mjs with TypeScript and React Native rules"
+  ],
+  "acceptance_criteria": [
+    "expo-subscription-app/package.json exists with all required dependencies pinned to exact versions",
+    "expo-subscription-app/pnpm-lock.yaml exists and is consistent with package.json",
+    "expo-subscription-app/app.config.ts exports valid Expo config with android.package com.example.exposubscriptionapp and scheme exposubscription",
+    "expo-subscription-app/eas.json defines development, preview, and production profiles",
+    "expo-subscription-app/starter.json matches catalog entry id=25",
+    "pnpm install --frozen-lockfile succeeds from the starter folder",
+    "tsc --noEmit succeeds (no type errors in scaffold)",
+    "expo export --platform android completes without errors"
+  ],
+  "verification": [
+    "cd expo-subscription-app && pnpm install --frozen-lockfile",
+    "cd expo-subscription-app && pnpm run typecheck",
+    "cd expo-subscription-app && pnpm run export"
+  ],
+  "blocked_reason": null,
+  "findings": "1. Expo SDK 53 uses expo@53.0.27 with react-native@0.76.9, React 18.3.1, expo-router@4.0.22. 2. pnpm requires node-linker=hoisted (.npmrc) for jest-expo to work correctly with React Native modules. 3. jest-expo@53.0.14 has a bug where its setup.js calls require('react-native/Libraries/BatchedBridge/NativeModules').default which is undefined for CJS modules - fixed with a __mocks__/nativeModulesMock.js that provides .default. 4. All deps exact-pinned, no ^ or ~. 5. EAS CLI not installed in sandbox but eas:config script validates eas.json structure via node."
+}
