@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Build nextjs-booking-saas starter - Appointments and reservations with Auth.js, Prisma/PostgreSQL, Stripe payments, Google Calendar, and Resend",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create nextjs-booking-saas/ directory with .gitignore (node_modules/, .next/, .env.local, .env*.local, tsconfig.tsbuildinfo)",
     "Create package.json with exact-pinned deps: next@15.3.4, react@19.0.0, react-dom@19.0.0, next-auth (Auth.js v5), @prisma/client, stripe, @google-cloud/local-auth or googleapis, resend. DevDeps: typescript@5.8.3, vitest@3.2.1, fast-check@3.23.2, eslint@9.28.0, eslint-config-next@15.3.4, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, prisma, @types/node, @types/react, @types/react-dom. Scripts: dev, build, start, lint, typecheck, test, db:generate, db:push, db:migrate",
@@ -61,5 +61,5 @@
     "cd nextjs-booking-saas && pnpm build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Node/pnpm available at /opt/toolchains/.nvm/versions/node/v20.20.2/bin. eslint-plugin-react-hooks and @typescript-eslint/* needed as explicit devDeps for pnpm strict hoisting. Prisma client, engines, esbuild need to be in onlyBuiltDependencies. googleapis@148.0.0 used for Google Calendar API (lighter than @google-cloud/local-auth). All 62 tests pass, build succeeds."
 }
