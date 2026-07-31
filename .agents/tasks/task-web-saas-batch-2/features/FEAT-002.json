@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Build nextjs-lms-saas starter - Courses, memberships, and video with Clerk, Neon/Prisma, Mux, Stripe, and UploadThing",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create nextjs-lms-saas/ directory with .gitignore",
     "Create package.json with exact-pinned deps: next@15.3.4, react@19.0.0, react-dom@19.0.0, @clerk/nextjs, @prisma/client, stripe, @mux/mux-node, uploadthing, @uploadthing/react. DevDeps: typescript@5.8.3, vitest@3.2.1, fast-check@3.23.2, eslint@9.28.0, eslint-config-next@15.3.4, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, prisma, @types/node, @types/react, @types/react-dom",
@@ -59,5 +59,5 @@
     "cd nextjs-lms-saas && pnpm build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Node/pnpm available at /opt/toolchains/.nvm/versions/node/v20.20.2/bin. @mux/mux-node@9.x does not exist as stable release - used 8.8.0. uploadthing@7.7.4 and @uploadthing/react@7.3.3 are the latest stable versions. @clerk/nextjs@6.12.12 works with react@19.0.0 despite peer dep warnings. Need @clerk/shared and msgpackr-extract in onlyBuiltDependencies for pnpm strict hoisting. All 100 tests pass, build succeeds."
 }
