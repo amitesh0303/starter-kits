@@ -1,0 +1,112 @@
+// Prisma schema for LMS SaaS
+// Neon PostgreSQL as the database provider
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          String       @id @default(cuid())
+  creatorId   String
+  title       String
+  description String       @default("")
+  published   Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  lessons     Lesson[]
+  enrollments Enrollment[]
+
+  @@index([creatorId])
+}
+
+model Lesson {
+  id              String      @id @default(cuid())
+  courseId         String
+  title           String
+  description     String      @default("")
+  position        Int         @default(0)
+  videoAssetId    String?
+  videoPlaybackId String?
+  videoStatus     VideoStatus @default(waiting)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  course          Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progress        Progress[]
+
+  @@index([courseId])
+}
+
+model Enrollment {
+  id        String           @id @default(cuid())
+  userId    String
+  courseId   String
+  status    EnrollmentStatus @default(active)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  course    Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progress  Progress[]
+
+  @@unique([userId, courseId])
+  @@index([userId])
+}
+
+model Progress {
+  id           String     @id @default(cuid())
+  enrollmentId String
+  lessonId     String
+  completed    Boolean    @default(false)
+  completedAt  DateTime?
+  createdAt    DateTime   @default(now())
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lesson       Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([enrollmentId, lessonId])
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String
+  stripeCustomerId     String
+  stripeSubscriptionId String             @unique
+  stripePriceId        String
+  status               SubscriptionStatus @default(active)
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean            @default(false)
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  @@index([userId])
+  @@index([stripeSubscriptionId])
+}
+
+model ProcessedEvent {
+  id              String   @id @default(cuid())
+  providerEventId String   @unique
+  eventType       String
+  processedAt     DateTime @default(now())
+}
+
+enum VideoStatus {
+  waiting
+  preparing
+  ready
+  errored
+}
+
+enum EnrollmentStatus {
+  active
+  expired
+  cancelled
+}
+
+enum SubscriptionStatus {
+  active
+  past_due
+  cancelled
+  trialing
+}

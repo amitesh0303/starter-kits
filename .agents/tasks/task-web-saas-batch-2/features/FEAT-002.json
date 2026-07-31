@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Build nextjs-lms-saas starter - Courses, memberships, and video with Clerk, Neon/Prisma, Mux, Stripe, and UploadThing",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create nextjs-lms-saas/ directory with .gitignore",
     "Create package.json with exact-pinned deps: next@15.3.4, react@19.0.0, react-dom@19.0.0, @clerk/nextjs, @prisma/client, stripe, @mux/mux-node, uploadthing, @uploadthing/react. DevDeps: typescript@5.8.3, vitest@3.2.1, fast-check@3.23.2, eslint@9.28.0, eslint-config-next@15.3.4, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, prisma, @types/node, @types/react, @types/react-dom",
