@@ -1,0 +1,23 @@
+{
+  "id": 6,
+  "folder": "nextjs-support-desk",
+  "family": "Web SaaS",
+  "useCase": "Support and ticketing",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Auth.js",
+    "PostgreSQL",
+    "Prisma",
+    "Resend",
+    "S3/R2"
+  ],
+  "auth": "Auth.js",
+  "data": "PostgreSQL + Prisma",
+  "monetization": "None",
+  "integrations": [
+    "Resend",
+    "S3/R2"
+  ]
+}
