@@ -1,0 +1,30 @@
+{
+  "project_type": "Multi-stack boilerplates mono-repository with 52 standalone starters",
+  "language": "TypeScript (Next.js App Router for these 4 starters)",
+  "build_system": "pnpm 10.x with exact-pinned deps, each starter is standalone",
+  "test_framework": "Vitest + fast-check property tests + Testing Library; tests in tests/{unit,integration,property,smoke}",
+  "build_command": "pnpm install --frozen-lockfile && pnpm run build (per starter)",
+  "test_command": "pnpm run test (vitest run, per starter)",
+  "verification_instructions": "For each starter: cd into folder, pnpm install, pnpm lint, pnpm typecheck, pnpm test, pnpm build. All must pass with fake/placeholder env values.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "Node 22 LTS + pnpm 10.x. Each starter runs independently. No root dependencies needed for starter code.",
+  "environment_constraints": "Internet available. Each starter must work with placeholder env values (fake adapters activate). No real provider credentials needed for validation.",
+  "contribution_requirements": "Exact-pinned dependencies. Provider adapters behind local interfaces with fake defaults. Property-based tests (fast-check). Deny-by-default auth. Sanitized errors. Typed config boundary. Each starter gets its own branch.",
+  "key_patterns": "domain/ has entities.ts and policies.ts; lib/server/ has config.ts, errors.ts, auth.ts, providers.ts, billing.ts, billing-fake.ts, mail.ts, mail-fake.ts; app/ has page.tsx, auth/, dashboard/, api/webhooks/; tests/ has unit/, integration/, property/, smoke/; migrations in prisma/ or supabase/migrations/; starter.json at root; .env.example with classified sections",
+  "relevant_files": [
+    "nextjs-supabase-saas/starter.json",
+    "nextjs-supabase-saas/package.json",
+    "nextjs-supabase-saas/domain/entities.ts",
+    "nextjs-supabase-saas/domain/policies.ts",
+    "nextjs-supabase-saas/lib/server/config.ts",
+    "nextjs-supabase-saas/lib/server/errors.ts",
+    "nextjs-supabase-saas/lib/server/providers.ts",
+    "nextjs-supabase-saas/lib/server/billing.ts",
+    "nextjs-supabase-saas/lib/server/billing-fake.ts",
+    "nextjs-supabase-saas/vitest.config.ts",
+    "nextjs-supabase-saas/tests/property/webhook-authenticity.test.ts",
+    "nextjs-supabase-saas/.env.example",
+    "catalog/starters.json"
+  ],
+  "directory_structure": "Root has catalog/, scripts/, .kiro/specs/, and each starter as a top-level folder. Each Web SaaS starter follows: app/ (pages+api), domain/ (entities+policies), lib/server/ (adapters+config), tests/ (unit/integration/property/smoke), migrations, starter.json, .env.example, README.md"
+}

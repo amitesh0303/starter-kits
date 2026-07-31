@@ -1,0 +1,91 @@
+// Prisma schema for AI SaaS application
+// Target: Neon Postgres (PostgreSQL-compatible)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Workspace {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  ownerId   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  conversations Conversation[]
+  generations   Generation[]
+  entitlement   Entitlement?
+
+  @@map("workspaces")
+}
+
+model Conversation {
+  id          String   @id @default(cuid())
+  workspaceId String   @map("workspace_id")
+  title       String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  messages  Message[]
+
+  @@map("conversations")
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String   @map("conversation_id")
+  role           String
+  content        String
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model Generation {
+  id               String   @id @default(cuid())
+  workspaceId      String   @map("workspace_id")
+  conversationId   String?  @map("conversation_id")
+  promptTokens     Int      @map("prompt_tokens")
+  completionTokens Int      @map("completion_tokens")
+  model            String
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("generations")
+}
+
+model Entitlement {
+  id                         String   @id @default(cuid())
+  workspaceId                String   @unique @map("workspace_id")
+  lemonSqueezyCustomerId     String   @map("lemonsqueezy_customer_id")
+  lemonSqueezySubscriptionId String   @unique @map("lemonsqueezy_subscription_id")
+  lemonSqueezyVariantId      String   @map("lemonsqueezy_variant_id")
+  status                     String   @default("active")
+  currentPeriodEnd           DateTime @map("current_period_end")
+  cancelAtPeriodEnd          Boolean  @default(false) @map("cancel_at_period_end")
+  createdAt                  DateTime @default(now()) @map("created_at")
+  updatedAt                  DateTime @updatedAt @map("updated_at")
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@map("entitlements")
+}
+
+model ProcessedEvent {
+  id              String   @id @default(cuid())
+  providerEventId String   @unique @map("provider_event_id")
+  eventType       String   @map("event_type")
+  processedAt     DateTime @default(now()) @map("processed_at")
+
+  @@map("processed_events")
+}
