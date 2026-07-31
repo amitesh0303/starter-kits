@@ -1,0 +1,22 @@
+{
+  "id": 35,
+  "folder": "expo-event-app",
+  "family": "Expo Mobile",
+  "useCase": "Tickets and attendee networking",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "QR scanning",
+    "notifications",
+    "Stripe"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase + SQLite",
+  "monetization": "Stripe",
+  "integrations": [
+    "QR scanning",
+    "push notifications"
+  ]
+}

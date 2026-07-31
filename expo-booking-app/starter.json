@@ -1,0 +1,24 @@
+{
+  "id": 30,
+  "folder": "expo-booking-app",
+  "family": "Expo Mobile",
+  "useCase": "Appointments and rentals",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "Calendar",
+    "Maps",
+    "notifications",
+    "Stripe"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase + SQLite",
+  "monetization": "Stripe",
+  "integrations": [
+    "Calendar",
+    "Google Maps",
+    "push notifications"
+  ]
+}

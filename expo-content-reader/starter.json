@@ -1,0 +1,21 @@
+{
+  "id": 32,
+  "folder": "expo-content-reader",
+  "family": "Expo Mobile",
+  "useCase": "News, articles, recipes, education",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Sanity",
+    "SQLite",
+    "AdMob",
+    "Firebase Messaging"
+  ],
+  "auth": "optional local",
+  "data": "Sanity + SQLite",
+  "monetization": "AdMob",
+  "integrations": [
+    "Firebase Messaging"
+  ]
+}

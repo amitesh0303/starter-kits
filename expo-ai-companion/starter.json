@@ -1,0 +1,20 @@
+{
+  "id": 27,
+  "folder": "expo-ai-companion",
+  "family": "Expo Mobile",
+  "useCase": "AI assistant or tutor",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "AI API",
+    "RevenueCat"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase + SQLite",
+  "monetization": "RevenueCat",
+  "integrations": [
+    "AI API"
+  ]
+}

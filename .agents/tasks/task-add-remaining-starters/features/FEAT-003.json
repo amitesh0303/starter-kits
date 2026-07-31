@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Create remaining Expo Mobile starters (IDs 26-36): expo-admob-utility, expo-ai-companion, expo-social-community, expo-marketplace-app, expo-booking-app, expo-habit-fitness-app, expo-content-reader, expo-local-first-app, expo-delivery-tracker, expo-event-app, expo-ecommerce-app. Follow expo-subscription-app as reference pattern.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create expo-admob-utility (ID 26): Expo Router + anonymous/local auth + SQLite + AdMob + optional RevenueCat + Firebase Analytics. Structure: src/ (domain/, adapters/, storage/, components/), app/ (Expo Router tabs), __tests__/. Fake adapters for AdMob and analytics. Jest config.",
     "Create expo-ai-companion (ID 27): Expo Router + Supabase Auth + Supabase/SQLite + RevenueCat + AI API. Domain: Conversation, Message, UserProfile. Fake adapters for AI and purchases.",

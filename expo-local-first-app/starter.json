@@ -1,0 +1,20 @@
+{
+  "id": 33,
+  "folder": "expo-local-first-app",
+  "family": "Expo Mobile",
+  "useCase": "Notes, inventory, field work",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "SQLite",
+    "Supabase",
+    "background sync"
+  ],
+  "auth": "Supabase Auth",
+  "data": "SQLite + Supabase",
+  "monetization": "None",
+  "integrations": [
+    "Expo background task"
+  ]
+}
