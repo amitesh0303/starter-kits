@@ -1,0 +1,22 @@
+{
+  "id": 44,
+  "folder": "nuxt-local-directory",
+  "family": "Content/AdSense",
+  "useCase": "Local business and city directory",
+  "framework": "Nuxt",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "MapLibre/OpenStreetMap",
+    "Meilisearch",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "Supabase Postgres",
+  "monetization": "AdSense + sponsored listings",
+  "integrations": [
+    "MapLibre/OpenStreetMap",
+    "Meilisearch"
+  ]
+}

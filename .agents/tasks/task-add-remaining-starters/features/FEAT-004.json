@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "Create remaining Content/AdSense starters (IDs 38-50): astro-affiliate-site, nextjs-directory-site, nextjs-programmatic-seo, nextjs-tools-site, nextjs-job-board, nuxt-magazine-site, nuxt-local-directory, eleventy-static-site, hugo-content-site, astro-recipe-site, astro-comparison-site, nextjs-coupon-site, nextjs-real-estate-directory. Follow astro-adsense-blog as Astro reference and nextjs-supabase-saas for Next.js patterns.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create astro-affiliate-site (ID 38): Astro + MDX + schema.org structured data + affiliate links + AdSense. Follow astro-adsense-blog pattern with src/ (content/, pages/, components/, layouts/, lib/, seo/), tests/ (unit/, output/). Content collections for product reviews and comparisons.",
     "Create nextjs-directory-site (ID 39): Next.js App Router + Supabase Postgres/Drizzle + Meilisearch + AdSense. Structure: app/ (listings/, categories/, search/), lib/ (server/, search/), domain/, tests/. Fake adapter for search (meilisearch-fake.ts).",

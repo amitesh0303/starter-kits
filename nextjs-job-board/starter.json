@@ -1,0 +1,22 @@
+{
+  "id": 42,
+  "folder": "nextjs-job-board",
+  "family": "Content/AdSense",
+  "useCase": "Jobs and recruitment directory",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "PostgreSQL",
+    "Drizzle",
+    "Stripe",
+    "AdSense"
+  ],
+  "auth": "Clerk",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "Stripe paid listings + AdSense",
+  "integrations": [
+    "Stripe"
+  ]
+}

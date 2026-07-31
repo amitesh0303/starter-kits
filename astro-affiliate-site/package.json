@@ -1,0 +1,34 @@
+{
+  "name": "astro-affiliate-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint": "eslint .",
+    "typecheck": "astro check",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit/",
+    "test:output": "vitest run tests/output/"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "4.3.14",
+    "@astrojs/rss": "4.0.13",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@eslint/js": "9.28.0",
+    "eslint": "9.28.0",
+    "eslint-plugin-astro": "1.3.1",
+    "globals": "16.2.0",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.33.1",
+    "vitest": "3.2.1"
+  }
+}

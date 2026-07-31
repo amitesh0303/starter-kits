@@ -1,0 +1,20 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "Hugo Content Site"
+
+[params]
+  description = "A large static blog or documentation site powered by Hugo"
+  author = "Site Admin"
+  adsenseClientId = "ca-pub-XXXXXXXXXXXXXXXX"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5

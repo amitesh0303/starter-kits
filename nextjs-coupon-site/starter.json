@@ -1,0 +1,23 @@
+{
+  "id": 49,
+  "folder": "nextjs-coupon-site",
+  "family": "Content/AdSense",
+  "useCase": "Deals and coupons",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "PostgreSQL",
+    "Drizzle",
+    "Meilisearch",
+    "Inngest",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "affiliate tracking + AdSense",
+  "integrations": [
+    "Meilisearch",
+    "Inngest"
+  ]
+}

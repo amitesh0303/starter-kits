@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ad from '../components/Ad.astro';
+---
+
+<BaseLayout title="Recipe Site" description="Delicious recipes with step-by-step instructions and schema.org structured data.">
+  <h1>Recipes & Cooking Tutorials</h1>
+  <p>Discover delicious recipes with detailed instructions and cooking tips.</p>
+  <Ad slot="top-banner" />
+  <section>
+    <h2>Latest Recipes</h2>
+    <p>Browse our collection of tested and perfected recipes.</p>
+  </section>
+</BaseLayout>

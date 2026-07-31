@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ description }}" />
+    <title>{{ title }} | Static Site</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/posts/">Posts</a>
+      </nav>
+    </header>
+    <main>
+      {{ content | safe }}
+    </main>
+    <footer>
+      <p>&copy; 2024 Static Site. All rights reserved.</p>
+    </footer>
+    <!-- AdSense placeholder -->
+    <div data-ad-slot="footer-banner" aria-label="Advertisement" style="text-align:center;padding:1rem;background:#f0f0f0;">
+      <span style="color:#444;font-size:0.75rem;text-transform:uppercase;">Advertisement</span>
+    </div>
+  </body>
+</html>

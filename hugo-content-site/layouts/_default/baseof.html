@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{ .Description | default .Site.Params.description }}" />
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "index.xml" | absURL }}" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/posts/">Posts</a>
+    </nav>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "adsense.html" . }}
+  <footer>
+    <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+  </footer>
+</body>
+</html>

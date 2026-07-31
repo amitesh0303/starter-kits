@@ -1,0 +1,22 @@
+{
+  "id": 43,
+  "folder": "nuxt-magazine-site",
+  "family": "Content/AdSense",
+  "useCase": "News and multi-author magazine",
+  "framework": "Nuxt",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Nuxt Content",
+    "AdSense",
+    "image optimization",
+    "newsletter"
+  ],
+  "auth": "None",
+  "data": "Nuxt Content Markdown",
+  "monetization": "AdSense",
+  "integrations": [
+    "image optimization",
+    "Resend newsletter"
+  ]
+}

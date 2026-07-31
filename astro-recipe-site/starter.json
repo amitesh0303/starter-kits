@@ -1,0 +1,21 @@
+{
+  "id": 47,
+  "folder": "astro-recipe-site",
+  "family": "Content/AdSense",
+  "useCase": "Recipes and tutorials",
+  "framework": "Astro",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Astro content collections",
+    "Recipe/HowTo schema",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "Astro content collections",
+  "monetization": "AdSense",
+  "integrations": [
+    "RSS",
+    "sitemap"
+  ]
+}
