@@ -124,7 +124,7 @@ This file is used by the catalog validator to verify consistency between the roo
 
 | Status | Folder | Use Case | Framework | Auth | Data | Monetization | Integrations |
 |--------|--------|----------|-----------|------|------|--------------|---------------|
-| ⏳ pending | [`astro-adsense-blog`](./astro-adsense-blog) | Niche blog | Astro | None | MDX content collections | AdSense | analytics, RSS |
+| 🚧 in progress | [`astro-adsense-blog`](./astro-adsense-blog) | Niche blog | Astro | None | MDX content collections | AdSense | analytics, RSS |
 | ⏳ pending | [`astro-affiliate-site`](./astro-affiliate-site) | Reviews and comparisons | Astro | None | MDX | affiliate links + AdSense | analytics |
 | ⏳ pending | [`nextjs-directory-site`](./nextjs-directory-site) | Business, tools, places directory | Next.js App Router | None | Supabase Postgres + Drizzle | AdSense | Meilisearch |
 | ⏳ pending | [`nextjs-programmatic-seo`](./nextjs-programmatic-seo) | Data-generated landing pages | Next.js App Router | None | PostgreSQL + Drizzle | AdSense | Inngest |

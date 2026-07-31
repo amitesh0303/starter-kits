@@ -1,0 +1,28 @@
+{
+  "task_id": "task-astro-adsense-blog",
+  "task_description": "Build reference starter astro-adsense-blog: Astro static niche blog with MDX content collections, AdSense responsive ad component, shared consent store, analytics, RSS feed, Article JSON-LD, sitemap/robots, and comprehensive built-output tests covering SEO/schema/feed/ad/consent/CLS/performance/accessibility (Properties 11, 12, 13).",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "All verification passes: pnpm install --frozen-lockfile, pnpm lint (0 errors), pnpm check (0 errors), pnpm build (6 pages), pnpm test (45 unit/property tests), pnpm test:output (22 built-output tests including Playwright ad dimensions, accessibility, CLS, and performance). Tests exercise real code paths and would fail if reverted."
+  },
+  "review_fixes": {
+    "applied": true,
+    "review_file": "2026-07-30-175917-review.md",
+    "issues_fixed": 7,
+    "details": [
+      "Fix consent banner display: DEFAULT_STATE.updatedAt set to empty string",
+      "Fix tablet ad test: viewport 600px to exercise 468-727px breakpoint",
+      "Fix subscription leak: guard initAnalytics with subscribed flag",
+      "Wire loadConfig into ad/analytics: Ad checks isAdsenseEnabled, analytics checks isAnalyticsEnabled",
+      "Fix port collision: use port 0 (OS-assigned) in all Playwright test servers",
+      "Extract shared sortArticles utility from 4 duplicated locations",
+      "Fix consent banner button colors for WCAG 2AA color-contrast compliance"
+    ]
+  }
+}

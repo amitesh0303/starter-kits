@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ad from '../components/Ad.astro';
+import { generatePageMetadata } from '../seo/metadata';
+import { sortArticles } from '../lib/sort-articles';
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://example.com';
+
+const allArticles = await getCollection('articles');
+const now = new Date();
+
+// Filter: published, not draft, not future-dated
+// Order: newest-first (publishedAt desc), slug alphabetical as tie-breaker
+const articles = sortArticles(
+  allArticles.filter((article) => !article.data.draft && article.data.publishedAt <= now),
+);
+
+const metadata = generatePageMetadata({
+  title: 'Astro AdSense Blog - Latest Articles',
+  description: 'Read the latest articles about web development, performance optimization, and modern frontend techniques.',
+  canonicalUrl: `${siteUrl}/`,
+});
+---
+
+<BaseLayout metadata={metadata}>
+  <Ad slot="top-ad" />
+  <h1>Latest Articles</h1>
+  <ul class="article-list">
+    {articles.map((article) => (
+      <li class="article-item">
+        <a href={`/articles/${article.id}/`}>
+          <h2>{article.data.title}</h2>
+        </a>
+        <p class="article-meta">
+          <time datetime={article.data.publishedAt.toISOString()}>
+            {article.data.publishedAt.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </p>
+        <p>{article.data.description}</p>
+        <ul class="tag-list">
+          {article.data.tags.map((tag) => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+  <Ad slot="bottom-ad" />
+</BaseLayout>
+
+<style>
+  .article-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .article-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .article-item a {
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  .article-item a:hover h2 {
+    color: #0066cc;
+  }
+
+  .article-meta {
+    color: #4a4a4a;
+    font-size: 0.875rem;
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: #e8f4f8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    color: #004d99;
+  }
+</style>

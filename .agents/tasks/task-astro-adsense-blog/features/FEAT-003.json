@@ -1,0 +1,48 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Add required built-output SEO/schema/feed/link/ad/consent/CLS/performance/accessibility tests plus Properties 11, 12, and 13. Add .env.example, config fallback, comprehensive README, and one-shot validation commands. This covers tasks 5.5 and 5.6.",
+  "status": "completed",
+  "steps": [
+    "Add dev dependencies: vitest, fast-check, playwright, @playwright/test, axe-core or @axe-core/playwright, cheerio or similar HTML parser for built-output inspection",
+    "Create tests/unit/content-schema.test.ts: validate Article/Author/Category schema constraints with fast-check property tests for title length bounds, description bounds, metadata uniqueness",
+    "Create tests/unit/indexable-document.test.ts: test IndexableDocument projection mapping, ensure drafts excluded from indexable set",
+    "Create tests/unit/rss.test.ts: Property 12 - RSS eligibility (published, not future-dated, indexable, canonical) and deterministic order (newest-first, slug tie-breaker). Use fast-check to generate article collections and verify feed invariants",
+    "Create tests/unit/consent-store.test.ts: Property 13 (partial) - shared consent state gates both advertising and analytics. Test all state transitions",
+    "Create tests/unit/structured-data.test.ts: validate Article JSON-LD has required fields, passes schema vocabulary check",
+    "Create tests/output/seo.test.ts: Property 11 - after build, inspect HTML output for bounded unique titles/descriptions/canonicals per page, valid structured data on article pages, sitemap contains only indexable pages, robots excludes drafts. Parse dist/ output files.",
+    "Create tests/output/rss.test.ts: parse built RSS XML, verify eligibility filtering and deterministic order",
+    "Create tests/output/links.test.ts: crawl built output for broken internal links",
+    "Create tests/output/ad-component.test.ts: Property 13 - use Playwright to render pages at mobile (375px), tablet (768px), desktop (1024px) viewports; verify Ad component reserves exact configured dimensions (320x100, 468x60, 728x90) and does not shift on load",
+    "Create tests/output/accessibility.test.ts: use axe-core via Playwright on representative pages, fail on serious/critical violations",
+    "Create tests/output/performance.test.ts: check CLS <= 0.10 on representative pages, check page weight budget",
+    "Create scripts/validate-site.mjs: one-shot built-output validation script that runs all output checks (can be wrapper invoking vitest on output tests)",
+    "Create .env.example with PUBLIC_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX and PUBLIC_ANALYTICS_ID=G-XXXXXXXXXX (client-safe only). Document as optional with fallback behavior.",
+    "Create src/lib/config.ts: typed config loader that reads optional env vars with fallback to disabled/demo mode when absent. AdSense and analytics IDs are optional; when absent, Ad component still renders reserved space but no provider script loads, analytics does not initialize.",
+    "Add ESLint configuration (eslint.config.mjs) with TypeScript and Astro plugin",
+    "Update package.json scripts: 'build': 'astro build', 'dev': 'astro dev', 'check': 'astro check', 'lint': 'eslint .', 'test': 'vitest run', 'test:output': 'vitest run tests/output/', 'validate': 'pnpm lint && pnpm check && pnpm build && pnpm test'",
+    "Create README.md covering: project purpose, folder structure, content authoring workflow (adding articles/authors/categories), metadata/title/description bounds, front-matter fields, structured data (Article JSON-LD), ad component dimensions and placement, consent configuration, analytics setup, .env.example explanation, one-shot commands (install, lint, check, build, test, validate), deployment to Cloudflare Pages or Netlify"
+  ],
+  "acceptance_criteria": [
+    "vitest run passes all unit tests for content schema, indexable document, RSS, consent, and structured data",
+    "Property 11 test verifies: unique bounded metadata per indexable page, valid structured data, sitemap/robots consistency",
+    "Property 12 test verifies: RSS contains only eligible entries in newest-first deterministic order",
+    "Property 13 test verifies: Ad component reserves exact dimensions at all viewports; consent store gates both ads and analytics",
+    "Built-output tests parse dist/ HTML and verify SEO, links, RSS, ad dimensions, accessibility, CLS",
+    "ESLint passes with no errors",
+    "astro check passes with no type errors",
+    ".env.example documents only client-safe optional IDs with placeholder values",
+    "Config loader falls back gracefully when env vars absent",
+    "README.md documents all required sections: authoring, metadata, schema, ads, consent, analytics, deployment, one-shot commands",
+    "All package.json scripts are non-interactive one-shot commands"
+  ],
+  "verification": [
+    "cd astro-adsense-blog && pnpm install --frozen-lockfile",
+    "cd astro-adsense-blog && pnpm lint",
+    "cd astro-adsense-blog && pnpm check",
+    "cd astro-adsense-blog && pnpm build",
+    "cd astro-adsense-blog && pnpm test"
+  ],
+  "blocked_reason": null,
+  "findings": "Ad component needed box-sizing: border-box to make width/height exact (border adds 2px without it). Ad label color #999 on #f0f0f0 background fails WCAG AA contrast; fixed to #595959. axe-core/playwright requires browser.newContext() not browser.newPage() directly. fast-check uniqueArray needed to avoid duplicate IDs in property tests. eslint-plugin-astro 1.3.1 uses legacy config format but works with flat config via its recommended export."
+}

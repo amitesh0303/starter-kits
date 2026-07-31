@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ad from '../../components/Ad.astro';
+import { generatePageMetadata } from '../../seo/metadata';
+import { sortArticles } from '../../lib/sort-articles';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((category) => ({
+    params: { slug: category.data.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://example.com';
+const canonicalUrl = `${siteUrl}/categories/${category.data.slug}/`;
+
+const metadata = generatePageMetadata({
+  title: `${category.data.name} - Articles`,
+  description: category.data.description,
+  canonicalUrl,
+});
+
+const allArticles = await getCollection('articles');
+const now = new Date();
+
+// Filter articles for this category: published, not draft, not future-dated
+const articles = sortArticles(
+  allArticles.filter(
+    (article) =>
+      article.data.category === category.data.slug &&
+      !article.data.draft &&
+      article.data.publishedAt <= now,
+  ),
+);
+---
+
+<BaseLayout metadata={metadata}>
+  <Ad slot="top-ad" />
+  <h1>{category.data.name}</h1>
+  <p class="category-description">{category.data.description}</p>
+
+  {articles.length === 0 ? (
+    <p>No articles in this category yet.</p>
+  ) : (
+    <ul class="article-list">
+      {articles.map((article) => (
+        <li class="article-item">
+          <a href={`/articles/${article.id}/`}>
+            <h2>{article.data.title}</h2>
+          </a>
+          <p class="article-meta">
+            <time datetime={article.data.publishedAt.toISOString()}>
+              {article.data.publishedAt.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </p>
+          <p>{article.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+  <Ad slot="bottom-ad" />
+</BaseLayout>
+
+<style>
+  .category-description {
+    color: #4a4a4a;
+    margin-bottom: 2rem;
+  }
+
+  .article-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .article-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .article-item a {
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  .article-item a:hover h2 {
+    color: #0066cc;
+  }
+
+  .article-meta {
+    color: #4a4a4a;
+    font-size: 0.875rem;
+  }
+</style>
