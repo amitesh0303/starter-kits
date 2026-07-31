@@ -1,0 +1,31 @@
+{
+  "project_type": "Multi-starter monorepo with 52 independent Next.js/Astro/Django/Expo/etc projects",
+  "language": "TypeScript (for Web SaaS starters)",
+  "build_system": "pnpm workspaces at root for catalog validation only; each starter is fully independent with its own pnpm manifest and lockfile",
+  "test_framework": "Vitest + fast-check for property tests; each starter has tests/ directory with unit/, integration/, property/, and smoke/ subdirs",
+  "build_command": "cd <starter> && pnpm install && pnpm build",
+  "test_command": "cd <starter> && pnpm test",
+  "verification_instructions": "1. pnpm install in starter dir, 2. pnpm lint, 3. pnpm typecheck, 4. pnpm test, 5. pnpm build",
+  "snapshot_or_generated_files": "pnpm-lock.yaml is committed per starter. Prisma generates @prisma/client at install time. Drizzle migrations are committed.",
+  "setup_instructions": "Each starter: cp .env.example .env.local, pnpm install, then run db:push/db:migrate for schema",
+  "environment_constraints": "Internet access available. Node LTS available. pnpm available.",
+  "contribution_requirements": "Each starter must: pin exact dependency versions, have .env.example with placeholder values, have README documenting all setup, have starter.json matching catalog entry, have comprehensive tests including Property 4 (auth consistency) and Property 5 (webhook authenticity), pass standalone validation (copy folder, install, test, build without root access)",
+  "key_patterns": {
+    "directory_structure": "app/ (Next.js pages/routes), domain/ (entities.ts, policies.ts), lib/server/ (adapters, config, errors, fakes), tests/ (unit/, integration/, property/, smoke/), drizzle/ or prisma/ (schema + migrations)",
+    "adapter_pattern": "Interface (XxxPort) in xxx.ts, fake implementation in xxx-fake.ts, real implementation also in xxx.ts. Config boundary in config.ts with aggregate validation.",
+    "auth_pattern": "middleware.ts for route protection, lib/server/auth.ts for auth adapter, domain/policies.ts for RBAC/authorization",
+    "test_pattern": "Property 4 tests auth consistency with fast-check; Property 5 tests webhook verification with random payloads. Integration tests cover actions and auth flows.",
+    "billing_pattern": "BillingPort interface with createCheckout, verifyWebhook, handleWebhookEvent. FakeBillingAdapter uses string match for valid secret. WebhookVerificationError thrown on invalid.",
+    "env_pattern": ".env.example with placeholder values grouped by provider, .gitignore excludes .env.local",
+    "starter_json": "Must match catalog entry: id, folder, family, useCase, framework, runtime, technologies array, auth, data, monetization, integrations array"
+  },
+  "relevant_files": [
+    "nextjs-b2b-saas/ (reference for Drizzle + webhook + RBAC pattern)",
+    "nextjs-supabase-saas/ (reference for Stripe + Resend + Prisma-like pattern)",
+    "catalog/starters.json (must remain consistent)",
+    ".kiro/specs/multi-stack-boilerplates/design.md",
+    ".kiro/specs/multi-stack-boilerplates/requirements.md",
+    ".kiro/specs/multi-stack-boilerplates/tasks.md"
+  ],
+  "directory_structure": "Root: catalog/, scripts/, tests/, .kiro/, package.json, README.md, and 52 starter folders. Each starter is self-contained with its own package.json, pnpm-lock.yaml, and full source."
+}

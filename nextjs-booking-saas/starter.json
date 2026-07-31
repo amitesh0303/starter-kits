@@ -1,0 +1,24 @@
+{
+  "id": 4,
+  "folder": "nextjs-booking-saas",
+  "family": "Web SaaS",
+  "useCase": "Appointments and reservations",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Auth.js",
+    "Prisma",
+    "PostgreSQL",
+    "Stripe",
+    "Google Calendar",
+    "Resend"
+  ],
+  "auth": "Auth.js",
+  "data": "PostgreSQL + Prisma",
+  "monetization": "Stripe payments",
+  "integrations": [
+    "Google Calendar",
+    "Resend"
+  ]
+}

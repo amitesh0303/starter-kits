@@ -1,0 +1,24 @@
+{
+  "id": 5,
+  "folder": "nextjs-lms-saas",
+  "family": "Web SaaS",
+  "useCase": "Courses, memberships, and video",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Neon",
+    "Prisma",
+    "Mux",
+    "Stripe",
+    "UploadThing"
+  ],
+  "auth": "Clerk",
+  "data": "Neon + Prisma",
+  "monetization": "Stripe memberships",
+  "integrations": [
+    "Mux",
+    "UploadThing"
+  ]
+}

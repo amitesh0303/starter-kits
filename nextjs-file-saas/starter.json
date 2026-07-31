@@ -1,0 +1,25 @@
+{
+  "id": 8,
+  "folder": "nextjs-file-saas",
+  "family": "Web SaaS",
+  "useCase": "File conversion, storage, media processing",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Neon",
+    "Drizzle",
+    "Cloudflare R2",
+    "Inngest",
+    "Stripe"
+  ],
+  "choices": "R2 + Inngest",
+  "auth": "Clerk",
+  "data": "Neon + Drizzle",
+  "monetization": "Stripe",
+  "integrations": [
+    "Cloudflare R2",
+    "Inngest"
+  ]
+}

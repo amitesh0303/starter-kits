@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Provider {
+  id           String         @id @default(cuid())
+  userId       String         @unique
+  name         String
+  email        String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  availability Availability[]
+  bookings     Booking[]
+}
+
+model Availability {
+  id         String   @id @default(cuid())
+  providerId String
+  dayOfWeek  Int
+  startTime  String
+  endTime    String
+  createdAt  DateTime @default(now())
+  provider   Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([providerId])
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  providerId    String
+  customerId    String
+  customerEmail String
+  startTime     DateTime
+  endTime       DateTime
+  status        BookingStatus @default(pending)
+  paymentId     String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  provider      Provider      @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  payment       Payment?
+
+  @@index([providerId, startTime, endTime])
+  @@index([customerId])
+}
+
+model Payment {
+  id                    String        @id @default(cuid())
+  bookingId             String        @unique
+  stripePaymentIntentId String        @unique
+  amount                Int
+  currency              String        @default("usd")
+  status                PaymentStatus @default(pending)
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  booking               Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+
+model ProcessedEvent {
+  id              String   @id @default(cuid())
+  providerEventId String   @unique
+  eventType       String
+  processedAt     DateTime @default(now())
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  cancelled
+  completed
+}
+
+enum PaymentStatus {
+  pending
+  succeeded
+  failed
+  refunded
+}
