@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Build nextjs-file-saas starter - File conversion, storage, and media processing with Clerk, Neon/Drizzle, Cloudflare R2, Inngest, and Stripe",
-  "status": "pending",
+  "status": "completed",
   "steps": [
     "Create nextjs-file-saas/ directory with .gitignore",
     "Create package.json with exact-pinned deps: next@15.3.4, react@19.0.0, react-dom@19.0.0, @clerk/nextjs, drizzle-orm, stripe, inngest, @aws-sdk/client-s3 (for R2), pg. DevDeps: typescript@5.8.3, vitest@3.2.1, fast-check@3.23.2, eslint@9.28.0, eslint-config-next@15.3.4, tailwindcss@4.1.10, @tailwindcss/postcss@4.1.10, postcss@8.5.4, drizzle-kit, @types/pg, @types/node, @types/react, @types/react-dom",
@@ -64,5 +64,5 @@
     "cd nextjs-file-saas && pnpm build"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Built nextjs-file-saas from scratch (FileAsset/ConversionJob/OutputAsset/Subscription domain, Clerk + Neon/Drizzle + Cloudflare R2 + Inngest + Stripe). Implemented deny-by-default policies including storage-quota gating (canUploadFile) and ownership/subscription-status gating for conversions/downloads. Upload validation (MIME allowlist + MAX_FILE_SIZE_BYTES) is enforced in lib/server/storage.ts's validateFile() BEFORE any object write, shared by both the R2ObjectStoreAdapter and FakeObjectStoreAdapter, and wired into app/api/upload/route.ts so oversized/disallowed uploads return 413/415 without touching storage or persisting a FileAsset. Job retries reuse the same bounded-retry state-machine pattern proven in nextjs-automation-saas (executeConversionWithBoundedRetry), guaranteeing conversion jobs never exceed maxAttempts and always reach a terminal completed (with OutputAsset)/failed state. 84 tests pass across 10 files: unit (policies, billing, storage, jobs), integration (upload->conversion->output flow including rejected-upload cases, auth), smoke (module imports), and property tests for Property 4 (auth + quota consistency), Property 5 (webhook authenticity), and Property 8 (job retry termination, 200+ runs). pnpm install --frozen-lockfile, lint, typecheck, test, and build all pass with 0 errors/warnings."
 }
