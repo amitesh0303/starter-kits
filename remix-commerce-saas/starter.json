@@ -1,0 +1,21 @@
+{
+  "id": 14,
+  "folder": "remix-commerce-saas",
+  "family": "Web SaaS",
+  "useCase": "Merchant storefront and D2C commerce",
+  "framework": "Remix",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Shopify API",
+    "Auth.js",
+    "Stripe"
+  ],
+  "choices": "Shopify API + Auth.js",
+  "auth": "Auth.js",
+  "data": "Shopify API",
+  "monetization": "Stripe",
+  "integrations": [
+    "Shopify API"
+  ]
+}

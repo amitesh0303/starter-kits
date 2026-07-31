@@ -1,0 +1,20 @@
+{
+  "id": 12,
+  "folder": "nuxt-community-saas",
+  "family": "Web SaaS",
+  "useCase": "Membership community and forum",
+  "framework": "Nuxt",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Better Auth",
+    "PostgreSQL",
+    "Drizzle",
+    "Paddle",
+    "Tailwind"
+  ],
+  "auth": "Better Auth",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "Paddle",
+  "integrations": []
+}

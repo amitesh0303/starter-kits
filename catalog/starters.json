@@ -663,7 +663,7 @@
     "monetization": "Stripe",
     "integrations": [],
     "readsEnvironment": true,
-    "manifest": "*.csproj",
+    "manifest": "DotnetEnterpriseApi.sln",
     "lockfile": "packages.lock.json",
     "readme": "README.md",
     "familyRequirement": "Requirement 4",

@@ -1,0 +1,22 @@
+{
+  "id": 31,
+  "folder": "expo-habit-fitness-app",
+  "family": "Expo Mobile",
+  "useCase": "Habits, workouts, wellness",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Firebase",
+    "Android Health Connect",
+    "RevenueCat",
+    "notifications"
+  ],
+  "auth": "Firebase Auth",
+  "data": "Firebase Firestore + SQLite",
+  "monetization": "RevenueCat",
+  "integrations": [
+    "Android Health Connect",
+    "push notifications"
+  ]
+}

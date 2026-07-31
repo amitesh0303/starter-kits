@@ -1,0 +1,24 @@
+{
+  "id": 9,
+  "folder": "react-admin-saas",
+  "family": "Web SaaS",
+  "useCase": "CRM, ERP, internal admin",
+  "framework": "React + Vite",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Auth0",
+    "TanStack Query",
+    "Supabase Postgres",
+    "Stripe",
+    "shadcn/ui"
+  ],
+  "choices": "Supabase Postgres",
+  "auth": "Auth0",
+  "data": "Supabase Postgres",
+  "monetization": "Stripe",
+  "integrations": [
+    "TanStack Query",
+    "shadcn/ui"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": 38,
+  "folder": "astro-affiliate-site",
+  "family": "Content/AdSense",
+  "useCase": "Reviews and comparisons",
+  "framework": "Astro",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "MDX",
+    "schema.org",
+    "affiliate links",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "MDX",
+  "monetization": "affiliate links + AdSense",
+  "integrations": [
+    "analytics"
+  ]
+}

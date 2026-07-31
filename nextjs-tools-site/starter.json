@@ -1,0 +1,20 @@
+{
+  "id": 41,
+  "folder": "nextjs-tools-site",
+  "family": "Content/AdSense",
+  "useCase": "Calculators, generators, free tools",
+  "framework": "Next.js",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "static typed data",
+    "AdSense",
+    "analytics"
+  ],
+  "auth": "None",
+  "data": "static typed data",
+  "monetization": "AdSense",
+  "integrations": [
+    "analytics"
+  ]
+}

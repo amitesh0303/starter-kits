@@ -1,0 +1,23 @@
+{
+  "id": 20,
+  "folder": "fastify-realtime-api",
+  "family": "API/Backend",
+  "useCase": "Notifications, presence, realtime",
+  "framework": "Fastify",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "WebSockets",
+    "Redis",
+    "PostgreSQL",
+    "JWT",
+    "Drizzle"
+  ],
+  "auth": "JWT",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "None",
+  "integrations": [
+    "WebSockets",
+    "Redis"
+  ]
+}

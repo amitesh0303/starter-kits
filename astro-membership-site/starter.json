@@ -1,0 +1,22 @@
+{
+  "id": 15,
+  "folder": "astro-membership-site",
+  "family": "Web SaaS",
+  "useCase": "Paid newsletter and premium content",
+  "framework": "Astro SSR",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Turso/Postgres",
+    "Stripe",
+    "Resend"
+  ],
+  "choices": "Turso",
+  "auth": "Clerk",
+  "data": "Turso/LibSQL",
+  "monetization": "Stripe",
+  "integrations": [
+    "Resend"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": 29,
+  "folder": "expo-marketplace-app",
+  "family": "Expo Mobile",
+  "useCase": "Local services and physical goods",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "Algolia",
+    "Stripe Connect",
+    "Google Maps"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase + SQLite",
+  "monetization": "Stripe Connect",
+  "integrations": [
+    "Algolia",
+    "Google Maps"
+  ]
+}

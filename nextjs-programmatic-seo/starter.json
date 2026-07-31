@@ -1,0 +1,21 @@
+{
+  "id": 40,
+  "folder": "nextjs-programmatic-seo",
+  "family": "Content/AdSense",
+  "useCase": "Data-generated landing pages",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "PostgreSQL",
+    "Drizzle",
+    "Inngest",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "AdSense",
+  "integrations": [
+    "Inngest"
+  ]
+}

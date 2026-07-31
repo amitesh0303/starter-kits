@@ -1,0 +1,20 @@
+{
+  "id": 48,
+  "folder": "astro-comparison-site",
+  "family": "Content/AdSense",
+  "useCase": "Comparison tables and best-of content",
+  "framework": "Astro",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "structured data",
+    "affiliate links",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "content collections",
+  "monetization": "affiliate links + AdSense",
+  "integrations": [
+    "analytics"
+  ]
+}

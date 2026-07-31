@@ -1,0 +1,24 @@
+{
+  "id": 17,
+  "folder": "fastapi-ai-backend",
+  "family": "API/Backend",
+  "useCase": "AI inference and document processing",
+  "framework": "FastAPI",
+  "runtime": "Python",
+  "technologies": [
+    "OAuth2/JWT",
+    "SQLAlchemy",
+    "PostgreSQL",
+    "Redis",
+    "Celery",
+    "Stripe"
+  ],
+  "auth": "OAuth2/JWT",
+  "data": "PostgreSQL + SQLAlchemy",
+  "monetization": "Stripe",
+  "integrations": [
+    "Redis",
+    "Celery",
+    "OpenAI-compatible API"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": 11,
+  "folder": "sveltekit-ai-saas",
+  "family": "Web SaaS",
+  "useCase": "Usage-metered AI and data tooling",
+  "framework": "SvelteKit",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase",
+    "Stripe Billing Meters",
+    "AI provider",
+    "Tailwind"
+  ],
+  "auth": "Supabase Auth",
+  "data": "Supabase Postgres",
+  "monetization": "Stripe Billing Meters",
+  "integrations": [
+    "AI provider"
+  ]
+}

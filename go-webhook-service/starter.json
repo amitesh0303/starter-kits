@@ -1,0 +1,21 @@
+{
+  "id": 22,
+  "folder": "go-webhook-service",
+  "family": "API/Backend",
+  "useCase": "High-throughput API and webhook processing",
+  "framework": "Go + Chi",
+  "runtime": "Go",
+  "technologies": [
+    "PostgreSQL",
+    "Redis",
+    "JWT",
+    "OpenAPI"
+  ],
+  "auth": "JWT",
+  "data": "PostgreSQL + pgx",
+  "monetization": "None",
+  "integrations": [
+    "Redis",
+    "OpenAPI"
+  ]
+}

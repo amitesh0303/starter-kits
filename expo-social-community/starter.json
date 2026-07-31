@@ -1,0 +1,22 @@
+{
+  "id": 28,
+  "folder": "expo-social-community",
+  "family": "Expo Mobile",
+  "useCase": "Feed, profiles, comments, chat",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Clerk",
+    "Convex",
+    "Stream Chat",
+    "push notifications"
+  ],
+  "auth": "Clerk",
+  "data": "Convex + SQLite",
+  "monetization": "None",
+  "integrations": [
+    "Stream Chat",
+    "push notifications"
+  ]
+}

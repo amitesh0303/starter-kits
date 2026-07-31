@@ -1,0 +1,23 @@
+{
+  "id": 50,
+  "folder": "nextjs-real-estate-directory",
+  "family": "Content/AdSense",
+  "useCase": "Property and rental listings",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "PostgreSQL",
+    "Drizzle",
+    "MapLibre/OpenStreetMap",
+    "Cloudflare R2",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "PostgreSQL + Drizzle",
+  "monetization": "AdSense + promoted listings",
+  "integrations": [
+    "MapLibre/OpenStreetMap",
+    "Cloudflare R2"
+  ]
+}

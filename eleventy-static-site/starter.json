@@ -1,0 +1,21 @@
+{
+  "id": 45,
+  "folder": "eleventy-static-site",
+  "family": "Content/AdSense",
+  "useCase": "Minimal niche or documentation site",
+  "framework": "Eleventy",
+  "runtime": "Node LTS",
+  "technologies": [
+    "Markdown",
+    "AdSense",
+    "RSS",
+    "sitemap"
+  ],
+  "auth": "None",
+  "data": "Markdown/data files",
+  "monetization": "AdSense",
+  "integrations": [
+    "RSS",
+    "sitemap"
+  ]
+}

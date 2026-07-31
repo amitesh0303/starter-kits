@@ -1,0 +1,20 @@
+{
+  "id": 46,
+  "folder": "hugo-content-site",
+  "family": "Content/AdSense",
+  "useCase": "Large static blog or documentation",
+  "framework": "Hugo",
+  "runtime": "Go + Node",
+  "technologies": [
+    "Markdown",
+    "AdSense",
+    "Pagefind",
+    "affiliate links"
+  ],
+  "auth": "None",
+  "data": "Markdown",
+  "monetization": "AdSense + affiliate links",
+  "integrations": [
+    "Pagefind"
+  ]
+}

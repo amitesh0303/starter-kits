@@ -1,0 +1,55 @@
+# Expo AI Companion
+
+A production-ready Expo starter for building AI-powered companion or tutor apps with Supabase Auth, conversation history, RevenueCat subscriptions, and streaming AI responses.
+
+## Quick Start
+
+```bash
+# Install dependencies
+pnpm install
+
+# Copy environment file
+cp .env.example .env.local
+
+# Start development server
+pnpm run dev
+
+# Run on Android emulator
+npx expo run:android
+```
+
+## Testing
+
+```bash
+# Run all tests
+pnpm test
+
+# Type check
+pnpm run typecheck
+
+# Lint
+pnpm run lint
+```
+
+## Architecture
+
+```
+app/                      # Expo Router file-based navigation
+  _layout.tsx             # Root layout
+  (auth)/                 # Auth group
+  (app)/                  # App group (auth-guarded)
+src/
+  domain/                 # Pure business logic (no framework deps)
+    entities.ts           # Core domain types
+    policies.ts           # Business rules
+  adapters/               # External service wrappers (with fakes)
+    config.ts             # Environment validation
+  storage/                # Persistence layer
+    sqlite-repository.ts  # SQLite cache
+  sync/                   # Sync engine
+    queue.ts              # Bounded persistent queue
+```
+
+## License
+
+MIT

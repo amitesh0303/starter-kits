@@ -1,0 +1,23 @@
+{
+  "id": 34,
+  "folder": "expo-delivery-tracker",
+  "family": "Expo Mobile",
+  "useCase": "Delivery, fleet, field service",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Google Maps",
+    "background location",
+    "Firebase",
+    "push notifications"
+  ],
+  "auth": "Firebase Auth",
+  "data": "Firebase Firestore + SQLite",
+  "monetization": "None",
+  "integrations": [
+    "Google Maps",
+    "background location",
+    "push notifications"
+  ]
+}

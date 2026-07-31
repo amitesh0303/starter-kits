@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ad from '../components/Ad.astro';
+---
+
+<BaseLayout title="Comparison Site" description="Side-by-side product comparisons with detailed pros, cons, and verdicts.">
+  <h1>Product Comparisons</h1>
+  <p>Detailed side-by-side comparisons to help you choose the right product.</p>
+  <Ad slot="top-banner" />
+  <section>
+    <h2>Latest Comparisons</h2>
+    <p>Browse our latest product comparison guides.</p>
+  </section>
+</BaseLayout>

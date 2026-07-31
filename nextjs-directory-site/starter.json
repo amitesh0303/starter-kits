@@ -1,0 +1,21 @@
+{
+  "id": 39,
+  "folder": "nextjs-directory-site",
+  "family": "Content/AdSense",
+  "useCase": "Business, tools, places directory",
+  "framework": "Next.js App Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Supabase Postgres",
+    "Drizzle",
+    "Meilisearch",
+    "AdSense"
+  ],
+  "auth": "None",
+  "data": "Supabase Postgres + Drizzle",
+  "monetization": "AdSense",
+  "integrations": [
+    "Meilisearch"
+  ]
+}

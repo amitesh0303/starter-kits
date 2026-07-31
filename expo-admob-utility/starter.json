@@ -1,0 +1,21 @@
+{
+  "id": 26,
+  "folder": "expo-admob-utility",
+  "family": "Expo Mobile",
+  "useCase": "Calculator, scanner, converter",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Firebase Analytics",
+    "AdMob",
+    "SQLite",
+    "RevenueCat"
+  ],
+  "auth": "anonymous/local",
+  "data": "SQLite",
+  "monetization": "AdMob + optional RevenueCat",
+  "integrations": [
+    "Firebase Analytics"
+  ]
+}

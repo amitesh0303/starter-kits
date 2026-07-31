@@ -1,0 +1,20 @@
+{
+  "id": 36,
+  "folder": "expo-ecommerce-app",
+  "family": "Expo Mobile",
+  "useCase": "Physical-goods storefront",
+  "framework": "Expo Router",
+  "runtime": "Node LTS",
+  "technologies": [
+    "TypeScript",
+    "Shopify Storefront API",
+    "push notifications"
+  ],
+  "auth": "Shopify customer token",
+  "data": "Shopify Storefront API + SQLite",
+  "monetization": "Shopify native checkout",
+  "integrations": [
+    "Shopify Storefront API",
+    "push notifications"
+  ]
+}

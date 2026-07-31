@@ -1,0 +1,1 @@
+"""FastAPI Data Platform application."""
