@@ -1,0 +1,51 @@
+---
+/**
+ * Beginner Note: Root Layout
+ * --------------------------
+ * A layout in Astro wraps your page content with shared structure (HTML head,
+ * navigation, footer). Every page imports this layout so you only write the
+ * boilerplate once.
+ *
+ * The <slot /> element below is where each page's unique content gets injected.
+ * Think of it like a placeholder: when a page says <BaseLayout>, everything
+ * inside that tag replaces the <slot />.
+ *
+ * Props let pages pass data (like a custom title) into the layout.
+ */
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { SiteConfig } from '../config';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = SiteConfig.siteName,
+  description = SiteConfig.description,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, SiteConfig.siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

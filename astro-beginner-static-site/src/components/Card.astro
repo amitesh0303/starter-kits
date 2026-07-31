@@ -1,0 +1,56 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  href?: string;
+}
+
+const { title, description, href } = Astro.props;
+---
+
+<article class="card">
+  <h3 class="card-title">
+    {href ? <a href={href}>{title}</a> : title}
+  </h3>
+  <p class="card-description">{description}</p>
+</article>
+
+<style>
+  .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: #1a202c;
+  }
+
+  .card-title a {
+    color: #1a5a9e;
+    text-decoration: underline;
+  }
+
+  .card-title a:hover {
+    color: #113d6b;
+  }
+
+  .card-title a:focus-visible {
+    outline: 2px solid #1a5a9e;
+    outline-offset: 2px;
+  }
+
+  .card-description {
+    color: #4a5568;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>

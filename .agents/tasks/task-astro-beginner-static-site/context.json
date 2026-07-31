@@ -1,0 +1,29 @@
+{
+  "project_type": "Multi-stack boilerplate repository containing independent starters - building Beginner Static Astro site",
+  "language": "TypeScript/Astro",
+  "build_system": "pnpm (project-local, pinned packageManager field). Each starter is independent with its own manifest/lockfile.",
+  "test_framework": "Vitest for unit tests + Playwright (via @playwright/test) for output tests + fast-check for property tests + @axe-core/playwright for accessibility",
+  "build_command": "cd astro-beginner-static-site && pnpm install --frozen-lockfile && pnpm build",
+  "test_command": "cd astro-beginner-static-site && pnpm test:all",
+  "verification_instructions": "1. pnpm install --frozen-lockfile 2. pnpm lint 3. pnpm check (astro check) 4. pnpm build 5. pnpm test:all (unit + output tests)",
+  "snapshot_or_generated_files": "dist/ directory is generated but .gitignored - not checked in",
+  "setup_instructions": "cd astro-beginner-static-site && pnpm install --frozen-lockfile",
+  "environment_constraints": "Internet access available. No external services needed for this Beginner Static starter - zero auth/database/payment/provider requirement.",
+  "contribution_requirements": "Each starter must be fully standalone. No imports from root or other starters. Project-local pnpm manifest with exact-pinned direct dependencies. starter.json must match catalog entry. Beginner Static family: zero external services, dependency allowlist (only framework/styling/SEO/sitemap/static-output deps allowed as runtime).",
+  "key_patterns": "Reference astro-adsense-blog pattern: astro.config.mjs with output:'static', eslint.config.mjs with eslint/typescript-eslint/eslint-plugin-astro, vitest.config.ts, tsconfig extending astro/tsconfigs/strict, .gitignore for node_modules/dist/.astro/.env, tests/output/ for Playwright-based built-output checks, tests/unit/ for vitest unit tests. Beginner static uses plain CSS (no Tailwind), no MDX, no content collections, no AdSense/analytics/consent.",
+  "relevant_files": [
+    "catalog/starters.json (entry id:51 for astro-beginner-static-site)",
+    "astro-adsense-blog/ (reference Astro starter pattern)",
+    "astro-adsense-blog/package.json",
+    "astro-adsense-blog/astro.config.mjs",
+    "astro-adsense-blog/eslint.config.mjs",
+    "astro-adsense-blog/vitest.config.ts",
+    "astro-adsense-blog/tsconfig.json",
+    "astro-adsense-blog/starter.json",
+    "astro-adsense-blog/tests/output/accessibility.test.ts",
+    "astro-adsense-blog/tests/output/links.test.ts",
+    "astro-adsense-blog/tests/output/performance.test.ts",
+    "astro-adsense-blog/src/layouts/BaseLayout.astro"
+  ],
+  "directory_structure": "Repository root has: catalog/ (starters.json + schema), scripts/ (validate-catalog.mjs), package.json (root validator only), 52 starter folders (direct children). Each starter has: src/ (pages, layouts, components, lib), tests/ (unit/, output/), package.json, pnpm-lock.yaml, starter.json, README.md, config files."
+}

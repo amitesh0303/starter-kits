@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Card from '../components/Card.astro';
+---
+
+<BaseLayout title="Home | My Static Site" description="Welcome to my simple static site built with Astro.">
+  <Hero
+    title="Welcome to My Static Site"
+    subtitle="A clean, fast, and accessible static site built with Astro and plain CSS."
+  />
+
+  <section aria-labelledby="features-heading">
+    <h2 id="features-heading">Features</h2>
+    <div class="card-grid">
+      <Card
+        title="Fast by Default"
+        description="Astro ships zero JavaScript to the browser unless you need it, making your site lightning fast."
+      />
+      <Card
+        title="Easy to Customize"
+        description="Edit simple TypeScript and Astro files to make this site your own. No complex setup needed."
+      />
+      <Card
+        title="Accessible"
+        description="Semantic HTML, keyboard navigation, and visible focus indicators are built in from the start."
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  section {
+    margin-top: 3rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

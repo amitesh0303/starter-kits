@@ -1,0 +1,14 @@
+{
+  "task_id": "task-astro-beginner-static-site",
+  "task_description": "Build the minimal reference starter astro-beginner-static-site for the Beginner Static family. Includes exact-pinned Astro scaffold with plain CSS, shared layout/navigation/footer, two reusable components, public assets, SEO/sitemap, beginner comments, .env.example (comment-only), four static pages (Home, About, Contact with mailto:, Projects), Playwright-based output tests (links, accessibility, viewport overflow, keyboard/focus), dependency-allowlist Property 14 test, full README with deployment docs, and standalone no-service validation.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "pnpm validate passes cleanly (lint 0 errors, astro check 0 errors/0 warnings, build produces 4 pages + sitemap, 25 tests pass). Standalone copy also validates independently without repo root. Tests exercise real implementation: dependency allowlist checks actual package.json, Playwright tests load actual built pages in Chromium and check accessibility/overflow/links/keyboard."
+  }
+}

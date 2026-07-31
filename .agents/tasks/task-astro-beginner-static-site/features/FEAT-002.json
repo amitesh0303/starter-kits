@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-002",
+  "type": "chore",
+  "description": "Validate the standalone astro-beginner-static-site copy with no env values or external services, run all validation commands, update catalog status in root README from 'pending' to 'in progress', and confirm the no-service gate passes.",
+  "status": "completed",
+  "steps": [
+    "Copy astro-beginner-static-site/ to an isolated temp path (e.g., /tmp/standalone-test/astro-beginner-static-site)",
+    "Run pnpm install --frozen-lockfile in the isolated copy - must succeed without any root repository access",
+    "Run pnpm lint in the isolated copy - must pass",
+    "Run pnpm check in the isolated copy - must pass",
+    "Run pnpm build in the isolated copy - must produce dist/ with all pages and sitemap",
+    "Run pnpm test in the isolated copy - unit tests including Property 14 must pass",
+    "Run pnpm test:output in the isolated copy after build - all output tests must pass",
+    "Verify no .env values are required (build succeeds without any .env file)",
+    "Verify no external service calls are made during build/test",
+    "Update the root README.md: change the astro-beginner-static-site status from 'pending' to 'in progress' (change the emoji/text in the Beginner Static table row)"
+  ],
+  "acceptance_criteria": [
+    "Standalone copy completes all validation commands without repository root access",
+    "No environment variables required for build or test",
+    "No external service calls during install/build/test",
+    "Root README status updated to in progress for astro-beginner-static-site",
+    "pnpm validate (lint && check && build && test:all) succeeds in both original and copied location"
+  ],
+  "verification": [
+    "cp -r astro-beginner-static-site /tmp/standalone-test/ && cd /tmp/standalone-test/astro-beginner-static-site && pnpm install --frozen-lockfile && pnpm validate",
+    "Check root README.md shows updated status for astro-beginner-static-site"
+  ],
+  "blocked_reason": null,
+  "findings": "Standalone validation passed completely. All 25 tests (5 unit + 20 output) pass in isolated copy at /projects/standalone-test/astro-beginner-static-site without any root repository access. pnpm install --frozen-lockfile, lint, check, build, test, and test:output all succeed. No .env values required. Build produces 4 HTML pages + sitemap-index.xml + sitemap-0.xml. Root README.md updated from pending to in progress."
+}
